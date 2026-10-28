@@ -10,7 +10,10 @@ Get-Process TVUStartup.Web -ErrorAction SilentlyContinue | Stop-Process -Force
 
 Write-Host '2/4 Xóa CSDL TVUStartupDB...'
 Push-Location $web
-try { dotnet ef database drop --force } finally { Pop-Location }
+try {
+    dotnet tool restore | Out-Null   # cài công cụ dotnet-ef nếu máy chưa có
+    dotnet ef database drop --force
+} finally { Pop-Location }
 
 Write-Host '3/4 Xóa ảnh tải lên khi chạy thử (giữ ảnh mẫu trong uploads\sample)...'
 Get-ChildItem (Join-Path $web 'wwwroot\uploads') -Exclude sample | Remove-Item -Recurse -Force
