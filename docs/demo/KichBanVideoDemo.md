@@ -1,12 +1,12 @@
 # Kịch bản quay video demo
 
-Video demo dài khoảng 10 phút, đi trọn một vòng đời của dự án khởi nghiệp: khách xem và tìm kiếm dự án → sinh viên đăng dự án mới → quản trị viên từ chối, sinh viên sửa và gửi lại → quản trị viên duyệt, dự án lên trang chủ → người dùng khác bình luận, bình chọn → kiểm tra phân quyền và khóa tài khoản.
+Video demo dài khoảng 10 phút. Video bắt đầu từ lúc máy chưa có cơ sở dữ liệu: tạo cơ sở dữ liệu bằng migration và chạy website lên localhost, sau đó đi trọn một vòng đời của dự án khởi nghiệp: khách xem và tìm kiếm dự án → sinh viên đăng dự án mới → quản trị viên từ chối, sinh viên sửa và gửi lại → quản trị viên duyệt, dự án lên trang chủ → người dùng khác bình luận, bình chọn → kiểm tra phân quyền và khóa tài khoản.
 
 Mỗi cảnh gồm cột **Thao tác** (làm gì trên màn hình) và **Lời thoại** (nói gì trong lúc làm). Lời thoại chỉ là gợi ý, có thể nói tự nhiên theo ý mình.
 
 ## 1. Cài đặt, tạo cơ sở dữ liệu và chạy website trên localhost
 
-Phần này chỉ cần làm một lần trên máy dùng để quay. Nếu website đã chạy được tại http://localhost:5080 thì chuyển sang mục 2.
+Mục 1.1–1.2 chỉ cần làm một lần trên máy dùng để quay. Mục 1.3–1.4 là các bước sẽ được làm lại trước ống kính ở Cảnh 2; nên chạy thử một lần trước để chắc chắn máy không gặp lỗi, sau đó chạy dat_lai_du_lieu.ps1 (mục 2.1) để xóa đi trước khi quay.
 
 ### 1.1. Phần mềm cần có
 
@@ -14,7 +14,7 @@ Phần này chỉ cần làm một lần trên máy dùng để quay. Nếu webs
 |---|---|---|
 | .NET 8 SDK | Tải tại dotnet.microsoft.com, bản SDK 8.0.x cho Windows x64 | Mở PowerShell, gõ `dotnet --list-sdks` → có dòng bắt đầu bằng 8.0 |
 | SQL Server 2022 Express | Khi cài chọn Basic; tên instance mặc định là SQLEXPRESS | Mở services.msc → dịch vụ SQL Server (SQLEXPRESS) ở trạng thái Running |
-| SQL Server Management Studio (SSMS) | Để xem cơ sở dữ liệu khi quay cảnh mở đầu | Mở SSMS, kết nối Server name `.\SQLEXPRESS`, Authentication: Windows Authentication |
+| SQL Server Management Studio (SSMS) | Để cho thấy cơ sở dữ liệu được tạo trong Cảnh 2 | Mở SSMS, kết nối Server name `.\SQLEXPRESS`, Authentication: Windows Authentication |
 | Visual Studio 2022 | Workload ASP.NET and web development; chỉ dùng để mở code khi quay | Mở được tệp TVUStartup.sln |
 | Git (không bắt buộc) | Dùng để tải mã nguồn từ GitHub | `git --version` |
 
@@ -70,15 +70,17 @@ dotnet run --project TVUStartup.Web --urls http://localhost:5080
 | Failed to bind to address http://127.0.0.1:5080: address already in use | Website đang chạy ở một cửa sổ khác. Đóng cửa sổ đó (Ctrl+C), hoặc chạy dat_lai_du_lieu.ps1 (tệp này tự dừng website cũ). |
 | Could not execute because the specified command or file was not found (dotnet-ef) | Chưa cài công cụ EF Core. Chạy `dotnet tool restore` trong thư mục mã nguồn. |
 | The command could not be loaded / không chạy được tệp .ps1 | Windows chặn chạy script. Chạy bằng lệnh `powershell -ExecutionPolicy Bypass -File docs\demo\dat_lai_du_lieu.ps1`. |
-| Trang web hiện nhưng không có dự án nào | Cơ sở dữ liệu được tạo nhưng chưa nạp dữ liệu mẫu. Chạy dat_lai_du_lieu.ps1 để tạo lại từ đầu. |
+| Trang web hiện nhưng không có dự án nào | Cơ sở dữ liệu được tạo nhưng chưa nạp dữ liệu mẫu. Chạy dat_lai_du_lieu.ps1 rồi làm lại mục 1.3–1.4. |
+| Hiện cảnh báo NU1902 (HtmlSanitizer) khi chạy dotnet run | Cảnh báo của NuGet về thư viện, không ảnh hưởng chạy website. Khi quay, dùng tham số `--no-build` (mã nguồn đã được build sẵn ở mục 2.1) để cửa sổ lệnh không hiện cảnh báo này. |
 
 ## 2. Chuẩn bị trước mỗi lần quay (không quay phần này)
 
 ### 2.1. Đặt lại dữ liệu
 
-- Chạy tệp docs/demo/dat_lai_du_lieu.ps1 (chuột phải → Run with PowerShell). Tệp này dừng website, xóa CSDL, xóa ảnh đã tải lên khi chạy thử rồi chạy lại website tại http://localhost:5080 với dữ liệu mẫu sạch.
-- Giữ nguyên cửa sổ PowerShell đó trong suốt lúc quay (đóng là website dừng).
-- Nếu quay hỏng giữa chừng, chạy lại tệp này rồi quay lại từ đầu, vì dự án demo đã được tạo ở lần quay trước.
+- Chạy tệp docs/demo/dat_lai_du_lieu.ps1 (chuột phải → Run with PowerShell). Tệp này dừng website nếu đang chạy, xóa CSDL TVUStartupDB, xóa ảnh đã tải lên khi chạy thử và build sẵn mã nguồn. Khi cửa sổ báo "Đã sẵn sàng quay: chưa có CSDL, website chưa chạy" thì nhấn Enter để đóng.
+- Sau bước này máy ở đúng trạng thái đầu video: SQL Server chưa có TVUStartupDB, website chưa chạy.
+- Nếu quay hỏng giữa chừng: nhấn Ctrl+C ở cửa sổ đang chạy website, chạy lại tệp này rồi quay lại từ đầu.
+- Chỉ muốn chạy thử website (không quay): chạy `powershell -ExecutionPolicy Bypass -File docs\demo\dat_lai_du_lieu.ps1 -ChayWeb`, website sẽ được tạo lại dữ liệu và chạy luôn tại http://localhost:5080.
 
 ### 2.2. Tài khoản và dữ liệu nhập
 
@@ -109,25 +111,40 @@ Dữ liệu nhập cho dự án demo:
 ### 2.3. Màn hình và trình duyệt
 
 - Độ phân giải màn hình 1920×1080, thu phóng trình duyệt 100%. Tắt thông báo Windows (Focus Assist), Zalo, Messenger.
-- Mở sẵn 3 cửa sổ trình duyệt, mỗi cửa sổ một phiên đăng nhập riêng, đặt ở http://localhost:5080:
+- Mở sẵn PowerShell tại thư mục TVUStartup.Web (Shift + chuột phải vào thư mục → Open PowerShell window here), phóng to chữ (Ctrl + lăn chuột) để người xem đọc được lệnh. Có thể dùng Terminal trong Visual Studio (View → Terminal) thay cho PowerShell.
+- Mở sẵn SSMS, đã kết nối .\SQLEXPRESS, mở rộng mục Databases (lúc này chưa có TVUStartupDB).
+- Mở sẵn 3 cửa sổ trình duyệt ở trang trống (website chưa chạy nên chưa mở địa chỉ), mỗi cửa sổ một phiên đăng nhập riêng:
 - **Cửa sổ A – Chrome thường:** sinh viên Lê Văn Bình Phương (chưa đăng nhập, sẽ đăng nhập khi quay).
 - **Cửa sổ B – Microsoft Edge:** quản trị viên (chưa đăng nhập).
 - **Cửa sổ C – Chrome ẩn danh (Ctrl+Shift+N):** khách, sau đó đăng ký thành sinh viên mới.
-- Mở sẵn Visual Studio (solution TVUStartup) và SQL Server Management Studio (đã kết nối .\SQLEXPRESS) cho cảnh mở đầu.
+- Mở sẵn Visual Studio (solution TVUStartup) cho cảnh mở đầu.
 - Mở sẵn thư mục docs/demo/anh_demo để chọn ảnh nhanh.
 - Phần mềm quay: OBS Studio (Display Capture, 1920×1080, 30 fps, có micro) hoặc Xbox Game Bar (Win+Alt+R). Quay thử 10 giây để kiểm tra tiếng trước khi quay thật.
 
+<<<PAGEBREAK>>>
+
 ## 3. Kịch bản chi tiết
 
-### Cảnh 1. Mở đầu (0:00 – 0:40)
+### Cảnh 1. Mở đầu (0:00 – 0:30)
 
 | Thao tác | Lời thoại |
 |---|---|
-| Màn hình Visual Studio, mở Solution Explorer, lướt qua các thư mục Controllers, Areas/Admin, Data, Services | Em chào thầy cô. Em là Lê Văn Bình Phương, MSSV 170125077. Sau đây em xin demo website giới thiệu sản phẩm khởi nghiệp của sinh viên Trường Đại học Trà Vinh, xây dựng bằng ASP.NET Core MVC .NET 8. |
-| Chuyển sang SSMS, mở TVUStartupDB → Tables | Cơ sở dữ liệu SQL Server gồm 14 bảng, được tạo bằng migration của Entity Framework Core và nạp dữ liệu mẫu khi website khởi động. |
-| Chuyển sang cửa sổ C, đang ở trang chủ | Em sẽ demo theo đúng vòng đời của một dự án, từ lúc sinh viên đăng cho đến khi được duyệt và công khai. |
+| Màn hình Visual Studio, mở Solution Explorer, lướt qua các thư mục Controllers, Areas/Admin, Data, Services, Views | Em chào thầy cô. Em là Lê Văn Bình Phương, MSSV 170125077. Sau đây em xin demo website giới thiệu sản phẩm khởi nghiệp của sinh viên Trường Đại học Trà Vinh, xây dựng bằng ASP.NET Core MVC .NET 8, tổ chức theo mô hình MVC. |
 
-### Cảnh 2. Khách xem và tìm kiếm dự án (0:40 – 2:30) – cửa sổ C
+### Cảnh 2. Khởi tạo cơ sở dữ liệu và chạy website (0:30 – 1:45)
+
+| Thao tác | Lời thoại |
+|---|---|
+| Chuyển sang SSMS, chuột phải Databases → Refresh: chưa có TVUStartupDB | Trước tiên em tạo cơ sở dữ liệu. Hiện trên SQL Server chưa có cơ sở dữ liệu của hệ thống. |
+| Visual Studio: mở TVUStartup.Web/appsettings.json, trỏ vào dòng DefaultConnection | Chuỗi kết nối trỏ tới SQL Server Express trên máy, cơ sở dữ liệu tên TVUStartupDB, đăng nhập bằng Windows Authentication. |
+| Mở Data/AppDbContext.cs, cuộn qua các DbSet; mở thư mục Data/Migrations | Em dùng Entity Framework Core theo hướng Code First: các bảng được khai báo bằng lớp C# trong AppDbContext, từ đó sinh ra migration InitialCreate. |
+| Chuyển sang PowerShell (thư mục TVUStartup.Web), gõ `dotnet ef database update --no-build` → Enter, chờ dòng **Done.** | Lệnh database update áp dụng migration lên SQL Server: tạo cơ sở dữ liệu cùng các bảng, khóa chính, khóa ngoại và chỉ mục. |
+| SSMS: Refresh Databases → mở TVUStartupDB → Tables | Cơ sở dữ liệu đã được tạo với 14 bảng, hiện chưa có dữ liệu. |
+| PowerShell: gõ `dotnet run --no-build --urls http://localhost:5080` → chờ dòng **Now listening on: http://localhost:5080** | Bây giờ em chạy website. Khi khởi động, lớp DbSeeder kiểm tra cơ sở dữ liệu còn trống thì nạp dữ liệu mẫu: 7 khoa, 8 lĩnh vực, các tài khoản và 13 dự án. |
+| SSMS: New Query → gõ `SELECT ProjectName, Status FROM Project` → Execute (F5) | Kiểm tra lại, bảng Project đã có 13 dự án mẫu. |
+| Mở cửa sổ C, gõ http://localhost:5080. Mở thêm địa chỉ này ở cửa sổ A và B | Website đã chạy trên localhost. Em sẽ demo theo đúng vòng đời của một dự án, từ lúc sinh viên đăng cho đến khi được duyệt và công khai. |
+
+### Cảnh 3. Khách xem và tìm kiếm dự án (1:45 – 3:15) – cửa sổ C
 
 | Thao tác | Lời thoại |
 |---|---|
@@ -136,16 +153,16 @@ Dữ liệu nhập cho dự án demo:
 | Xóa bộ lọc, gõ tìm **tra mang cau** (không dấu) → Enter | Em gõ không dấu "tra mang cau" vẫn tìm được dự án Trà Mãng Cầu Xiêm Xanh, nhờ collation tiếng Việt không phân biệt dấu của SQL Server. |
 | Mở dự án **Zalord**: cuộn qua Giới thiệu, Tính năng, bấm một ảnh trong Hình ảnh, Phiên bản, Đội ngũ, Bình luận | Trang chi tiết gồm giới thiệu, tính năng, thư viện ảnh, lịch sử phiên bản, đội ngũ và bình luận, đánh giá. Zalord là sản phẩm thật của em. |
 | Bấm **Liên hệ hợp tác** → nhập Họ và tên: Nguyễn Văn An, Email: an.nguyen@example.com, Nhu cầu: Hợp tác, Nội dung: một câu → **Gửi yêu cầu** | Khách không cần đăng nhập vẫn gửi được yêu cầu hợp tác tới chủ dự án. Yêu cầu này sẽ hiện trong trang của chủ dự án và của quản trị viên. |
-| Nhấn F12 → Ctrl+Shift+M, chọn iPhone, cuộn trang chủ, mở menu ☰ → tắt F12 | Giao diện responsive, hiển thị tốt trên điện thoại. |
+| (Nếu còn thời gian) Nhấn F12 → Ctrl+Shift+M, chọn iPhone, cuộn trang chủ, mở menu ☰ → tắt F12 | Giao diện responsive, hiển thị tốt trên điện thoại. |
 
-### Cảnh 3. Đăng ký tài khoản (2:30 – 3:15) – cửa sổ C
+### Cảnh 4. Đăng ký tài khoản (3:15 – 3:50) – cửa sổ C
 
 | Thao tác | Lời thoại |
 |---|---|
 | Bấm **Đăng ký**. Nhập MSSV: **17012abc**, mật khẩu nhập lại khác mật khẩu → bấm Đăng ký | Form đăng ký có kiểm tra dữ liệu: mã số sinh viên chỉ gồm chữ số, mật khẩu nhập lại phải khớp. |
 | Sửa lại đúng: Họ tên Trần Minh Tú, Email tu.demo@st.tvu.edu.vn, MSSV 170125999, Lớp DK25TTG2, Khoa Kỹ thuật và Công nghệ, Mật khẩu Demo@123 (2 lần) → Đăng ký | Đăng ký thành công thì hệ thống đăng nhập luôn. Mật khẩu được băm bằng PBKDF2 trước khi lưu. Em để tài khoản này đó, lát nữa dùng để bình luận. |
 
-### Cảnh 4. Sinh viên đăng dự án (3:15 – 6:00) – cửa sổ A
+### Cảnh 5. Sinh viên đăng dự án (3:50 – 6:15) – cửa sổ A
 
 | Thao tác | Lời thoại |
 |---|---|
@@ -159,7 +176,7 @@ Dữ liệu nhập cho dự án demo:
 | Bấm **Xem trước**, cuộn nhanh, quay lại | Chủ dự án xem trước được dự án đang ở trạng thái nháp, người khác không xem được. |
 | Bấm **Gửi duyệt** → trạng thái Chờ duyệt | Đủ điều kiện, em gửi duyệt. Dự án chuyển sang Chờ duyệt và không cho sửa nữa. |
 
-### Cảnh 5. Quản trị viên kiểm duyệt (6:00 – 8:00) – cửa sổ B và A
+### Cảnh 6. Quản trị viên kiểm duyệt (6:15 – 8:00) – cửa sổ B và A
 
 | Thao tác | Lời thoại |
 |---|---|
@@ -172,7 +189,7 @@ Dữ liệu nhập cho dự án demo:
 | Bấm **Xem website** → trang chủ: dự án TVU Tìm Đồ ở mục Dự án nổi bật | Dự án đã công khai và xuất hiện ở trang chủ. |
 | Quay lại quản trị → menu **Liên hệ hợp tác**: thấy yêu cầu của Nguyễn Văn An | Yêu cầu hợp tác khách gửi lúc nãy hiện trong trang quản trị để theo dõi. |
 
-### Cảnh 6. Bình luận, đánh giá, bình chọn (8:00 – 9:00) – cửa sổ C và A
+### Cảnh 7. Bình luận, đánh giá, bình chọn (8:00 – 8:50) – cửa sổ C và A
 
 | Thao tác | Lời thoại |
 |---|---|
@@ -181,7 +198,7 @@ Dữ liệu nhập cho dự án demo:
 | Cửa sổ A (chủ dự án): F5 dự án → **Trả lời** bình luận → **Gửi trả lời** | Chủ dự án trả lời bình luận, có nhãn chủ dự án để phân biệt. |
 | (Nếu còn thời gian) Bấm Bình chọn trên dự án của chính mình → báo không được | Chủ dự án không thể tự bình chọn cho dự án của mình. |
 
-### Cảnh 7. Phân quyền, khóa tài khoản và kết thúc (9:00 – 10:00)
+### Cảnh 8. Phân quyền, khóa tài khoản và kết thúc (8:50 – 9:50)
 
 | Thao tác | Lời thoại |
 |---|---|
@@ -195,4 +212,4 @@ Dữ liệu nhập cho dự án demo:
 - Xem lại toàn bộ video: tiếng rõ, không lộ thông tin cá nhân (thông báo, tab khác, mật khẩu thật).
 - Nếu video dài hơn 10 phút, cắt bớt các đoạn chờ tải trang và đoạn nhập liệu (có thể tua nhanh 2x phần gõ form).
 - Xuất video MP4 (H.264, 1080p), đặt tên 170125077_LeVanBinhPhuong_VideoDemo.mp4, tải lên Google Drive hoặc YouTube (chế độ không công khai) và dán đường dẫn vào Phụ lục 3 của báo cáo.
-- Chạy lại dat_lai_du_lieu.ps1 nếu cần trả website về dữ liệu mẫu ban đầu.
+- Nhấn Ctrl+C ở cửa sổ PowerShell để dừng website. Chạy lại dat_lai_du_lieu.ps1 nếu cần quay lại từ đầu.
