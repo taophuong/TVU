@@ -33,8 +33,9 @@ PkuongProject/
 │   ├── Views/                      # Giao diện Razor
 │   └── wwwroot/                    # CSS, JS, ảnh (uploads/sample: ảnh dữ liệu mẫu)
 ├── database/TVUStartupDB_schema.sql  # Script tạo CSDL (sinh từ migration)
-├── docs/                           # Thiết kế CSDL, phân tích yêu cầu
-└── tests/kiem_thu_nhanh.py         # Kiểm thử tự động các luồng chính (57 ca)
+├── docs/                           # Thiết kế CSDL, phân tích yêu cầu, tư liệu Chương 3 & 5
+│   └── diagrams/                   # Sơ đồ UML, ERD, kiến trúc, wireframe (PNG) + mã nguồn sơ đồ (src/)
+└── tests/kiem_thu_nhanh.py         # Kiểm thử tự động các luồng chính (62 ca)
 ```
 
 ## 3. Cài đặt và chạy
@@ -109,7 +110,7 @@ Khi web đang chạy ở `http://localhost:5080`:
 dotnet run --project TVUStartup.Web --urls http://localhost:5080
 python -X utf8 tests/kiem_thu_nhanh.py
 ```
-Script chạy 57 ca kiểm thử (khách, sinh viên, quản trị, bảo mật) và in kết quả PASS/FAIL. Script có tạo thêm dữ liệu thử (bình luận, liên hệ, tài khoản) – tạo lại dữ liệu mẫu theo mục 3 nếu cần.
+Script chạy 62 ca kiểm thử (khách, sinh viên, quản trị, bảo mật) và in kết quả PASS/FAIL. Script có tạo thêm dữ liệu thử (bình luận, liên hệ, tài khoản) – tạo lại dữ liệu mẫu theo mục 3 nếu cần.
 
 ## 8. Khai báo sử dụng AI
 Đồ án có sử dụng công cụ AI (Claude) hỗ trợ: gợi ý cấu trúc mã nguồn, giao diện, dữ liệu mẫu và kịch bản kiểm thử. Sinh viên đã đọc hiểu, chỉnh sửa và chịu trách nhiệm toàn bộ mã nguồn.

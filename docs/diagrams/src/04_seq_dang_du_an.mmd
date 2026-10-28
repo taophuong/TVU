@@ -1,0 +1,35 @@
+sequenceDiagram
+    autonumber
+    actor SV as Sinh viên
+    participant V as Trình duyệt<br/>(View MyProjects)
+    participant C as MyProjectsController
+    participant S as Services<br/>(HtmlSanitizer, FileStorage)
+    participant DB as AppDbContext<br/>(EF Core → SQL Server)
+
+    SV->>V: Mở "Đăng dự án mới", nhập thông tin, chọn logo / ảnh bìa
+    V->>C: POST /du-an-cua-toi/tao-moi (ProjectFormModel, multipart)
+    C->>C: [Authorize(Roles = SinhVien)], kiểm tra ModelState
+    C->>DB: Kiểm tra lĩnh vực / khoa hợp lệ, tạo slug không trùng
+    C->>S: Lọc HTML phần giới thiệu, lưu ảnh tải lên
+    S-->>C: Nội dung an toàn, đường dẫn ảnh
+    C->>DB: Add(Project{Status = Nháp}) + SaveChanges
+    DB-->>C: ProjectId
+    C-->>V: Redirect trang Sửa dự án (tab Tính năng)
+
+    loop Bổ sung nội dung
+        SV->>V: Thêm tính năng / hình ảnh / phiên bản / thành viên
+        V->>C: POST /du-an-cua-toi/{id}/tinh-nang, /hinh-anh, ...
+        C->>DB: Kiểm tra dự án thuộc sinh viên, lưu dữ liệu con
+        C-->>V: Redirect lại tab tương ứng
+    end
+
+    SV->>V: Bấm "Gửi duyệt"
+    V->>C: POST /du-an-cua-toi/{id}/gui-duyet
+    C->>DB: Lấy dự án (kèm ảnh, tính năng)
+    alt Thiếu ảnh bìa hoặc chưa có tính năng
+        C-->>V: Thông báo "Chưa thể gửi duyệt, còn thiếu ..."
+    else Đủ điều kiện
+        C->>DB: Status = Chờ duyệt, xóa RejectReason, SaveChanges
+        C-->>V: Thông báo "Đã gửi dự án tới Ban quản trị"
+    end
+    V-->>SV: Hiển thị kết quả

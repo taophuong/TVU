@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1222" height="1440" viewBox="0 0 1222 1440"><rect width="100%" height="100%" fill="#fff"/><defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+<marker id="arrowStart" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#334155"/></marker>
+<marker id="hollow" viewBox="0 0 12 12" refX="11.5" refY="6" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#fff" stroke="#334155" stroke-width="1.2"/></marker>
+</defs>
+<rect x="1" y="1" width="380" height="1437" fill="none" stroke="#334155" stroke-width="1.5"/>
+<rect x="1" y="1" width="380" height="44" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="191.0" y="28.6">Sinh viên</tspan></text>
+<rect x="381" y="1" width="460" height="1437" fill="none" stroke="#334155" stroke-width="1.5"/>
+<rect x="381" y="1" width="460" height="44" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="611.0" y="28.6">Hệ thống</tspan></text>
+<rect x="841" y="1" width="380" height="1437" fill="none" stroke="#334155" stroke-width="1.5"/>
+<rect x="841" y="1" width="380" height="44" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="1031.0" y="28.6">Quản trị viên</tspan></text>
+<circle cx="190" cy="80" r="12" fill="#111"/>
+<rect x="100.0" y="128.0" width="180" height="44" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="190" y="154.9">Đăng nhập</tspan></text>
+<rect x="85.0" y="214.0" width="210" height="52" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="190" y="235.8">Nhập thông tin chung</tspan><tspan x="190" y="254.0">(tên, mô tả, lĩnh vực, ảnh)</tspan></text>
+<polygon points="610,292 720,330 610,368 500,330" fill="#fff7ed" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="610" y="334.6">Dữ liệu hợp lệ?</tspan></text>
+<rect x="500.0" y="395.0" width="220" height="50" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="610" y="415.8">Lưu dự án</tspan><tspan x="610" y="434.0">trạng thái Nháp</tspan></text>
+<rect x="80.0" y="482.0" width="220" height="56" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="190" y="505.8">Bổ sung tính năng, hình ảnh,</tspan><tspan x="190" y="524.0">phiên bản, thành viên</tspan></text>
+<rect x="100.0" y="577.0" width="180" height="46" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="190" y="604.9">Bấm Gửi duyệt</tspan></text>
+<polygon points="610,652 730,690 610,728 490,690" fill="#fff7ed" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="610" y="686.1">Có ảnh bìa và</tspan><tspan x="610" y="703.0">≥ 1 tính năng?</tspan></text>
+<rect x="500.0" y="755.0" width="220" height="50" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="610" y="775.8">Cập nhật trạng thái</tspan><tspan x="610" y="794.0">Chờ duyệt</tspan></text>
+<rect x="910.0" y="835.0" width="240" height="50" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="1030" y="855.8">Xem danh sách Chờ duyệt,</tspan><tspan x="1030" y="874.0">xem trước dự án</tspan></text>
+<polygon points="1030,912 1140,950 1030,988 920,950" fill="#fff7ed" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="1030" y="946.1">Nội dung</tspan><tspan x="1030" y="963.0">đạt yêu cầu?</tspan></text>
+<rect x="849.0" y="1015.0" width="118" height="50" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="908" y="1035.8">Từ chối,</tspan><tspan x="908" y="1054.0">nhập lý do</tspan></text>
+<rect x="1095.0" y="1015.0" width="110" height="50" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="1150" y="1044.9">Bấm Duyệt</tspan></text>
+<rect x="390.0" y="1105.0" width="220" height="50" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="500" y="1125.8">Lưu trạng thái Bị từ chối</tspan><tspan x="500" y="1144.0">kèm lý do</tspan></text>
+<rect x="80.0" y="1102.0" width="220" height="56" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="190" y="1125.8">Xem lý do từ chối,</tspan><tspan x="190" y="1144.0">chỉnh sửa dự án</tspan></text>
+<rect x="610.0" y="1195.0" width="220" height="50" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="720" y="1215.8">Lưu Đã duyệt, ghi</tspan><tspan x="720" y="1234.0">ApprovedAt, ApprovedBy</tspan></text>
+<rect x="610.0" y="1285.0" width="220" height="50" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="720" y="1305.8">Hiển thị công khai: danh sách,</tspan><tspan x="720" y="1324.0">tìm kiếm, trang chủ</tspan></text>
+<circle cx="720" cy="1395" r="14" fill="#fff" stroke="#111" stroke-width="2"/>
+<circle cx="720" cy="1395" r="8" fill="#111"/>
+<polyline points="190,92 190,128" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="190,172 190,214" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="295,240 610,240 610,292" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="500,330 190,330 190,266" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="417.0" y="319" width="46.0" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="middle" style="font-style:italic;"><tspan x="440" y="334.6">Không</tspan></text>
+<polyline points="610,368 610,395" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="627" y="369" width="24.4" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="start" style="font-style:italic;"><tspan x="632" y="384.6">Có</tspan></text>
+<polyline points="610,445 610,498 300,498" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="190,538 190,577" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="280,600 610,600 610,652" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="730,690 800,690 800,524 300,524" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="747.0" y="659" width="46.0" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="middle" style="font-style:italic;"><tspan x="770" y="674.5">Không</tspan></text>
+<polyline points="610,728 610,755" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="627" y="729" width="24.4" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="start" style="font-style:italic;"><tspan x="632" y="744.5">Có</tspan></text>
+<polyline points="720,780 1030,780 1030,835" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1030,885 1030,912" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="920,950 908,950 908,1015" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="857.0" y="914" width="46.0" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="middle" style="font-style:italic;"><tspan x="880" y="929.5">Không</tspan></text>
+<polyline points="1140,950 1150,950 1150,1015" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="1159.8" y="914" width="24.4" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="middle" style="font-style:italic;"><tspan x="1172" y="929.5">Có</tspan></text>
+<polyline points="908,1065 908,1130 610,1130" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="1150,1065 1150,1220 830,1220" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="390,1130 300,1130" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="190,1102 190,623" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="188.2" y="849" width="103.60000000000001" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="middle" style="font-style:italic;"><tspan x="240" y="864.5">Gửi duyệt lại</tspan></text>
+<polyline points="720,1245 720,1285" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="720,1335 720,1381" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+</svg>

@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="1150" viewBox="0 0 1520 1150"><rect width="100%" height="100%" fill="#fff"/><defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+<marker id="arrowStart" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#334155"/></marker>
+<marker id="hollow" viewBox="0 0 12 12" refX="11.5" refY="6" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#fff" stroke="#334155" stroke-width="1.2"/></marker>
+</defs>
+<rect x="250" y="30" width="1020" height="1100" rx="12" fill="#ffffff" stroke="#0b3d91" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle" style=""><tspan x="760.0" y="53.2">Hệ thống TVU Startup – Website giới thiệu sản phẩm khởi nghiệp SV TVU</tspan></text>
+<circle cx="115" cy="265" r="14" stroke="#111" stroke-width="2" fill="none"/>
+<line x1="115" y1="279" x2="115" y2="320" stroke="#111" stroke-width="2" fill="none"/>
+<line x1="91" y1="295" x2="139" y2="295" stroke="#111" stroke-width="2" fill="none"/>
+<line x1="115" y1="320" x2="95" y2="350" stroke="#111" stroke-width="2" fill="none"/>
+<line x1="115" y1="320" x2="135" y2="350" stroke="#111" stroke-width="2" fill="none"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="115" y="375.2">Khách</tspan></text>
+<circle cx="115" cy="755" r="14" stroke="#111" stroke-width="2" fill="none"/>
+<line x1="115" y1="769" x2="115" y2="810" stroke="#111" stroke-width="2" fill="none"/>
+<line x1="91" y1="785" x2="139" y2="785" stroke="#111" stroke-width="2" fill="none"/>
+<line x1="115" y1="810" x2="95" y2="840" stroke="#111" stroke-width="2" fill="none"/>
+<line x1="115" y1="810" x2="135" y2="840" stroke="#111" stroke-width="2" fill="none"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="115" y="865.2">Sinh viên</tspan></text>
+<circle cx="1400" cy="855" r="14" stroke="#111" stroke-width="2" fill="none"/>
+<line x1="1400" y1="869" x2="1400" y2="910" stroke="#111" stroke-width="2" fill="none"/>
+<line x1="1376" y1="885" x2="1424" y2="885" stroke="#111" stroke-width="2" fill="none"/>
+<line x1="1400" y1="910" x2="1380" y2="940" stroke="#111" stroke-width="2" fill="none"/>
+<line x1="1400" y1="910" x2="1420" y2="940" stroke="#111" stroke-width="2" fill="none"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="1400" y="965.2">Quản trị viên</tspan></text>
+<polyline points="145,295 302,110" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="145,295 302,185" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="145,295 302,260" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="145,295 302,335" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="145,295 302,410" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="145,295 302,485" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="145,785 632,560" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="145,785 632,632" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="145,785 632,704" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="145,785 632,776" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="145,785 632,848" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="145,785 632,920" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="145,785 632,992" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="145,785 632,1075" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="1370,885 1223,105" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="1370,885 1223,179" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="1370,885 1223,253" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="1370,885 1223,327" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="1370,885 1223,401" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="1370,885 1223,475" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="1370,885 1223,549" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="1370,885 1223,623" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="1370,885 1223,697" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="1370,885 1223,771" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="1370,885 888,1075" fill="none" stroke="#334155" stroke-width="1.6"/>
+<polyline points="115,740 115,392" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#hollow)"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="start" style="font-style:italic;"><tspan x="127" y="569.5">kế thừa</tspan></text>
+<ellipse cx="430" cy="110" rx="128" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="430" y="114.9">UC01 Xem trang chủ</tspan></text>
+<ellipse cx="430" cy="185" rx="128" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="430" y="189.9">UC02 Tìm kiếm, lọc dự án</tspan></text>
+<ellipse cx="430" cy="260" rx="128" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="430" y="264.9">UC03 Xem chi tiết dự án</tspan></text>
+<ellipse cx="430" cy="335" rx="128" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="430" y="339.9">UC04 Xem tin tức, sự kiện</tspan></text>
+<ellipse cx="430" cy="410" rx="128" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="430" y="414.9">UC05 Gửi liên hệ hợp tác</tspan></text>
+<ellipse cx="430" cy="485" rx="128" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="430" y="489.9">UC06 Đăng ký tài khoản</tspan></text>
+<ellipse cx="760" cy="560" rx="128" ry="36" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="760" y="555.8">UC08 Cập nhật hồ sơ,</tspan><tspan x="760" y="574.0">đổi mật khẩu</tspan></text>
+<ellipse cx="760" cy="632" rx="128" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="760" y="636.9">UC09 Quản lý dự án của tôi</tspan></text>
+<ellipse cx="760" cy="704" rx="128" ry="36" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="760" y="699.8">UC10 Quản lý ảnh, tính năng,</tspan><tspan x="760" y="718.0">phiên bản, thành viên</tspan></text>
+<ellipse cx="760" cy="776" rx="128" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="760" y="780.9">UC11 Gửi duyệt / rút lại</tspan></text>
+<ellipse cx="760" cy="848" rx="128" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="760" y="852.9">UC12 Bình luận, đánh giá</tspan></text>
+<ellipse cx="760" cy="920" rx="128" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="760" y="924.9">UC13 Bình chọn dự án</tspan></text>
+<ellipse cx="760" cy="992" rx="128" ry="36" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="760" y="987.8">UC14 Xem liên hệ</tspan><tspan x="760" y="1006.0">gửi tới dự án</tspan></text>
+<ellipse cx="1095" cy="105" rx="140" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="1095" y="109.9">UC15 Xem thống kê (dashboard)</tspan></text>
+<ellipse cx="1095" cy="179" rx="140" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="1095" y="183.9">UC16 Duyệt / từ chối / ẩn dự án</tspan></text>
+<ellipse cx="1095" cy="253" rx="140" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="1095" y="257.9">UC17 Đánh dấu dự án nổi bật</tspan></text>
+<ellipse cx="1095" cy="327" rx="140" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="1095" y="331.9">UC18 Quản lý lĩnh vực</tspan></text>
+<ellipse cx="1095" cy="401" rx="140" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="1095" y="405.9">UC19 Quản lý khoa</tspan></text>
+<ellipse cx="1095" cy="475" rx="140" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="1095" y="479.9">UC20 Quản lý tài khoản</tspan></text>
+<ellipse cx="1095" cy="549" rx="140" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="1095" y="553.9">UC21 Quản lý tin tức, sự kiện</tspan></text>
+<ellipse cx="1095" cy="623" rx="140" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="1095" y="627.9">UC22 Quản lý banner</tspan></text>
+<ellipse cx="1095" cy="697" rx="140" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="1095" y="701.9">UC23 Kiểm duyệt bình luận</tspan></text>
+<ellipse cx="1095" cy="771" rx="140" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="1095" y="775.9">UC24 Xử lý liên hệ hợp tác</tspan></text>
+<ellipse cx="760" cy="1075" rx="128" ry="30" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="760" y="1079.9">UC07 Đăng nhập / đăng xuất</tspan></text>
+</svg>

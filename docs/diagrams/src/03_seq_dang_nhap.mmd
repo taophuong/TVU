@@ -1,0 +1,33 @@
+sequenceDiagram
+    autonumber
+    actor U as Người dùng
+    participant V as Trình duyệt<br/>(View Login)
+    participant C as AccountController
+    participant H as IPasswordHasher
+    participant DB as AppDbContext<br/>(EF Core → SQL Server)
+
+    U->>V: Nhập email, mật khẩu, bấm "Đăng nhập"
+    V->>V: Kiểm tra hợp lệ phía client<br/>(jQuery Validation)
+    V->>C: POST /dang-nhap (LoginViewModel + AntiForgery token)
+    C->>C: [ValidateAntiForgeryToken], ModelState.IsValid
+    C->>DB: Tìm Account theo Email (kèm Role)
+    DB-->>C: Account hoặc null
+    alt Không có tài khoản hoặc sai mật khẩu
+        C->>H: VerifyHashedPassword(hash, mật khẩu)
+        H-->>C: Failed
+        C-->>V: Trả lại View + lỗi "Email hoặc mật khẩu không đúng"
+        V-->>U: Hiển thị thông báo lỗi
+    else Tài khoản bị khóa (Status = BiKhoa)
+        C-->>V: Trả lại View + lỗi "Tài khoản đã bị khóa"
+        V-->>U: Hiển thị thông báo lỗi
+    else Hợp lệ
+        C->>H: VerifyHashedPassword(hash, mật khẩu)
+        H-->>C: Success
+        C->>C: Tạo Claims (Id, Họ tên, Email, Role)<br/>HttpContext.SignInAsync → cookie
+        alt Vai trò Admin
+            C-->>V: Redirect /quan-tri
+        else Vai trò Sinh viên
+            C-->>V: Redirect returnUrl hoặc trang chủ
+        end
+        V-->>U: Hiển thị trang tương ứng
+    end

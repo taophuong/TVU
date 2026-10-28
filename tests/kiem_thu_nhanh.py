@@ -205,6 +205,37 @@ s, _, page = req(bad, '/dang-ky', {'FullName': 'A', 'Email': '170125077@st.tvu.e
 check('Đăng ký trùng email / sai MSSV / mật khẩu không khớp bị báo lỗi',
       s == 200 and 'đã được đăng ký' in page and 'MSSV chỉ gồm' in page and 'không khớp' in page, s)
 
+# ===== Đổi mật khẩu (dùng tài khoản vừa đăng ký) =====
+_, _, html = req(reg, '/tai-khoan/doi-mat-khau')
+s, _, page = req(reg, '/tai-khoan/doi-mat-khau', {'CurrentPassword': 'SaiMatKhau', 'NewPassword': 'MoiMoi@2',
+    'ConfirmPassword': 'MoiMoi@2', '__RequestVerificationToken': token(html)})
+check('Đổi mật khẩu sai mật khẩu hiện tại bị báo lỗi', s == 200 and 'Mật khẩu hiện tại không đúng' in page, s)
+s, loc, _ = req(reg, '/tai-khoan/doi-mat-khau', {'CurrentPassword': 'MatKhau@1', 'NewPassword': 'MoiMoi@2',
+    'ConfirmPassword': 'MoiMoi@2', '__RequestVerificationToken': token(html)})
+s2, loc2, _ = login(client(), email, 'MoiMoi@2')
+check('Đổi mật khẩu thành công, đăng nhập bằng mật khẩu mới', s == 302 and s2 == 302, (s, s2))
+
+# ===== Rút lại yêu cầu duyệt rồi gửi duyệt lại (dự án mẫu "Xà phòng thảo dược Mộc An") =====
+han = client()
+login(han, '111122015@st.tvu.edu.vn', 'SinhVien@123')
+_, _, html = req(han, '/du-an-cua-toi')
+xp = re.search(r'/du-an-cua-toi/(\d+)/rut-lai', html).group(1)
+req(han, f'/du-an-cua-toi/{xp}/rut-lai', {'__RequestVerificationToken': token(html)})
+_, _, html = req(han, '/du-an-cua-toi')
+check('Rút lại yêu cầu duyệt → dự án về Nháp', 'trở về trạng thái Nháp' in html and f'/du-an-cua-toi/{xp}/gui-duyet' in html)
+req(han, f'/du-an-cua-toi/{xp}/gui-duyet', {'__RequestVerificationToken': token(html)})
+_, _, html = req(han, '/du-an-cua-toi')
+check('Gửi duyệt lại dự án đã rút', f'/du-an-cua-toi/{xp}/rut-lai' in html)
+
+# ===== Admin đặt lại mật khẩu cho tài khoản vừa đăng ký =====
+_, _, html = req(ad, f'/quan-tri/Accounts?q={urllib.parse.quote(email)}')
+rid = re.search(r'/quan-tri/Accounts/ResetPassword/(\d+)', html).group(1)
+req(ad, f'/quan-tri/Accounts/ResetPassword/{rid}', {'__RequestVerificationToken': token(html)})
+_, _, html = req(ad, '/quan-tri/Accounts')
+temp = re.search(r'là: (Tvu@\d{6})', html)
+s, _, _ = login(client(), email, temp.group(1)) if temp else (0, None, None)
+check('Admin đặt lại mật khẩu, đăng nhập bằng mật khẩu tạm', temp is not None and s == 302, s)
+
 ok = sum(1 for _, c, _ in results if c)
 for name, c, info in results:
     print(('PASS ' if c else 'FAIL ') + name + ('' if c else f'  -> {info}'))

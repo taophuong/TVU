@@ -1,0 +1,22 @@
+stateDiagram-v2
+    state "Nháp (0)" as Nhap
+    state "Chờ duyệt (1)" as ChoDuyet
+    state "Đã duyệt (2)<br/>hiển thị công khai" as DaDuyet
+    state "Bị từ chối (3)" as TuChoi
+    state "Ẩn (4)" as An
+
+    [*] --> Nhap : Sinh viên tạo dự án
+    Nhap --> Nhap : Sửa nội dung
+    Nhap --> ChoDuyet : Gửi duyệt [có ảnh bìa và ≥ 1 tính năng]
+    ChoDuyet --> Nhap : Sinh viên rút lại
+    ChoDuyet --> DaDuyet : Admin duyệt
+    ChoDuyet --> TuChoi : Admin từ chối [có lý do]
+    TuChoi --> TuChoi : Sửa nội dung
+    TuChoi --> ChoDuyet : Gửi duyệt lại
+    DaDuyet --> DaDuyet : Sinh viên cập nhật / Admin đánh dấu nổi bật
+    DaDuyet --> An : Admin ẩn
+    An --> DaDuyet : Admin hiện lại
+    Nhap --> [*] : Sinh viên xóa
+    TuChoi --> [*] : Sinh viên xóa
+    DaDuyet --> [*] : Admin xóa
+    An --> [*] : Admin xóa

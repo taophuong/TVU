@@ -1,0 +1,38 @@
+/* Phong cách wireframe (bản phác thảo giao diện) – đen trắng, không màu thương hiệu */
+* { box-sizing: border-box; }
+body { margin: 0; padding: 20px; background: #fff; font-family: "Segoe UI", Arial, sans-serif; color: #333; font-size: 14px; }
+.frame { width: 1160px; border: 2px solid #444; border-radius: 8px; overflow: hidden; }
+.browser { background: #e5e5e5; border-bottom: 2px solid #444; padding: 8px 12px; display: flex; gap: 8px; align-items: center; }
+.browser .dot { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid #666; }
+.browser .url { flex: 1; background: #fff; border: 1.5px solid #888; border-radius: 4px; padding: 3px 10px; font-size: 12px; color: #555; margin-left: 10px; }
+.page { padding: 16px; }
+.row { display: flex; gap: 14px; }
+.col { flex: 1; min-width: 0; }
+.box { border: 1.5px solid #666; border-radius: 6px; padding: 10px; background: #fff; }
+.box + .box { margin-top: 12px; }
+.title { font-weight: 700; margin-bottom: 8px; }
+.label { font-size: 12px; color: #555; margin-bottom: 4px; }
+.nav { display: flex; align-items: center; gap: 16px; border: 1.5px solid #666; border-radius: 6px; padding: 10px 14px; margin-bottom: 14px; }
+.logo { font-weight: 800; border: 1.5px solid #444; padding: 2px 10px; border-radius: 4px; }
+.link { text-decoration: underline; }
+.btn { display: inline-block; border: 1.5px solid #444; border-radius: 5px; padding: 4px 12px; font-size: 13px; background: #f2f2f2; }
+.btn.dark { background: #555; color: #fff; }
+.input { border: 1.5px solid #888; border-radius: 4px; height: 30px; padding: 5px 8px; font-size: 12px; color: #888; background: #fff; }
+.textarea { height: 70px; }
+.img { position: relative; border: 1.5px solid #888; background: #f4f4f4; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #777; font-size: 12px; overflow: hidden; }
+.img::before, .img::after { content: ""; position: absolute; top: 50%; left: 50%; width: 140%; border-top: 1px solid #ccc; }
+.img::before { transform: translate(-50%, -50%) rotate(28deg); }
+.img::after { transform: translate(-50%, -50%) rotate(-28deg); }
+.img span { position: relative; z-index: 1; background: #f4f4f4; padding: 0 6px; }
+.line { height: 9px; background: #d4d4d4; border-radius: 4px; margin: 6px 0; }
+.line.w60 { width: 60%; } .line.w80 { width: 80%; } .line.w40 { width: 40%; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.chip { display: inline-block; border: 1.5px solid #888; border-radius: 12px; padding: 1px 10px; font-size: 12px; margin-right: 6px; }
+.note { font-size: 12px; font-style: italic; color: #666; margin-top: 6px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { border: 1px solid #999; padding: 6px 8px; text-align: left; }
+th { background: #eee; }
+.sidebar { width: 200px; border: 1.5px solid #666; border-radius: 6px; padding: 10px; }
+.sidebar div { padding: 6px 4px; border-bottom: 1px dashed #bbb; }
+.caption { margin-top: 10px; font-size: 13px; font-style: italic; color: #444; text-align: center; width: 1160px; }

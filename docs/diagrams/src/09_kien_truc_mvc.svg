@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="960" viewBox="0 0 1200 960"><rect width="100%" height="100%" fill="#fff"/><defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+<marker id="arrowStart" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#334155"/></marker>
+<marker id="hollow" viewBox="0 0 12 12" refX="11.5" refY="6" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#fff" stroke="#334155" stroke-width="1.2"/></marker>
+</defs>
+<rect x="450.0" y="27.0" width="300" height="56" rx="10" fill="#e0e7ff" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="600" y="50.8">Người dùng – Trình duyệt web</tspan><tspan x="600" y="69.0">(HTML, CSS, JavaScript)</tspan></text>
+<rect x="40" y="115" width="1120" height="680" rx="12" fill="#ffffff" stroke="#0b3d91" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="start" style=""><tspan x="60" y="140.2">Ứng dụng ASP.NET Core MVC (.NET 8) – TVUStartup.Web</tspan></text>
+<rect x="130" y="160" width="940" height="100" rx="12" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle" style=""><tspan x="600.0" y="183.2">Pipeline middleware (Program.cs)</tspan></text>
+<rect x="160.0" y="198.0" width="190" height="48" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="255" y="217.8">UseStaticFiles</tspan><tspan x="255" y="236.0">(wwwroot)</tspan></text>
+<rect x="390.0" y="198.0" width="190" height="48" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="485" y="226.9">UseRouting</tspan></text>
+<rect x="620.0" y="198.0" width="190" height="48" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="715" y="217.8">UseAuthentication</tspan><tspan x="715" y="236.0">(Cookie)</tspan></text>
+<rect x="850.0" y="198.0" width="190" height="48" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="945" y="217.8">UseAuthorization</tspan><tspan x="945" y="236.0">(Role)</tspan></text>
+<polyline points="350,222 390,222" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="580,222 620,222" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="810,222 850,222" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="130" y="290" width="940" height="120" rx="12" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle" style=""><tspan x="600.0" y="313.2">Controller</tspan></text>
+<rect x="170.0" y="327.0" width="440" height="66" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="390" y="356.1">Controllers (người dùng)</tspan><tspan x="390" y="373.0">Home, Projects, News, Contact, Account, MyProjects</tspan></text>
+<rect x="630.0" y="327.0" width="400" height="66" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="830" y="347.7">Areas/Admin/Controllers</tspan><tspan x="830" y="364.6">Dashboard, Projects, Accounts, Categories, Faculties,</tspan><tspan x="830" y="381.5">News, Banners, Comments, Contacts</tspan></text>
+<rect x="70" y="450" width="330" height="140" rx="12" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle" style=""><tspan x="235.0" y="473.2">View (Razor)</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="235" y="512.6">_Layout, _AdminLayout</tspan><tspan x="235" y="529.5">Partial View, Tag Helper</tspan><tspan x="235" y="546.4">Bootstrap 5, jQuery</tspan></text>
+<rect x="435" y="450" width="330" height="140" rx="12" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle" style=""><tspan x="600.0" y="473.2">Model</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="600" y="512.6">ViewModels + DataAnnotations</tspan><tspan x="600" y="529.5">(kiểm tra dữ liệu nhập)</tspan><tspan x="600" y="546.4">Entities: 14 lớp thực thể</tspan></text>
+<rect x="800" y="450" width="330" height="140" rx="12" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle" style=""><tspan x="965.0" y="473.2">Service (Dependency Injection)</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="965" y="512.6">IPasswordHasher (PBKDF2)</tspan><tspan x="965" y="529.5">IFileStorageService, IHtmlSanitizer</tspan><tspan x="965" y="546.4">ProjectRules (quy tắc trạng thái)</tspan></text>
+<rect x="435" y="640" width="330" height="120" rx="12" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#0f172a" text-anchor="middle" style=""><tspan x="600.0" y="663.2">Data – Truy cập dữ liệu</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="600" y="692.6">AppDbContext (EF Core 8 + LINQ)</tspan><tspan x="600" y="709.5">Migrations, DbSeeder</tspan><tspan x="600" y="726.4">ProjectQueries, LookupQueries</tspan></text>
+<path d="M485.0,845.0 L485.0,915.0 A115.0,12 0 0 0 715.0,915.0 L715.0,845.0" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<ellipse cx="600" cy="845.0" rx="115.0" ry="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="600" y="892.9">SQL Server – TVUStartupDB</tspan></text>
+<polyline points="600,83 600,160" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="610" y="88" width="96.4" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="start" style="font-style:italic;"><tspan x="615" y="103.5">HTTP request</tspan></text>
+<polyline points="600,260 600,290" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="300,410 235,450" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="187.6" y="417" width="74.8" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="middle" style="font-style:italic;"><tspan x="225" y="432.6">ViewModel</tspan></text>
+<polyline points="600,410 600,450" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="900,410 965,450" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="415,410 415,700 435,700" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="600,640 600,590" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="635" y="604" width="53.2" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="start" style="font-style:italic;"><tspan x="640" y="619.5">ánh xạ</tspan></text>
+<polyline points="600,760 600,845" fill="none" stroke="#334155" stroke-width="1.6" marker-start="url(#arrowStart)" marker-end="url(#arrow)"/>
+<rect x="610" y="804" width="197.20000000000002" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="start" style="font-style:italic;"><tspan x="615" y="819.5">truy vấn SQL (tham số hóa)</tspan></text>
+<polyline points="70,520 20,520 20,55 450,55" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="25" y="289" width="103.60000000000001" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="start" style="font-style:italic;"><tspan x="30" y="304.6">HTML response</tspan></text>
+</svg>

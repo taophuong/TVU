@@ -1,0 +1,171 @@
+erDiagram
+    Role ||--o{ Account : "phân quyền"
+    Faculty |o--o{ Account : "thuộc khoa"
+    Faculty ||--o{ Project : "thuộc khoa"
+    Category ||--o{ Project : "thuộc lĩnh vực"
+    Account ||--o{ Project : "sở hữu (OwnerId)"
+    Account |o--o{ Project : "duyệt (ApprovedBy)"
+    Project ||--o{ ProjectImage : "có"
+    Project ||--o{ ProjectFeature : "có"
+    Project ||--o{ ProjectVersion : "có"
+    Project ||--o{ TeamMember : "có"
+    Account |o--o{ TeamMember : "liên kết"
+    Project ||--o{ Comment : "nhận"
+    Account ||--o{ Comment : "viết"
+    Comment |o--o{ Comment : "trả lời (ParentId)"
+    Project ||--o{ Vote : "nhận"
+    Account ||--o{ Vote : "bình chọn"
+    Project |o--o{ ContactRequest : "nhận"
+    Account |o--o{ ContactRequest : "xử lý (HandledBy)"
+    Account ||--o{ News : "viết (AuthorId)"
+
+    Role {
+        int RoleId PK
+        nvarchar RoleName UK
+        nvarchar Description
+    }
+    Faculty {
+        int FacultyId PK
+        nvarchar FacultyName UK
+        nvarchar Description
+        int DisplayOrder
+    }
+    Account {
+        int AccountId PK
+        varchar Email UK
+        varchar PasswordHash
+        nvarchar FullName
+        varchar StudentCode
+        nvarchar ClassName
+        varchar Phone
+        nvarchar Avatar
+        int FacultyId FK
+        int RoleId FK
+        tinyint Status
+        datetime CreatedAt
+        datetime UpdatedAt
+    }
+    Category {
+        int CategoryId PK
+        nvarchar CategoryName UK
+        varchar Slug UK
+        nvarchar Icon
+        nvarchar Description
+        int DisplayOrder
+        bit IsActive
+    }
+    Project {
+        int ProjectId PK
+        nvarchar ProjectName
+        varchar Slug UK
+        nvarchar Slogan
+        nvarchar ShortDescription
+        nvarchar Content
+        nvarchar Logo
+        nvarchar CoverImage
+        nvarchar VideoUrl
+        nvarchar WebsiteUrl
+        nvarchar CommunityUrl
+        int CategoryId FK
+        int FacultyId FK
+        int OwnerId FK
+        tinyint Stage
+        tinyint Status
+        nvarchar RejectReason
+        bit IsFeatured
+        int ViewCount
+        date FoundedDate
+        datetime CreatedAt
+        datetime UpdatedAt
+        datetime ApprovedAt
+        int ApprovedBy FK
+    }
+    ProjectImage {
+        int ImageId PK
+        int ProjectId FK
+        nvarchar ImageUrl
+        nvarchar Caption
+        int DisplayOrder
+    }
+    ProjectFeature {
+        int FeatureId PK
+        int ProjectId FK
+        nvarchar Title
+        nvarchar Description
+        nvarchar Icon
+        int DisplayOrder
+    }
+    ProjectVersion {
+        int VersionId PK
+        int ProjectId FK
+        nvarchar VersionName
+        nvarchar Platform
+        date ReleaseDate
+        nvarchar ChangeLog
+        nvarchar DownloadUrl
+        bit IsPublic
+    }
+    TeamMember {
+        int MemberId PK
+        int ProjectId FK
+        int AccountId FK
+        nvarchar FullName
+        nvarchar Position
+        varchar StudentCode
+        nvarchar ClassName
+        nvarchar Avatar
+        varchar Email
+        int DisplayOrder
+    }
+    Comment {
+        int CommentId PK
+        int ProjectId FK
+        int AccountId FK
+        int ParentId FK
+        nvarchar Content
+        tinyint Rating
+        bit IsHidden
+        datetime CreatedAt
+    }
+    Vote {
+        int ProjectId PK, FK
+        int AccountId PK, FK
+        datetime CreatedAt
+    }
+    ContactRequest {
+        int ContactId PK
+        int ProjectId FK
+        nvarchar FullName
+        varchar Email
+        varchar Phone
+        nvarchar Organization
+        tinyint RequestType
+        nvarchar Message
+        tinyint Status
+        datetime CreatedAt
+        int HandledBy FK
+    }
+    News {
+        int NewsId PK
+        nvarchar Title
+        varchar Slug UK
+        nvarchar Thumbnail
+        nvarchar Summary
+        nvarchar Content
+        tinyint NewsType
+        datetime EventDate
+        nvarchar Location
+        int AuthorId FK
+        bit IsPublished
+        int ViewCount
+        datetime CreatedAt
+        datetime UpdatedAt
+    }
+    Banner {
+        int BannerId PK
+        nvarchar Title
+        nvarchar ImageUrl
+        nvarchar LinkUrl
+        int DisplayOrder
+        bit IsActive
+    }
