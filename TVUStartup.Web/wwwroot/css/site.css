@@ -372,7 +372,8 @@ a { color: var(--brand); }
 
 /* ---------- Banner & kêu gọi ---------- */
 .banner-carousel { border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-md); }
-.banner-carousel img { aspect-ratio: 16 / 6; object-fit: cover; }
+/* Hiển thị đúng tỉ lệ gốc của ảnh, không cắt (khuyến nghị ảnh 16:6, ví dụ 1600 × 600) */
+.banner-carousel img { width: 100%; height: auto; }
 .cta-box { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 2.25rem; border-radius: 20px; color: #fff; background: linear-gradient(135deg, var(--brand-dark), var(--brand) 60%, #2563eb); }
 .cta-box h2 { font-weight: 800; font-size: 1.6rem; }
 .cta-box p { margin: 0; color: rgba(255, 255, 255, .85); }
@@ -410,5 +411,4 @@ a { color: var(--brand); }
     .hero-search .btn { padding-inline: .8rem; }
     .auth-card { padding: 1.5rem; }
     .cta-box { padding: 1.5rem; }
-    .banner-carousel img { aspect-ratio: 16 / 9; }
 }

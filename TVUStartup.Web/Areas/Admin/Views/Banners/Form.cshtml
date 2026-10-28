@@ -27,7 +27,7 @@
                     <img class="banner-preview" src="@Model.ImageUrl" alt="Banner hiện tại" />
                 }
                 <input asp-for="ImageFile" type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control" />
-                <div class="form-text">Khuyến nghị tỉ lệ 16:9 (ví dụ 1200 × 675), tối đa 2 MB.</div>
+                <div class="form-text">Khuyến nghị tỉ lệ 16:6 (ví dụ 1600 × 600), tối đa 2 MB. Ảnh được hiển thị nguyên tỉ lệ, không bị cắt.</div>
                 <span asp-validation-for="ImageFile" class="text-danger small"></span>
             </div>
             <div class="col-12">

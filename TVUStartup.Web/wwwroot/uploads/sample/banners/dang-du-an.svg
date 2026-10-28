@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="600" viewBox="0 0 1600 600">
 <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#0b3d91"/></linearGradient></defs>
-<rect width="1200" height="675" fill="url(#g)"/>
-<path d="M0 304 C 300 244, 600 364, 1200 284" stroke="#0b3d91" stroke-opacity="0.35" stroke-width="18" fill="none"/>
-<path d="M0 385 C 300 325, 600 445, 1200 365" stroke="#0b3d91" stroke-opacity="0.30" stroke-width="18" fill="none"/>
-<path d="M0 466 C 300 406, 600 526, 1200 446" stroke="#0b3d91" stroke-opacity="0.25" stroke-width="18" fill="none"/>
-<path d="M0 547 C 300 487, 600 607, 1200 527" stroke="#0b3d91" stroke-opacity="0.20" stroke-width="18" fill="none"/>
-<path d="M0 628 C 300 568, 600 688, 1200 608" stroke="#0b3d91" stroke-opacity="0.15" stroke-width="18" fill="none"/>
-<rect x="80" y="445" width="1040" height="150" rx="24" fill="#000" fill-opacity="0.22"/>
-<text x="120" y="535" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="64" font-weight="700" fill="#fff">Đăng dự án của bạn lên TVU Startup</text>
-<text x="122" y="575" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="26" fill="#fff" fill-opacity="0.85">Dữ liệu mẫu · TVU Startup</text>
+<rect width="1600" height="600" fill="url(#g)"/>
+<circle cx="1107" cy="53" r="22" fill="#fff" fill-opacity="0.11"/><circle cx="1223" cy="275" r="44" fill="#fff" fill-opacity="0.14"/><circle cx="1086" cy="555" r="32" fill="#fff" fill-opacity="0.20"/><circle cx="1452" cy="481" r="59" fill="#fff" fill-opacity="0.14"/><circle cx="1505" cy="474" r="46" fill="#fff" fill-opacity="0.19"/><circle cx="1078" cy="332" r="71" fill="#fff" fill-opacity="0.19"/><circle cx="1439" cy="393" r="79" fill="#fff" fill-opacity="0.08"/><circle cx="1231" cy="201" r="41" fill="#fff" fill-opacity="0.06"/><circle cx="1382" cy="137" r="29" fill="#fff" fill-opacity="0.13"/><circle cx="1418" cy="486" r="83" fill="#fff" fill-opacity="0.09"/><circle cx="1506" cy="384" r="79" fill="#fff" fill-opacity="0.19"/><circle cx="1422" cy="567" r="57" fill="#fff" fill-opacity="0.11"/><circle cx="1506" cy="125" r="63" fill="#fff" fill-opacity="0.16"/><circle cx="1522" cy="630" r="79" fill="#fff" fill-opacity="0.09"/><circle cx="1335" cy="470" r="76" fill="#fff" fill-opacity="0.13"/><circle cx="1412" cy="637" r="70" fill="#fff" fill-opacity="0.19"/><circle cx="1522" cy="319" r="84" fill="#fff" fill-opacity="0.16"/><circle cx="1517" cy="458" r="40" fill="#fff" fill-opacity="0.19"/><circle cx="1220" cy="591" r="46" fill="#fff" fill-opacity="0.17"/><circle cx="1541" cy="276" r="50" fill="#fff" fill-opacity="0.19"/><circle cx="1566" cy="535" r="78" fill="#fff" fill-opacity="0.13"/><circle cx="1466" cy="279" r="38" fill="#fff" fill-opacity="0.13"/><circle cx="1425" cy="598" r="21" fill="#fff" fill-opacity="0.17"/><circle cx="1399" cy="-32" r="36" fill="#fff" fill-opacity="0.20"/><circle cx="1158" cy="20" r="85" fill="#fff" fill-opacity="0.15"/><circle cx="1329" cy="565" r="41" fill="#fff" fill-opacity="0.16"/><circle cx="1360" cy="300" r="190" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="3"/><circle cx="1360" cy="300" r="120" fill="#fff" fill-opacity=".12"/>
+<rect x="260" y="122" width="326" height="42" rx="21" fill="#fff" fill-opacity=".18"/>
+<text x="280" y="151" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="21" font-weight="700" fill="#fff" letter-spacing="1">DÀNH CHO SINH VIÊN TVU</text>
+<text x="260" y="250" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="74" font-weight="800" fill="#fff">Đăng dự án của bạn</text><text x="260" y="336" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="74" font-weight="800" fill="#fff">lên TVU Startup</text>
+<text x="260" y="398" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="28" fill="#fff" fill-opacity=".9">Giới thiệu sản phẩm khởi nghiệp tới cộng đồng, doanh nghiệp, nhà đầu tư</text>
+<rect x="260" y="434" width="266" height="58" rx="29" fill="#f59e0b"/>
+<text x="393.0" y="472" text-anchor="middle" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="24" font-weight="700" fill="#fff">Đăng ký ngay →</text>
+<text x="1570" y="576" text-anchor="end" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="18" fill="#fff" fill-opacity=".7">Dữ liệu mẫu · TVU Startup</text>
 </svg>

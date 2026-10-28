@@ -67,7 +67,7 @@ a.admin-stat:hover { box-shadow: var(--shadow-md); }
 
 .admin-content a:not(.btn):not(.admin-stat) { text-decoration: none; }
 .chart-box { position: relative; height: 280px; }
-.banner-thumb { width: 160px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; }
+.banner-thumb { width: 160px; aspect-ratio: 16 / 6; object-fit: cover; border-radius: 8px; }
 .banner-preview { display: block; width: 100%; max-width: 480px; border-radius: 10px; margin-bottom: .75rem; }
 
 @media (max-width: 991.98px) {
