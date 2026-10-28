@@ -1,0 +1,174 @@
+@model DashboardViewModel
+@{
+    ViewData["Title"] = "Tổng quan";
+    var tiles = new (string Label, int Value, string Icon, string Css, string? Controller)[]
+    {
+        ("Dự án đã duyệt", Model.ApprovedCount, "bi-check2-circle", "tile-green", "Projects"),
+        ("Chờ duyệt", Model.PendingCount, "bi-hourglass-split", "tile-amber", "Projects"),
+        ("Sinh viên", Model.StudentCount, "bi-people", "tile-blue", "Accounts"),
+        ("Liên hệ mới", Model.NewContactCount, "bi-envelope", "tile-red", "Contacts"),
+        ("Lượt xem", Model.TotalViews, "bi-eye", "tile-indigo", null),
+        ("Lượt yêu thích", Model.TotalVotes, "bi-heart", "tile-pink", null),
+        ("Bình luận", Model.TotalComments, "bi-chat-dots", "tile-teal", "Comments")
+    };
+}
+
+<div class="stat-grid">
+    @foreach (var t in tiles)
+    {
+        var inner = $"<i class=\"bi {t.Icon}\"></i><div><div class=\"stat-num\">{t.Value:N0}</div><div class=\"stat-text\">{t.Label}</div></div>";
+        if (t.Controller != null)
+        {
+            <a class="admin-stat @t.Css" asp-controller="@t.Controller" asp-action="Index" asp-route-status="@(t.Label == "Chờ duyệt" ? "ChoDuyet" : null)">@Html.Raw(inner)</a>
+        }
+        else
+        {
+            <div class="admin-stat @t.Css">@Html.Raw(inner)</div>
+        }
+    }
+</div>
+
+<div class="row g-4 mt-1">
+    <div class="col-xl-8">
+        <div class="admin-card">
+            <h2 class="admin-card-title">Dự án mới theo tháng</h2>
+            <div class="chart-box"><canvas id="chartMonth"></canvas></div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="admin-card">
+            <h2 class="admin-card-title">Dự án theo trạng thái</h2>
+            <div class="chart-box"><canvas id="chartStatus"></canvas></div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="admin-card">
+            <h2 class="admin-card-title">Dự án đã duyệt theo lĩnh vực</h2>
+            <div class="chart-box"><canvas id="chartCategory"></canvas></div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="admin-card">
+            <h2 class="admin-card-title">Dự án đã duyệt theo khoa</h2>
+            <div class="chart-box"><canvas id="chartFaculty"></canvas></div>
+        </div>
+    </div>
+
+    <div class="col-xl-6">
+        <div class="admin-card">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h2 class="admin-card-title mb-0">Dự án chờ duyệt</h2>
+                <a asp-controller="Projects" asp-action="Index" asp-route-status="ChoDuyet" class="small">Xem tất cả</a>
+            </div>
+            @if (Model.PendingProjects.Count == 0)
+            {
+                <p class="text-muted mb-0">Không có dự án nào đang chờ duyệt.</p>
+            }
+            <ul class="admin-list">
+                @foreach (var p in Model.PendingProjects)
+                {
+                    <li>
+                        <div class="min-w-0">
+                            <a asp-area="" asp-controller="Projects" asp-action="Detail" asp-route-slug="@p.Slug" target="_blank" class="fw-semibold">@p.ProjectName</a>
+                            <div class="small text-muted">@p.Owner.FullName · @p.Category.CategoryName · gửi @((p.UpdatedAt ?? p.CreatedAt).ToString("dd/MM/yyyy"))</div>
+                        </div>
+                        <form asp-controller="Projects" asp-action="Approve" asp-route-id="@p.ProjectId" method="post">
+                            <input type="hidden" name="returnUrl" value="@Url.Action("Index")" />
+                            <button class="btn btn-sm btn-success"><i class="bi bi-check2"></i> Duyệt</button>
+                        </form>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="admin-card">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h2 class="admin-card-title mb-0">Liên hệ mới</h2>
+                <a asp-controller="Contacts" asp-action="Index" asp-route-status="Moi" class="small">Xem tất cả</a>
+            </div>
+            @if (Model.NewContacts.Count == 0)
+            {
+                <p class="text-muted mb-0">Không có liên hệ mới.</p>
+            }
+            <ul class="admin-list">
+                @foreach (var c in Model.NewContacts)
+                {
+                    <li>
+                        <div class="min-w-0">
+                            <span class="fw-semibold">@c.FullName</span>
+                            <span class="badge text-bg-light">@c.RequestType.ToLabel()</span>
+                            <div class="small text-muted text-truncate">@(c.Project?.ProjectName ?? "Liên hệ chung") · @c.CreatedAt.ToString("dd/MM/yyyy HH:mm")</div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="admin-card">
+            <h2 class="admin-card-title">Dự án được xem nhiều nhất</h2>
+            <div class="table-responsive">
+                <table class="table align-middle mb-0">
+                    <thead><tr><th>#</th><th>Dự án</th><th class="text-end">Lượt xem</th></tr></thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.TopProjects.Count; i++)
+                        {
+                            var p = Model.TopProjects[i];
+                            <tr>
+                                <td>@(i + 1)</td>
+                                <td><a asp-area="" asp-controller="Projects" asp-action="Detail" asp-route-slug="@p.Slug" target="_blank">@p.ProjectName</a></td>
+                                <td class="text-end">@p.ViewCount.ToString("N0")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script>
+        Chart.defaults.font.family = "'Be Vietnam Pro', sans-serif";
+        Chart.defaults.maintainAspectRatio = false;
+        const palette = ['#0b3d91', '#f59e0b', '#16a34a', '#dc2626', '#7c3aed', '#0891b2', '#db2777', '#65a30d'];
+
+        new Chart(document.getElementById('chartMonth'), {
+            type: 'line',
+            data: {
+                labels: @Json.Serialize(Model.ByMonth.Select(x => x.Label)),
+                datasets: [{ label: 'Dự án mới', data: @Json.Serialize(Model.ByMonth.Select(x => x.Count)), borderColor: '#0b3d91', backgroundColor: 'rgba(11,61,145,.12)', fill: true, tension: .35 }]
+            },
+            options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+        });
+
+        new Chart(document.getElementById('chartStatus'), {
+            type: 'doughnut',
+            data: {
+                labels: @Json.Serialize(Model.ByStatus.Select(x => x.Label)),
+                datasets: [{ data: @Json.Serialize(Model.ByStatus.Select(x => x.Count)), backgroundColor: ['#94a3b8', '#f59e0b', '#16a34a', '#dc2626', '#334155'] }]
+            },
+            options: { plugins: { legend: { position: 'bottom' } } }
+        });
+
+        new Chart(document.getElementById('chartCategory'), {
+            type: 'bar',
+            data: {
+                labels: @Json.Serialize(Model.ByCategory.Select(x => x.Label)),
+                datasets: [{ data: @Json.Serialize(Model.ByCategory.Select(x => x.Count)), backgroundColor: palette }]
+            },
+            options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true, ticks: { precision: 0 } } } }
+        });
+
+        new Chart(document.getElementById('chartFaculty'), {
+            type: 'pie',
+            data: {
+                labels: @Json.Serialize(Model.ByFaculty.Select(x => x.Label)),
+                datasets: [{ data: @Json.Serialize(Model.ByFaculty.Select(x => x.Count)), backgroundColor: palette }]
+            },
+            options: { plugins: { legend: { position: 'right' } } }
+        });
+    </script>
+}

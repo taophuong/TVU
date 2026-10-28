@@ -1,0 +1,82 @@
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var menu = new (string Controller, string Label, string Icon)[]
+    {
+        ("Dashboard", "Tổng quan", "bi-speedometer2"),
+        ("Projects", "Duyệt dự án", "bi-kanban"),
+        ("Contacts", "Liên hệ hợp tác", "bi-envelope"),
+        ("Comments", "Bình luận", "bi-chat-left-text"),
+        ("News", "Tin tức & Sự kiện", "bi-newspaper"),
+        ("Banners", "Banner trang chủ", "bi-images"),
+        ("Categories", "Lĩnh vực", "bi-tags"),
+        ("Faculties", "Khoa", "bi-building"),
+        ("Accounts", "Tài khoản", "bi-people")
+    };
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Quản trị TVU Startup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body class="admin-body">
+    <aside class="admin-sidebar" id="adminSidebar">
+        <a class="admin-brand" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+            <span class="brand-mark"><i class="bi bi-rocket-takeoff-fill"></i></span>
+            <span>TVU <strong>Startup</strong><small>Quản trị</small></span>
+        </a>
+        <nav class="admin-menu">
+            @foreach (var m in menu)
+            {
+                <a class="@(controller == m.Controller ? "active" : "")" asp-area="Admin" asp-controller="@m.Controller" asp-action="Index">
+                    <i class="bi @m.Icon"></i> @m.Label
+                </a>
+            }
+        </nav>
+        <a class="admin-site-link" asp-area="" asp-controller="Home" asp-action="Index" target="_blank"><i class="bi bi-box-arrow-up-right"></i> Xem website</a>
+    </aside>
+
+    <div class="admin-main">
+        <header class="admin-topbar">
+            <button class="btn btn-light d-lg-none" type="button" onclick="document.getElementById('adminSidebar').classList.toggle('open')" aria-label="Mở menu">
+                <i class="bi bi-list"></i>
+            </button>
+            <h1 class="admin-title">@ViewData["Title"]</h1>
+            <div class="dropdown ms-auto">
+                <button class="btn user-toggle dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="avatar avatar-sm">@DisplayHelper.Initial(User.Identity?.Name ?? "A")</span>
+                    <span class="user-name">@User.Identity?.Name</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Profile"><i class="bi bi-person"></i> Hồ sơ</a></li>
+                    <li><a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="ChangePassword"><i class="bi bi-key"></i> Đổi mật khẩu</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+                            <button type="submit" class="dropdown-item text-danger"><i class="bi bi-box-arrow-right"></i> Đăng xuất</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <main class="admin-content">
+            <partial name="_Alerts" />
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

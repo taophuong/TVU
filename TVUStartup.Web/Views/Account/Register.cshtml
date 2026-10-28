@@ -1,0 +1,69 @@
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Đăng ký tài khoản";
+}
+
+<section class="auth-page">
+    <div class="auth-card auth-card-wide">
+        <div class="auth-head">
+            <span class="brand-mark"><i class="bi bi-person-plus-fill"></i></span>
+            <h1>Đăng ký tài khoản sinh viên</h1>
+            <p>Tạo tài khoản để giới thiệu dự án khởi nghiệp của bạn</p>
+        </div>
+
+        <form asp-action="Register" method="post" novalidate>
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2"></div>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="FullName" class="form-label"></label>
+                    <input asp-for="FullName" class="form-control" autocomplete="name" />
+                    <span asp-validation-for="FullName" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" autocomplete="email" placeholder="mssv@st.tvu.edu.vn" />
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="StudentCode" class="form-label"></label>
+                    <input asp-for="StudentCode" class="form-control" inputmode="numeric" />
+                    <span asp-validation-for="StudentCode" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="ClassName" class="form-label"></label>
+                    <input asp-for="ClassName" class="form-control" placeholder="VD: DA22TTA" />
+                    <span asp-validation-for="ClassName" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="FacultyId" class="form-label"></label>
+                    <select asp-for="FacultyId" asp-items="Model.Faculties" class="form-select">
+                        <option value="">-- Chọn khoa --</option>
+                    </select>
+                    <span asp-validation-for="FacultyId" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Phone" class="form-label"></label>
+                    <input asp-for="Phone" class="form-control" autocomplete="tel" />
+                    <span asp-validation-for="Phone" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" autocomplete="new-password" />
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="ConfirmPassword" class="form-label"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 py-2 mt-4">Đăng ký</button>
+        </form>
+
+        <p class="auth-switch">Đã có tài khoản? <a asp-action="Login">Đăng nhập</a></p>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

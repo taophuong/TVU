@@ -1,0 +1,43 @@
+@model ContactFormModel
+@{
+    ViewData["Title"] = "Liên hệ";
+    ViewData["Subtitle"] = "Gửi đề nghị hợp tác, đầu tư hoặc góp ý tới Ban quản trị TVU Startup";
+}
+
+<partial name="_PageBanner" />
+
+<section class="section pt-4">
+    <div class="container">
+        <partial name="_Alerts" />
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="content-card">
+                    <h2 class="content-title">Gửi yêu cầu liên hệ</h2>
+                    <form asp-action="Index" method="post" novalidate>
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2"></div>
+                        <partial name="_ContactFields" model="Model" />
+                        <button type="submit" class="btn btn-primary mt-4"><i class="bi bi-send"></i> Gửi liên hệ</button>
+                    </form>
+                </div>
+            </div>
+            <aside class="col-lg-4">
+                <div class="side-card">
+                    <h2 class="side-title">Thông tin liên hệ</h2>
+                    <ul class="contact-info">
+                        <li><i class="bi bi-geo-alt"></i> Trường Đại học Trà Vinh, 126 Nguyễn Thiện Thành, Phường 5, TP. Trà Vinh</li>
+                        <li><i class="bi bi-globe"></i> <a href="https://www.tvu.edu.vn" target="_blank" rel="noopener">tvu.edu.vn</a></li>
+                    </ul>
+                </div>
+                <div class="side-card">
+                    <h2 class="side-title">Muốn liên hệ một dự án cụ thể?</h2>
+                    <p class="text-muted small mb-3">Mở trang dự án và bấm <strong>Liên hệ hợp tác</strong> để gửi yêu cầu trực tiếp tới nhóm sinh viên.</p>
+                    <a class="btn btn-outline-primary w-100" asp-controller="Projects" asp-action="Index">Xem các dự án</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

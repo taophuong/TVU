@@ -1,0 +1,80 @@
+@model News
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["Description"] = Model.Summary;
+    var related = ViewBag.Related as List<News> ?? new();
+}
+
+<section class="page-banner">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a asp-action="Index">Tin tức & Sự kiện</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.NewsType.ToLabel()</li>
+            </ol>
+        </nav>
+        <h1 class="page-title">@Model.Title</h1>
+        <p class="page-sub">
+            <i class="bi bi-calendar3"></i> @Model.CreatedAt.ToString("dd/MM/yyyy")
+            · <i class="bi bi-person"></i> @Model.Author.FullName
+            · <i class="bi bi-eye"></i> @Model.ViewCount lượt xem
+        </p>
+    </div>
+</section>
+
+<section class="section pt-4">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <article class="content-card">
+                    @if (!string.IsNullOrEmpty(Model.Thumbnail))
+                    {
+                        <img class="news-cover" src="@Model.Thumbnail" alt="@Model.Title" />
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Summary))
+                    {
+                        <p class="lead-desc">@Model.Summary</p>
+                    }
+                    @* Nội dung đã được lọc HTML (HtmlSanitizer) khi Admin lưu bài viết *@
+                    <div class="rich-content">@Html.Raw(Model.Content)</div>
+                </article>
+            </div>
+            <aside class="col-lg-4">
+                @if (Model.EventDate.HasValue || !string.IsNullOrEmpty(Model.Location))
+                {
+                    <div class="side-card">
+                        <h2 class="side-title">Thông tin @Model.NewsType.ToLabel().ToLower()</h2>
+                        <dl class="info-list">
+                            @if (Model.EventDate.HasValue)
+                            {
+                                <dt>Thời gian</dt>
+                                <dd>@Model.EventDate.Value.ToString("HH:mm dd/MM/yyyy")</dd>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.Location))
+                            {
+                                <dt>Địa điểm</dt>
+                                <dd>@Model.Location</dd>
+                            }
+                        </dl>
+                    </div>
+                }
+                @if (related.Count > 0)
+                {
+                    <div class="side-card">
+                        <h2 class="side-title">Bài viết khác</h2>
+                        <ul class="related-news">
+                            @foreach (var n in related)
+                            {
+                                <li>
+                                    <a asp-action="Detail" asp-route-slug="@n.Slug">@n.Title</a>
+                                    <span>@n.CreatedAt.ToString("dd/MM/yyyy")</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </aside>
+        </div>
+    </div>
+</section>

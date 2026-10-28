@@ -1,0 +1,64 @@
+@model List<Comment>
+@{
+    ViewData["Title"] = "Bình luận";
+    bool hiddenOnly = ViewBag.HiddenOnly;
+    int page = ViewBag.Page, totalPages = ViewBag.TotalPages;
+}
+
+<div class="admin-card">
+    <div class="d-flex gap-2 mb-3">
+        <a class="btn btn-sm @(!hiddenOnly ? "btn-primary" : "btn-outline-primary")" asp-action="Index">Tất cả</a>
+        <a class="btn btn-sm @(hiddenOnly ? "btn-primary" : "btn-outline-primary")" asp-action="Index" asp-route-hiddenOnly="true">Đang ẩn</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table align-middle admin-table">
+            <thead><tr><th>Người viết</th><th>Nội dung</th><th>Dự án</th><th>Thời gian</th><th class="text-end">Thao tác</th></tr></thead>
+            <tbody>
+                @if (Model.Count == 0)
+                {
+                    <tr><td colspan="5" class="text-center text-muted py-4">Không có bình luận.</td></tr>
+                }
+                @foreach (var c in Model)
+                {
+                    <tr class="@(c.IsHidden ? "table-secondary" : "")">
+                        <td class="text-nowrap">@c.Account.FullName</td>
+                        <td>
+                            @if (c.ParentId.HasValue)
+                            {
+                                <span class="badge text-bg-light">Trả lời</span>
+                            }
+                            @if (c.Rating.HasValue)
+                            {
+                                <span class="stars">@for (var i = 1; i <= 5; i++) { <i class="bi @(i <= c.Rating ? "bi-star-fill" : "bi-star")"></i> }</span>
+                            }
+                            <div>@c.Content</div>
+                            @if (c.IsHidden)
+                            {
+                                <span class="badge text-bg-secondary">Đang ẩn</span>
+                            }
+                        </td>
+                        <td><a asp-area="" asp-controller="Projects" asp-action="Detail" asp-route-slug="@c.Project.Slug" target="_blank">@c.Project.ProjectName</a></td>
+                        <td class="text-nowrap small">@c.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td class="text-end text-nowrap">
+                            <form asp-action="ToggleHidden" asp-route-id="@c.CommentId" method="post" class="d-inline">
+                                <button class="btn btn-sm btn-outline-dark" title="@(c.IsHidden ? "Hiện lại" : "Ẩn")"><i class="bi @(c.IsHidden ? "bi-eye" : "bi-eye-slash")"></i></button>
+                            </form>
+                            <form asp-action="Delete" asp-route-id="@c.CommentId" method="post" class="d-inline" onsubmit="return confirm('Xóa bình luận này (kèm các câu trả lời)?');">
+                                <button class="btn btn-sm btn-outline-danger" title="Xóa"><i class="bi bi-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @if (totalPages > 1)
+    {
+        <ul class="pagination pagination-sm justify-content-center mb-0">
+            @for (var i = 1; i <= totalPages; i++)
+            {
+                <li class="page-item @(i == page ? "active" : "")"><a class="page-link" asp-action="Index" asp-route-page="@i" asp-route-hiddenOnly="@hiddenOnly">@i</a></li>
+            }
+        </ul>
+    }
+</div>

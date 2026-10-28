@@ -1,0 +1,167 @@
+@model TVUStartup.Web.Models.ViewModels.ProjectListViewModel
+@using TVUStartup.Web.Helpers
+@using TVUStartup.Web.Models.Entities
+@{
+    ViewData["Title"] = "Dự án khởi nghiệp";
+    var currentCategory = Model.Categories.FirstOrDefault(c => c.Slug == Model.Category);
+    var sorts = new (string Value, string Label)[]
+    {
+        ("newest", "Mới nhất"), ("views", "Xem nhiều nhất"), ("votes", "Yêu thích nhất"), ("name", "Tên A–Z")
+    };
+}
+
+<section class="page-banner">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Dự án khởi nghiệp</li>
+            </ol>
+        </nav>
+        <h1 class="page-title">@(currentCategory?.CategoryName ?? "Dự án khởi nghiệp")</h1>
+        <p class="page-sub">Tìm kiếm và lọc các sản phẩm khởi nghiệp của sinh viên Trường Đại học Trà Vinh</p>
+    </div>
+</section>
+
+<section class="section pt-4">
+    <div class="container">
+        <div class="row g-4">
+            <!-- ===== Bộ lọc ===== -->
+            <aside class="col-lg-3">
+                <form id="filterForm" class="filter-panel" method="get" asp-action="Index">
+                    <div class="filter-group">
+                        <label class="filter-label" for="q">Từ khóa</label>
+                        <div class="input-icon">
+                            <i class="bi bi-search"></i>
+                            <input id="q" type="search" name="q" value="@Model.Q" class="form-control" placeholder="Tên dự án, mô tả..." />
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label" for="category">Lĩnh vực</label>
+                        <select id="category" name="category" class="form-select auto-submit">
+                            <option value="">Tất cả lĩnh vực</option>
+                            @foreach (var c in Model.Categories)
+                            {
+                                <option value="@c.Slug" selected="@(c.Slug == Model.Category)">@c.CategoryName (@c.ProjectCount)</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label" for="faculty">Khoa</label>
+                        <select id="faculty" name="faculty" class="form-select auto-submit">
+                            <option value="">Tất cả khoa</option>
+                            @foreach (var f in Model.Faculties)
+                            {
+                                <option value="@f.FacultyId" selected="@(f.FacultyId == Model.Faculty)">@f.FacultyName</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <span class="filter-label">Giai đoạn</span>
+                        <div class="form-check">
+                            <input class="form-check-input auto-submit" type="radio" name="stage" id="stage-all" value="" checked="@(!Model.Stage.HasValue)" />
+                            <label class="form-check-label" for="stage-all">Tất cả</label>
+                        </div>
+                        @foreach (var s in Enum.GetValues<ProjectStage>())
+                        {
+                            <div class="form-check">
+                                <input class="form-check-input auto-submit" type="radio" name="stage" id="stage-@((byte)s)" value="@((byte)s)" checked="@(Model.Stage == s)" />
+                                <label class="form-check-label" for="stage-@((byte)s)">@s.ToLabel()</label>
+                            </div>
+                        }
+                    </div>
+
+                    <input type="hidden" name="sort" value="@Model.Sort" />
+                    <button type="submit" class="btn btn-primary w-100">Áp dụng</button>
+                    @if (Model.HasFilter)
+                    {
+                        <a class="btn btn-link w-100 mt-1" asp-action="Index">Xóa bộ lọc</a>
+                    }
+                </form>
+            </aside>
+
+            <!-- ===== Kết quả ===== -->
+            <div class="col-lg-9">
+                <div class="result-bar">
+                    <div>
+                        Tìm thấy <strong>@Model.TotalCount</strong> dự án
+                        @if (!string.IsNullOrWhiteSpace(Model.Q))
+                        {
+                            <span> cho “<strong>@Model.Q</strong>”</span>
+                        }
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <label for="sortSelect" class="text-muted small text-nowrap">Sắp xếp</label>
+                        <select id="sortSelect" class="form-select form-select-sm">
+                            @foreach (var s in sorts)
+                            {
+                                <option value="@s.Value" selected="@(s.Value == Model.Sort)">@s.Label</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                @if (Model.Projects.Count == 0)
+                {
+                    <div class="empty-state">
+                        <i class="bi bi-search"></i>
+                        <p>Không tìm thấy dự án phù hợp với bộ lọc.</p>
+                        <a class="btn btn-outline-primary" asp-action="Index">Xem tất cả dự án</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="row g-4">
+                        @foreach (var p in Model.Projects)
+                        {
+                            <div class="col-md-6 col-xl-4"><partial name="_ProjectCard" model="p" /></div>
+                        }
+                    </div>
+
+                    @if (Model.TotalPages > 1)
+                    {
+                        <nav class="mt-5" aria-label="Phân trang">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item @(Model.Page == 1 ? "disabled" : "")">
+                                    <a class="page-link" asp-action="Index" asp-all-route-data="Model.RouteFor(Model.Page - 1)" aria-label="Trang trước"><i class="bi bi-chevron-left"></i></a>
+                                </li>
+                                @for (var i = 1; i <= Model.TotalPages; i++)
+                                {
+                                    <li class="page-item @(i == Model.Page ? "active" : "")">
+                                        <a class="page-link" asp-action="Index" asp-all-route-data="Model.RouteFor(i)">@i</a>
+                                    </li>
+                                }
+                                <li class="page-item @(Model.Page == Model.TotalPages ? "disabled" : "")">
+                                    <a class="page-link" asp-action="Index" asp-all-route-data="Model.RouteFor(Model.Page + 1)" aria-label="Trang sau"><i class="bi bi-chevron-right"></i></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        // Tự gửi form khi đổi lĩnh vực / khoa / giai đoạn
+        $('#filterForm .auto-submit').on('change', function () { $('#filterForm').trigger('submit'); });
+
+        // Đổi cách sắp xếp: ghi vào ô ẩn rồi gửi form
+        $('#sortSelect').on('change', function () {
+            $('#filterForm input[name="sort"]').val(this.value);
+            $('#filterForm').trigger('submit');
+        });
+
+        // Bỏ các tham số rỗng khỏi URL cho gọn
+        $('#filterForm').on('submit', function () {
+            $(this).find('input, select').each(function () {
+                if (!this.value || (this.name === 'sort' && this.value === 'newest')) this.disabled = true;
+            });
+        });
+    </script>
+}

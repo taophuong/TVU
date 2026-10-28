@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b45309"/><stop offset="1" stop-color="#fde047"/></linearGradient></defs>
+<rect width="1200" height="675" fill="url(#g)"/>
+<path d="M0 304 C 300 244, 600 364, 1200 284" stroke="#fde047" stroke-opacity="0.35" stroke-width="18" fill="none"/>
+<path d="M0 385 C 300 325, 600 445, 1200 365" stroke="#fde047" stroke-opacity="0.30" stroke-width="18" fill="none"/>
+<path d="M0 466 C 300 406, 600 526, 1200 446" stroke="#fde047" stroke-opacity="0.25" stroke-width="18" fill="none"/>
+<path d="M0 547 C 300 487, 600 607, 1200 527" stroke="#fde047" stroke-opacity="0.20" stroke-width="18" fill="none"/>
+<path d="M0 628 C 300 568, 600 688, 1200 608" stroke="#fde047" stroke-opacity="0.15" stroke-width="18" fill="none"/>
+<rect x="80" y="445" width="1040" height="150" rx="24" fill="#000" fill-opacity="0.22"/>
+<text x="120" y="535" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="64" font-weight="700" fill="#fff">Tập huấn gọi vốn</text>
+<text x="122" y="575" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="26" fill="#fff" fill-opacity="0.85">Dữ liệu mẫu · TVU Startup</text>
+</svg>

@@ -1,0 +1,228 @@
+@model ProjectEditViewModel
+@using TVUStartup.Web.Services
+@{
+    ViewData["Title"] = "Sửa dự án: " + Model.Form.ProjectName;
+    ViewData["ParentTitle"] = "Dự án của tôi";
+    ViewData["ParentUrl"] = Url.Action("Index");
+    var id = Model.Form.ProjectId;
+    var tabs = new (string Key, string Label, string Icon, int? Count)[]
+    {
+        ("info", "Thông tin chung", "bi-info-circle", null),
+        ("features", "Tính năng", "bi-stars", Model.Features.Count),
+        ("images", "Hình ảnh", "bi-images", Model.Images.Count),
+        ("versions", "Phiên bản", "bi-box-seam", Model.Versions.Count),
+        ("members", "Thành viên", "bi-people", Model.Members.Count)
+    };
+}
+
+<partial name="_PageBanner" />
+
+<section class="section pt-4">
+    <div class="container">
+        <partial name="_Alerts" />
+
+        <div class="edit-toolbar">
+            <div>
+                Trạng thái: <span class="badge @Model.Status.ToBadgeClass()">@Model.Status.ToLabel()</span>
+                @if (Model.Status == ProjectStatus.DaDuyet)
+                {
+                    <span class="text-muted small ms-2">Dự án đang công khai – thay đổi sẽ hiển thị ngay.</span>
+                }
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+                <a class="btn btn-sm btn-outline-secondary" asp-controller="Projects" asp-action="Detail" asp-route-slug="@Model.Slug" target="_blank">
+                    <i class="bi bi-eye"></i> Xem trước
+                </a>
+                @if (ProjectRules.CanSubmit(Model.Status))
+                {
+                    <form asp-action="Submit" asp-route-id="@id" method="post">
+                        <button class="btn btn-sm btn-success"><i class="bi bi-send"></i> Gửi duyệt</button>
+                    </form>
+                }
+            </div>
+        </div>
+        @if (Model.Status == ProjectStatus.TuChoi && !string.IsNullOrEmpty(Model.RejectReason))
+        {
+            <div class="alert alert-danger"><strong>Lý do từ chối:</strong> @Model.RejectReason</div>
+        }
+
+        <ul class="nav nav-tabs edit-tabs" role="tablist">
+            @foreach (var t in tabs)
+            {
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link @(Model.Tab == t.Key ? "active" : "")" data-bs-toggle="tab" data-bs-target="#tab-@t.Key" type="button" role="tab">
+                        <i class="bi @t.Icon"></i> @t.Label
+                        @if (t.Count.HasValue)
+                        {
+                            <span class="badge rounded-pill text-bg-light">@t.Count</span>
+                        }
+                    </button>
+                </li>
+            }
+        </ul>
+
+        <div class="tab-content content-card edit-panel">
+            <!-- ===== Thông tin chung ===== -->
+            <div class="tab-pane fade @(Model.Tab == "info" ? "show active" : "")" id="tab-info" role="tabpanel">
+                <form asp-action="Edit" asp-route-id="@id" method="post" enctype="multipart/form-data" novalidate>
+                    <div asp-validation-summary="All" class="alert alert-danger py-2"></div>
+                    <partial name="_ProjectFormFields" for="Form" />
+                    <button type="submit" class="btn btn-primary mt-4"><i class="bi bi-save"></i> Lưu thông tin</button>
+                </form>
+            </div>
+
+            <!-- ===== Tính năng ===== -->
+            <div class="tab-pane fade @(Model.Tab == "features" ? "show active" : "")" id="tab-features" role="tabpanel">
+                <table class="table align-middle">
+                    <tbody>
+                        @foreach (var f in Model.Features)
+                        {
+                            <tr>
+                                <td style="width:48px"><span class="feature-icon"><i class="bi @(f.Icon ?? "bi-check2-circle")"></i></span></td>
+                                <td><strong>@f.Title</strong><div class="small text-muted">@f.Description</div></td>
+                                <td class="text-end">
+                                    <form asp-action="DeleteFeature" asp-route-featureId="@f.FeatureId" method="post" onsubmit="return confirm('Xóa tính năng này?');">
+                                        <button class="btn btn-sm btn-outline-danger" title="Xóa"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                        @if (Model.Features.Count == 0)
+                        {
+                            <tr><td class="text-muted">Chưa có tính năng nào. Dự án cần ít nhất 1 tính năng để gửi duyệt.</td></tr>
+                        }
+                    </tbody>
+                </table>
+                <h3 class="sub-title">Thêm tính năng</h3>
+                <form asp-action="AddFeature" asp-route-id="@id" method="post" class="row g-2">
+                    <div class="col-md-4"><input asp-for="NewFeature.Title" class="form-control" placeholder="Tên tính năng *" required /></div>
+                    <div class="col-md-5"><input asp-for="NewFeature.Description" class="form-control" placeholder="Mô tả ngắn" /></div>
+                    <div class="col-md-2">
+                        <select asp-for="NewFeature.Icon" class="form-select" title="Biểu tượng">
+                            @foreach (var icon in ProjectRules.FeatureIcons)
+                            {
+                                <option value="@icon.Icon">@icon.Label</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-1 d-grid"><button class="btn btn-primary" title="Thêm"><i class="bi bi-plus-lg"></i></button></div>
+                </form>
+            </div>
+
+            <!-- ===== Hình ảnh ===== -->
+            <div class="tab-pane fade @(Model.Tab == "images" ? "show active" : "")" id="tab-images" role="tabpanel">
+                <div class="gallery mb-4">
+                    @foreach (var img in Model.Images)
+                    {
+                        <div class="gallery-item gallery-edit">
+                            <img src="@img.ImageUrl" alt="@img.Caption" />
+                            @if (!string.IsNullOrEmpty(img.Caption))
+                            {
+                                <span class="gallery-caption">@img.Caption</span>
+                            }
+                            <form asp-action="DeleteImage" asp-route-imageId="@img.ImageId" method="post" onsubmit="return confirm('Xóa ảnh này?');">
+                                <button class="btn btn-sm btn-danger gallery-delete" title="Xóa ảnh"><i class="bi bi-trash"></i></button>
+                            </form>
+                        </div>
+                    }
+                </div>
+                @if (Model.Images.Count == 0)
+                {
+                    <p class="text-muted">Chưa có hình ảnh sản phẩm.</p>
+                }
+                <h3 class="sub-title">Tải ảnh lên</h3>
+                <form asp-action="AddImages" asp-route-id="@id" method="post" enctype="multipart/form-data" class="row g-2">
+                    <div class="col-md-6"><input type="file" name="files" multiple accept=".jpg,.jpeg,.png,.webp" class="form-control" required /></div>
+                    <div class="col-md-4"><input type="text" name="caption" maxlength="200" class="form-control" placeholder="Chú thích (không bắt buộc)" /></div>
+                    <div class="col-md-2 d-grid"><button class="btn btn-primary"><i class="bi bi-upload"></i> Tải lên</button></div>
+                    <div class="form-text">Có thể chọn nhiều ảnh; mỗi ảnh tối đa 2 MB; tối đa 10 ảnh / dự án.</div>
+                </form>
+            </div>
+
+            <!-- ===== Phiên bản ===== -->
+            <div class="tab-pane fade @(Model.Tab == "versions" ? "show active" : "")" id="tab-versions" role="tabpanel">
+                <table class="table align-middle">
+                    <thead><tr><th>Phiên bản</th><th>Nền tảng</th><th>Phát hành</th><th>Hiển thị</th><th></th></tr></thead>
+                    <tbody>
+                        @foreach (var v in Model.Versions)
+                        {
+                            <tr>
+                                <td><strong>@v.VersionName</strong></td>
+                                <td>@v.Platform</td>
+                                <td>@v.ReleaseDate?.ToString("dd/MM/yyyy")</td>
+                                <td>@(v.IsPublic ? "Công khai" : "Nội bộ")</td>
+                                <td class="text-end">
+                                    <form asp-action="DeleteVersion" asp-route-versionId="@v.VersionId" method="post" onsubmit="return confirm('Xóa phiên bản này?');">
+                                        <button class="btn btn-sm btn-outline-danger" title="Xóa"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                        @if (Model.Versions.Count == 0)
+                        {
+                            <tr><td colspan="5" class="text-muted">Chưa có phiên bản nào (không bắt buộc với dự án ở giai đoạn ý tưởng).</td></tr>
+                        }
+                    </tbody>
+                </table>
+                <h3 class="sub-title">Thêm phiên bản</h3>
+                <form asp-action="AddVersion" asp-route-id="@id" method="post" class="row g-2">
+                    <div class="col-md-4"><input asp-for="NewVersion.VersionName" class="form-control" placeholder="Tên phiên bản *" required /></div>
+                    <div class="col-md-4"><input asp-for="NewVersion.Platform" class="form-control" placeholder="Nền tảng (Web, Android...)" /></div>
+                    <div class="col-md-4"><input asp-for="NewVersion.ReleaseDate" type="date" class="form-control" title="Ngày phát hành" /></div>
+                    <div class="col-md-8"><input asp-for="NewVersion.DownloadUrl" class="form-control" placeholder="Link tải về (https://...)" /></div>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="form-check">
+                            <input asp-for="NewVersion.IsPublic" class="form-check-input" />
+                            <label asp-for="NewVersion.IsPublic" class="form-check-label"></label>
+                        </div>
+                    </div>
+                    <div class="col-12"><textarea asp-for="NewVersion.ChangeLog" class="form-control" rows="2" placeholder="Thay đổi trong phiên bản"></textarea></div>
+                    <div class="col-12"><button class="btn btn-primary"><i class="bi bi-plus-lg"></i> Thêm phiên bản</button></div>
+                </form>
+            </div>
+
+            <!-- ===== Thành viên ===== -->
+            <div class="tab-pane fade @(Model.Tab == "members" ? "show active" : "")" id="tab-members" role="tabpanel">
+                <table class="table align-middle">
+                    <thead><tr><th>Họ tên</th><th>Vai trò</th><th>MSSV</th><th>Lớp</th><th></th></tr></thead>
+                    <tbody>
+                        @foreach (var m in Model.Members)
+                        {
+                            <tr>
+                                <td>
+                                    <strong>@m.FullName</strong>
+                                    @if (m.AccountId.HasValue)
+                                    {
+                                        <i class="bi bi-patch-check-fill text-primary" title="Đã liên kết tài khoản trên hệ thống"></i>
+                                    }
+                                </td>
+                                <td>@m.Position</td>
+                                <td>@m.StudentCode</td>
+                                <td>@m.ClassName</td>
+                                <td class="text-end">
+                                    <form asp-action="DeleteMember" asp-route-memberId="@m.MemberId" method="post" onsubmit="return confirm('Xóa thành viên này?');">
+                                        <button class="btn btn-sm btn-outline-danger" title="Xóa"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <h3 class="sub-title">Thêm thành viên</h3>
+                <form asp-action="AddMember" asp-route-id="@id" method="post" class="row g-2">
+                    <div class="col-md-4"><input asp-for="NewMember.FullName" class="form-control" placeholder="Họ và tên *" required /></div>
+                    <div class="col-md-4"><input asp-for="NewMember.Position" class="form-control" placeholder="Vai trò trong nhóm" /></div>
+                    <div class="col-md-4"><input asp-for="NewMember.Email" class="form-control" placeholder="Email (liên kết tài khoản nếu có)" /></div>
+                    <div class="col-md-4"><input asp-for="NewMember.StudentCode" class="form-control" placeholder="MSSV" /></div>
+                    <div class="col-md-4"><input asp-for="NewMember.ClassName" class="form-control" placeholder="Lớp" /></div>
+                    <div class="col-md-4 d-grid"><button class="btn btn-primary"><i class="bi bi-person-plus"></i> Thêm thành viên</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <partial name="_EditorScripts" />
+}

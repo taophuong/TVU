@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#166534"/><stop offset="1" stop-color="#a3e635"/></linearGradient></defs>
+<rect width="1200" height="675" fill="url(#g)"/>
+<ellipse cx="1147" cy="484" rx="146" ry="56" transform="rotate(6 1147 484)" fill="#a3e635" fill-opacity="0.18"/>
+<ellipse cx="953" cy="345" rx="88" ry="33" transform="rotate(-35 953 345)" fill="#a3e635" fill-opacity="0.18"/>
+<ellipse cx="796" cy="567" rx="96" ry="36" transform="rotate(12 796 567)" fill="#a3e635" fill-opacity="0.18"/>
+<ellipse cx="379" cy="136" rx="119" ry="45" transform="rotate(34 379 136)" fill="#a3e635" fill-opacity="0.18"/>
+<ellipse cx="578" cy="566" rx="112" ry="43" transform="rotate(-15 578 566)" fill="#a3e635" fill-opacity="0.18"/>
+<ellipse cx="1027" cy="609" rx="150" ry="57" transform="rotate(-32 1027 609)" fill="#a3e635" fill-opacity="0.18"/>
+<ellipse cx="498" cy="584" rx="69" ry="26" transform="rotate(-4 498 584)" fill="#a3e635" fill-opacity="0.18"/>
+<ellipse cx="516" cy="89" rx="147" ry="56" transform="rotate(-41 516 89)" fill="#a3e635" fill-opacity="0.18"/>
+<ellipse cx="1191" cy="557" rx="84" ry="32" transform="rotate(31 1191 557)" fill="#a3e635" fill-opacity="0.18"/>
+<rect x="80" y="445" width="1040" height="150" rx="24" fill="#000" fill-opacity="0.22"/>
+<text x="120" y="535" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="64" font-weight="700" fill="#fff">Trà Mãng Cầu Xiêm Xanh</text>
+<text x="122" y="575" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="26" fill="#fff" fill-opacity="0.85">Dữ liệu mẫu · TVU Startup</text>
+</svg>

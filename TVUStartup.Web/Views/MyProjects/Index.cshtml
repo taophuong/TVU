@@ -1,0 +1,107 @@
+@model List<MyProjectItemViewModel>
+@using TVUStartup.Web.Services
+@{
+    ViewData["Title"] = "Dự án của tôi";
+    ViewData["Subtitle"] = "Quản lý các dự án khởi nghiệp bạn đã đăng";
+}
+
+<partial name="_PageBanner" />
+
+<section class="section pt-4">
+    <div class="container">
+        <partial name="_Alerts" />
+
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+            <div class="text-muted">Bạn có <strong>@Model.Count</strong> dự án</div>
+            <div class="d-flex gap-2">
+                <a class="btn btn-outline-primary" asp-action="Contacts"><i class="bi bi-envelope"></i> Liên hệ hợp tác</a>
+                <a class="btn btn-primary" asp-action="Create"><i class="bi bi-plus-circle"></i> Đăng dự án mới</a>
+            </div>
+        </div>
+
+        @if (Model.Count == 0)
+        {
+            <div class="empty-state">
+                <i class="bi bi-rocket"></i>
+                <p>Bạn chưa có dự án nào. Hãy bắt đầu giới thiệu sản phẩm khởi nghiệp của mình!</p>
+                <a class="btn btn-primary" asp-action="Create">Đăng dự án đầu tiên</a>
+            </div>
+        }
+
+        <div class="my-project-list">
+            @foreach (var p in Model)
+            {
+                <div class="my-project">
+                    <div class="d-flex align-items-start gap-3">
+                        @if (!string.IsNullOrEmpty(p.Logo))
+                        {
+                            <img class="project-logo" src="@p.Logo" alt="" />
+                        }
+                        else
+                        {
+                            <span class="project-logo project-logo-text">@p.ProjectName[..1]</span>
+                        }
+                        <div class="flex-grow-1 min-w-0">
+                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                <h2 class="my-project-name">@p.ProjectName</h2>
+                                <span class="badge @p.Status.ToBadgeClass()">@p.Status.ToLabel()</span>
+                            </div>
+                            <div class="my-project-meta">
+                                <span><i class="bi bi-tag"></i> @p.CategoryName</span>
+                                <span><i class="bi bi-calendar3"></i> Tạo @p.CreatedAt.ToString("dd/MM/yyyy")</span>
+                                <span><i class="bi bi-eye"></i> @p.ViewCount</span>
+                                <span><i class="bi bi-heart"></i> @p.VoteCount</span>
+                                <span><i class="bi bi-chat"></i> @p.CommentCount</span>
+                                @if (p.NewContactCount > 0)
+                                {
+                                    <a asp-action="Contacts" class="text-danger fw-semibold"><i class="bi bi-envelope-exclamation"></i> @p.NewContactCount liên hệ mới</a>
+                                }
+                            </div>
+                            @if (p.Status == ProjectStatus.TuChoi && !string.IsNullOrEmpty(p.RejectReason))
+                            {
+                                <div class="alert alert-danger py-2 px-3 mt-2 mb-0 small"><strong>Lý do từ chối:</strong> @p.RejectReason</div>
+                            }
+                            @if (p.Status == ProjectStatus.ChoDuyet)
+                            {
+                                <div class="alert alert-warning py-2 px-3 mt-2 mb-0 small">Dự án đang chờ Ban quản trị duyệt. Muốn chỉnh sửa, hãy rút lại yêu cầu duyệt.</div>
+                            }
+                            @if (p.Status == ProjectStatus.An)
+                            {
+                                <div class="alert alert-secondary py-2 px-3 mt-2 mb-0 small">Dự án đã bị Ban quản trị ẩn. Vui lòng liên hệ Ban quản trị để biết thêm chi tiết.</div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="my-project-actions">
+                        <a class="btn btn-sm btn-outline-secondary" asp-controller="Projects" asp-action="Detail" asp-route-slug="@p.Slug">
+                            <i class="bi bi-eye"></i> @(p.Status == ProjectStatus.DaDuyet ? "Xem trang" : "Xem trước")
+                        </a>
+                        @if (ProjectRules.CanEdit(p.Status))
+                        {
+                            <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@p.ProjectId"><i class="bi bi-pencil"></i> Sửa</a>
+                        }
+                        @if (ProjectRules.CanSubmit(p.Status))
+                        {
+                            <form asp-action="Submit" asp-route-id="@p.ProjectId" method="post" class="d-inline">
+                                <button class="btn btn-sm btn-success"><i class="bi bi-send"></i> Gửi duyệt</button>
+                            </form>
+                        }
+                        @if (ProjectRules.CanWithdraw(p.Status))
+                        {
+                            <form asp-action="Withdraw" asp-route-id="@p.ProjectId" method="post" class="d-inline">
+                                <button class="btn btn-sm btn-outline-warning"><i class="bi bi-arrow-counterclockwise"></i> Rút lại</button>
+                            </form>
+                        }
+                        @if (ProjectRules.CanDelete(p.Status))
+                        {
+                            <form asp-action="Delete" asp-route-id="@p.ProjectId" method="post" class="d-inline"
+                                  onsubmit="return confirm('Xóa vĩnh viễn dự án này? Thao tác không thể hoàn tác.');">
+                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Xóa</button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,54 @@
+@model List<MyContactViewModel>
+@{
+    ViewData["Title"] = "Liên hệ hợp tác";
+    ViewData["Subtitle"] = "Các yêu cầu hợp tác, đầu tư, sử dụng sản phẩm gửi tới dự án của bạn";
+    ViewData["ParentTitle"] = "Dự án của tôi";
+    ViewData["ParentUrl"] = Url.Action("Index");
+}
+
+<partial name="_PageBanner" />
+
+<section class="section pt-4">
+    <div class="container">
+        <partial name="_Alerts" />
+        @if (Model.Count == 0)
+        {
+            <div class="empty-state"><i class="bi bi-envelope-open"></i><p>Chưa có yêu cầu liên hệ nào.</p></div>
+        }
+        @foreach (var item in Model)
+        {
+            var c = item.Request;
+            <div class="contact-item @(c.Status == ContactStatus.Moi ? "is-new" : "")">
+                <div class="d-flex flex-wrap justify-content-between gap-2">
+                    <div>
+                        <span class="badge @c.Status.ToBadgeClass()">@c.Status.ToLabel()</span>
+                        <span class="badge text-bg-light">@c.RequestType.ToLabel()</span>
+                        <strong class="ms-1">@c.FullName</strong>
+                        @if (!string.IsNullOrEmpty(c.Organization))
+                        {
+                            <span class="text-muted">– @c.Organization</span>
+                        }
+                    </div>
+                    <div class="small text-muted">
+                        Dự án <a asp-controller="Projects" asp-action="Detail" asp-route-slug="@item.ProjectSlug">@item.ProjectName</a>
+                        · @c.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                    </div>
+                </div>
+                <p class="my-2">@c.Message</p>
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                    <div class="small">
+                        <i class="bi bi-envelope"></i> <a href="mailto:@c.Email">@c.Email</a>
+                        @if (!string.IsNullOrEmpty(c.Phone))
+                        {
+                            <span class="ms-3"><i class="bi bi-telephone"></i> @c.Phone</span>
+                        }
+                    </div>
+                    <form asp-action="UpdateContactStatus" asp-route-contactId="@c.ContactId" method="post" class="d-flex gap-2">
+                        <select name="status" class="form-select form-select-sm" asp-items="@(DisplayHelper.Options<ContactStatus>(s => s.ToLabel()).Select(o => { o.Selected = o.Value == c.Status.ToString(); return o; }))"></select>
+                        <button class="btn btn-sm btn-outline-primary text-nowrap">Cập nhật</button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</section>

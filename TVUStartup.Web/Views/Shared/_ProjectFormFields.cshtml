@@ -1,0 +1,90 @@
+@model ProjectFormModel
+@* Các ô nhập thông tin chung của dự án – dùng cho trang Thêm / Sửa (sinh viên) *@
+<input type="hidden" asp-for="ProjectId" />
+<div class="row g-3">
+    <div class="col-md-7">
+        <label asp-for="ProjectName" class="form-label"></label> <span class="text-danger">*</span>
+        <input asp-for="ProjectName" class="form-control" />
+        <span asp-validation-for="ProjectName" class="text-danger small"></span>
+    </div>
+    <div class="col-md-5">
+        <label asp-for="Slogan" class="form-label"></label>
+        <input asp-for="Slogan" class="form-control" />
+        <span asp-validation-for="Slogan" class="text-danger small"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="ShortDescription" class="form-label"></label> <span class="text-danger">*</span>
+        <textarea asp-for="ShortDescription" class="form-control" rows="2"></textarea>
+        <div class="form-text">Hiển thị trên thẻ dự án ở trang danh sách (20–500 ký tự).</div>
+        <span asp-validation-for="ShortDescription" class="text-danger small"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="CategoryId" class="form-label"></label> <span class="text-danger">*</span>
+        <select asp-for="CategoryId" asp-items="Model.Categories" class="form-select">
+            <option value="">-- Chọn lĩnh vực --</option>
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger small"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="FacultyId" class="form-label"></label> <span class="text-danger">*</span>
+        <select asp-for="FacultyId" asp-items="Model.Faculties" class="form-select">
+            <option value="">-- Chọn khoa --</option>
+        </select>
+        <span asp-validation-for="FacultyId" class="text-danger small"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Stage" class="form-label"></label>
+        <select asp-for="Stage" asp-items="@(DisplayHelper.Options<ProjectStage>(s => s.ToLabel()))" class="form-select"></select>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="FoundedDate" class="form-label"></label>
+        <input asp-for="FoundedDate" type="date" class="form-control" />
+    </div>
+    <div class="col-md-8">
+        <label asp-for="WebsiteUrl" class="form-label"></label>
+        <input asp-for="WebsiteUrl" class="form-control" placeholder="https://" />
+        <span asp-validation-for="WebsiteUrl" class="text-danger small"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="CommunityUrl" class="form-label"></label>
+        <input asp-for="CommunityUrl" class="form-control" placeholder="https://" />
+        <span asp-validation-for="CommunityUrl" class="text-danger small"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="VideoUrl" class="form-label"></label>
+        <input asp-for="VideoUrl" class="form-control" placeholder="https://www.youtube.com/watch?v=..." />
+        <span asp-validation-for="VideoUrl" class="text-danger small"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="LogoFile" class="form-label"></label>
+        <div class="d-flex align-items-center gap-3">
+            @if (!string.IsNullOrEmpty(Model.Logo))
+            {
+                <img class="project-logo" src="@Model.Logo" alt="Logo hiện tại" />
+            }
+            <input asp-for="LogoFile" type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control" />
+        </div>
+        <div class="form-text">Ảnh vuông, .jpg / .png / .webp, tối đa 2 MB.</div>
+        <span asp-validation-for="LogoFile" class="text-danger small"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="CoverFile" class="form-label"></label>
+        <div class="d-flex align-items-center gap-3">
+            @if (!string.IsNullOrEmpty(Model.CoverImage))
+            {
+                <img class="cover-thumb" src="@Model.CoverImage" alt="Ảnh bìa hiện tại" />
+            }
+            <input asp-for="CoverFile" type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control" />
+        </div>
+        <div class="form-text">Tỉ lệ 16:9, tối đa 2 MB. Bắt buộc trước khi gửi duyệt.</div>
+        <span asp-validation-for="CoverFile" class="text-danger small"></span>
+    </div>
+
+    <div class="col-12">
+        <label class="form-label">Giới thiệu chi tiết</label>
+        <div id="contentEditor" class="content-editor"></div>
+        <input type="hidden" asp-for="Content" id="contentInput" />
+        <div class="form-text">Trình bày vấn đề, giải pháp, khách hàng mục tiêu, kết quả đạt được...</div>
+    </div>
+</div>

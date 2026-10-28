@@ -1,0 +1,10 @@
+@model (string Name, string? Avatar, bool Small)
+@* Ảnh đại diện; nếu chưa có ảnh thì hiển thị chữ cái đầu của tên *@
+@if (!string.IsNullOrEmpty(Model.Avatar))
+{
+    <img class="avatar @(Model.Small ? "avatar-sm" : "")" src="@Model.Avatar" alt="@Model.Name" />
+}
+else
+{
+    <span class="avatar @(Model.Small ? "avatar-sm" : "")">@DisplayHelper.Initial(Model.Name)</span>
+}

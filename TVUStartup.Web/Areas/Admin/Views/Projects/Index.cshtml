@@ -1,0 +1,144 @@
+@model AdminProjectListViewModel
+@{
+    ViewData["Title"] = "Duyệt dự án";
+    var returnUrl = Context.Request.Path + Context.Request.QueryString;
+    int CountOf(ProjectStatus s) => Model.StatusCounts.TryGetValue(s, out var c) ? c : 0;
+}
+
+<div class="admin-card">
+    <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+        <a class="btn btn-sm @(Model.Status == null ? "btn-primary" : "btn-outline-primary")" asp-action="Index" asp-route-q="@Model.Q">
+            Tất cả <span class="badge text-bg-light">@Model.StatusCounts.Values.Sum()</span>
+        </a>
+        @foreach (var s in Enum.GetValues<ProjectStatus>())
+        {
+            <a class="btn btn-sm @(Model.Status == s ? "btn-primary" : "btn-outline-primary")" asp-action="Index" asp-route-status="@s" asp-route-q="@Model.Q">
+                @s.ToLabel() <span class="badge text-bg-light">@CountOf(s)</span>
+            </a>
+        }
+        <form method="get" asp-action="Index" class="ms-auto d-flex gap-2">
+            <input type="hidden" name="status" value="@Model.Status" />
+            <input type="search" name="q" value="@Model.Q" class="form-control form-control-sm" placeholder="Tìm tên dự án..." />
+            <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-search"></i></button>
+        </form>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table align-middle admin-table">
+            <thead>
+                <tr>
+                    <th>Dự án</th>
+                    <th>Sinh viên</th>
+                    <th>Lĩnh vực / Khoa</th>
+                    <th>Trạng thái</th>
+                    <th class="text-end">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Items.Count == 0)
+                {
+                    <tr><td colspan="5" class="text-center text-muted py-4">Không có dự án nào.</td></tr>
+                }
+                @foreach (var p in Model.Items)
+                {
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                @if (!string.IsNullOrEmpty(p.Logo))
+                                {
+                                    <img class="project-logo project-logo-sm" src="@p.Logo" alt="" />
+                                }
+                                <div class="min-w-0">
+                                    <a asp-area="" asp-controller="Projects" asp-action="Detail" asp-route-slug="@p.Slug" target="_blank" class="fw-semibold">@p.ProjectName</a>
+                                    @if (p.IsFeatured)
+                                    {
+                                        <i class="bi bi-star-fill text-warning" title="Nổi bật"></i>
+                                    }
+                                    <div class="small text-muted">Cập nhật @((p.UpdatedAt ?? p.CreatedAt).ToString("dd/MM/yyyy HH:mm")) · @p.ViewCount lượt xem</div>
+                                    @if (p.Status == ProjectStatus.TuChoi && !string.IsNullOrEmpty(p.RejectReason))
+                                    {
+                                        <div class="small text-danger">Lý do: @p.RejectReason</div>
+                                    }
+                                </div>
+                            </div>
+                        </td>
+                        <td>@p.Owner.FullName<div class="small text-muted">@p.Owner.StudentCode</div></td>
+                        <td>@p.Category.CategoryName<div class="small text-muted">@p.Faculty.FacultyName</div></td>
+                        <td><span class="badge @p.Status.ToBadgeClass()">@p.Status.ToLabel()</span></td>
+                        <td class="text-end text-nowrap">
+                            <a class="btn btn-sm btn-outline-secondary" asp-area="" asp-controller="Projects" asp-action="Detail" asp-route-slug="@p.Slug" target="_blank" title="Xem / xem trước"><i class="bi bi-eye"></i></a>
+
+                            @if (p.Status == ProjectStatus.ChoDuyet)
+                            {
+                                <form asp-action="Approve" asp-route-id="@p.ProjectId" method="post" class="d-inline">
+                                    <input type="hidden" name="returnUrl" value="@returnUrl" />
+                                    <button class="btn btn-sm btn-success" title="Duyệt"><i class="bi bi-check2"></i> Duyệt</button>
+                                </form>
+                                <button type="button" class="btn btn-sm btn-outline-danger" title="Từ chối"
+                                        data-bs-toggle="modal" data-bs-target="#rejectModal" data-id="@p.ProjectId" data-name="@p.ProjectName">
+                                    <i class="bi bi-x-lg"></i> Từ chối
+                                </button>
+                            }
+                            @if (p.Status == ProjectStatus.DaDuyet)
+                            {
+                                <form asp-action="ToggleFeatured" asp-route-id="@p.ProjectId" method="post" class="d-inline">
+                                    <input type="hidden" name="returnUrl" value="@returnUrl" />
+                                    <button class="btn btn-sm @(p.IsFeatured ? "btn-warning" : "btn-outline-warning")" title="@(p.IsFeatured ? "Bỏ nổi bật" : "Đánh dấu nổi bật")"><i class="bi bi-star"></i></button>
+                                </form>
+                            }
+                            @if (p.Status is ProjectStatus.DaDuyet or ProjectStatus.An)
+                            {
+                                <form asp-action="ToggleHidden" asp-route-id="@p.ProjectId" method="post" class="d-inline">
+                                    <input type="hidden" name="returnUrl" value="@returnUrl" />
+                                    <button class="btn btn-sm btn-outline-dark" title="@(p.Status == ProjectStatus.An ? "Hiện lại" : "Ẩn dự án")">
+                                        <i class="bi @(p.Status == ProjectStatus.An ? "bi-eye" : "bi-eye-slash")"></i>
+                                    </button>
+                                </form>
+                            }
+                            <form asp-action="Delete" asp-route-id="@p.ProjectId" method="post" class="d-inline"
+                                  onsubmit="return confirm('Xóa vĩnh viễn dự án này cùng toàn bộ hình ảnh, bình luận, lượt bình chọn?');">
+                                <input type="hidden" name="returnUrl" value="@returnUrl" />
+                                <button class="btn btn-sm btn-outline-danger" title="Xóa"><i class="bi bi-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Từ chối dự án: bắt buộc nhập lý do -->
+<div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content" asp-action="Reject" method="post" id="rejectForm">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="rejectModalLabel">Từ chối dự án</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id" id="rejectId" />
+                <input type="hidden" name="returnUrl" value="@returnUrl" />
+                <p>Dự án: <strong id="rejectName"></strong></p>
+                <label for="rejectReason" class="form-label">Lý do từ chối <span class="text-danger">*</span></label>
+                <textarea id="rejectReason" name="reason" class="form-control" rows="4" maxlength="500" required
+                          placeholder="Nêu rõ nội dung cần bổ sung, chỉnh sửa để sinh viên gửi duyệt lại"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-danger">Từ chối</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $('#rejectModal').on('show.bs.modal', function (e) {
+            const btn = $(e.relatedTarget);
+            $('#rejectId').val(btn.data('id'));
+            $('#rejectName').text(btn.data('name'));
+            $('#rejectReason').val('');
+        });
+    </script>
+}

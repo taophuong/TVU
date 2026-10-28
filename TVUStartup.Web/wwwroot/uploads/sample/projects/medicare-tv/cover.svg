@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#be123c"/><stop offset="1" stop-color="#fb7185"/></linearGradient></defs>
+<rect width="1200" height="675" fill="url(#g)"/>
+<polyline points="0,418 60,418 120,384 180,418 240,418 300,418 360,488 420,418 480,418 540,418 600,334 660,418 720,418 780,418 840,308 900,418 960,418 1020,418 1080,502 1140,418 1200,418" stroke="#fb7185" stroke-opacity="0.45" stroke-width="10" fill="none"/>
+<circle cx="909" cy="585" r="60" fill="#fb7185" fill-opacity="0.1"/>
+<circle cx="528" cy="251" r="97" fill="#fb7185" fill-opacity="0.1"/>
+<circle cx="304" cy="406" r="84" fill="#fb7185" fill-opacity="0.1"/>
+<circle cx="240" cy="105" r="80" fill="#fb7185" fill-opacity="0.1"/>
+<circle cx="1050" cy="288" r="84" fill="#fb7185" fill-opacity="0.1"/>
+<circle cx="29" cy="189" r="116" fill="#fb7185" fill-opacity="0.1"/>
+<rect x="80" y="445" width="1040" height="150" rx="24" fill="#000" fill-opacity="0.22"/>
+<text x="120" y="535" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="64" font-weight="700" fill="#fff">MediCare TV</text>
+<text x="122" y="575" font-family="'Be Vietnam Pro','Segoe UI',Arial,sans-serif" font-size="26" fill="#fff" fill-opacity="0.85">Dữ liệu mẫu · TVU Startup</text>
+</svg>

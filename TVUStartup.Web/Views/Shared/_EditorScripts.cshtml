@@ -1,0 +1,30 @@
+@* Trình soạn thảo văn bản Quill cho ô "Giới thiệu chi tiết": nội dung HTML được ghi vào ô ẩn #contentInput khi gửi form *@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" />
+<script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+<script>
+    (function () {
+        const input = document.getElementById('contentInput');
+        if (!input || !window.Quill) return;
+
+        const quill = new Quill('#contentEditor', {
+            theme: 'snow',
+            placeholder: 'Giới thiệu chi tiết về dự án...',
+            modules: {
+                toolbar: [
+                    [{ header: [2, 3, false] }],
+                    ['bold', 'italic', 'underline'],
+                    [{ list: 'ordered' }, { list: 'bullet' }],
+                    ['blockquote', 'link'],
+                    ['clean']
+                ]
+            }
+        });
+
+        // Nạp nội dung cũ: Quill tự chuyển HTML sang định dạng của nó và bỏ các thẻ không hỗ trợ (script...)
+        if (input.value) quill.clipboard.dangerouslyPasteHTML(input.value);
+
+        input.form.addEventListener('submit', function () {
+            input.value = quill.getText().trim().length === 0 ? '' : quill.root.innerHTML;
+        });
+    })();
+</script>

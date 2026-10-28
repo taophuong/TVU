@@ -1,0 +1,51 @@
+@model LoginViewModel
+@inject IWebHostEnvironment Env
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<section class="auth-page">
+    <div class="auth-card">
+        <div class="auth-head">
+            <span class="brand-mark"><i class="bi bi-rocket-takeoff-fill"></i></span>
+            <h1>Đăng nhập</h1>
+            <p>Đăng nhập để đăng dự án, bình luận và bình chọn</p>
+        </div>
+
+        <form asp-action="Login" method="post" novalidate>
+            <input type="hidden" asp-for="ReturnUrl" />
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2"></div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" autocomplete="username" autofocus />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" autocomplete="current-password" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+            <div class="form-check mb-4">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label"></label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 py-2">Đăng nhập</button>
+        </form>
+
+        <p class="auth-switch">Chưa có tài khoản? <a asp-action="Register">Đăng ký ngay</a></p>
+
+        @if (Env.IsDevelopment())
+        {
+            <div class="demo-accounts">
+                <div class="fw-semibold mb-1"><i class="bi bi-info-circle"></i> Tài khoản demo</div>
+                <div>Quản trị: <code>admin@tvu.edu.vn</code> / <code>Admin@123</code></div>
+                <div>Sinh viên: <code>170125077@st.tvu.edu.vn</code> / <code>SinhVien@123</code></div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

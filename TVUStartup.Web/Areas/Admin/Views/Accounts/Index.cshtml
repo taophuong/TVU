@@ -1,0 +1,63 @@
+@model List<Account>
+@{
+    ViewData["Title"] = "Tài khoản";
+    var projectCounts = (Dictionary<int, int>)ViewBag.ProjectCounts;
+    int? roleFilter = ViewBag.RoleFilter;
+    var currentId = User.GetAccountId();
+}
+
+<div class="admin-card">
+    <form method="get" asp-action="Index" class="row g-2 mb-3">
+        <div class="col-md-6"><input type="search" name="q" value="@ViewBag.Q" class="form-control form-control-sm" placeholder="Tìm theo họ tên, email, MSSV..." /></div>
+        <div class="col-md-3">
+            <select name="role" class="form-select form-select-sm" onchange="this.form.submit()">
+                <option value="">Tất cả vai trò</option>
+                <option value="@Role.AdminId" selected="@(roleFilter == Role.AdminId)">Quản trị viên</option>
+                <option value="@Role.SinhVienId" selected="@(roleFilter == Role.SinhVienId)">Sinh viên</option>
+            </select>
+        </div>
+        <div class="col-md-3 d-grid"><button class="btn btn-sm btn-outline-secondary"><i class="bi bi-search"></i> Tìm kiếm</button></div>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table align-middle admin-table">
+            <thead><tr><th>Họ tên</th><th>Email</th><th>MSSV / Lớp</th><th>Khoa</th><th class="text-center">Dự án</th><th>Trạng thái</th><th class="text-end">Thao tác</th></tr></thead>
+            <tbody>
+                @foreach (var a in Model)
+                {
+                    <tr>
+                        <td>
+                            <strong>@a.FullName</strong>
+                            @if (a.RoleId == Role.AdminId)
+                            {
+                                <span class="badge text-bg-primary">Admin</span>
+                            }
+                            <div class="small text-muted">Tạo @a.CreatedAt.ToString("dd/MM/yyyy")</div>
+                        </td>
+                        <td>@a.Email</td>
+                        <td>@a.StudentCode<div class="small text-muted">@a.ClassName</div></td>
+                        <td class="small">@a.Faculty?.FacultyName</td>
+                        <td class="text-center">@(projectCounts.TryGetValue(a.AccountId, out var n) ? n : 0)</td>
+                        <td><span class="badge @(a.Status == AccountStatus.HoatDong ? "text-bg-success" : "text-bg-danger")">@a.Status.ToLabel()</span></td>
+                        <td class="text-end text-nowrap">
+                            @if (a.AccountId != currentId)
+                            {
+                                <form asp-action="ToggleLock" asp-route-id="@a.AccountId" method="post" class="d-inline"
+                                      onsubmit="return confirm('@(a.Status == AccountStatus.BiKhoa ? "Mở khóa" : "Khóa") tài khoản này?');">
+                                    <button class="btn btn-sm @(a.Status == AccountStatus.BiKhoa ? "btn-outline-success" : "btn-outline-danger")"
+                                            title="@(a.Status == AccountStatus.BiKhoa ? "Mở khóa" : "Khóa")">
+                                        <i class="bi @(a.Status == AccountStatus.BiKhoa ? "bi-unlock" : "bi-lock")"></i>
+                                    </button>
+                                </form>
+                            }
+                            <form asp-action="ResetPassword" asp-route-id="@a.AccountId" method="post" class="d-inline"
+                                  onsubmit="return confirm('Đặt lại mật khẩu cho tài khoản này?');">
+                                <button class="btn btn-sm btn-outline-secondary" title="Đặt lại mật khẩu"><i class="bi bi-key"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

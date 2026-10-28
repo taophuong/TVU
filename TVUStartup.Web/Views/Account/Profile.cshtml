@@ -1,0 +1,75 @@
+@model ProfileViewModel
+@using TVUStartup.Web.Helpers
+@{
+    ViewData["Title"] = "Hồ sơ cá nhân";
+    ViewData["Subtitle"] = "Cập nhật thông tin tài khoản của bạn";
+}
+
+<partial name="_PageBanner" />
+
+<section class="section pt-4">
+    <div class="container narrow">
+        <partial name="_Alerts" />
+        <div class="content-card">
+            <form asp-action="Profile" method="post" enctype="multipart/form-data" novalidate>
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2"></div>
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    @if (!string.IsNullOrEmpty(Model.Avatar))
+                    {
+                        <img class="avatar avatar-xl" src="@Model.Avatar" alt="Ảnh đại diện" />
+                    }
+                    else
+                    {
+                        <span class="avatar avatar-xl">@DisplayHelper.Initial(Model.FullName)</span>
+                    }
+                    <div class="flex-grow-1 min-w-0">
+                        <div class="fw-semibold text-truncate">@Model.Email</div>
+                        <label asp-for="AvatarFile" class="form-label small text-muted mb-1 mt-2">Đổi ảnh đại diện (.jpg, .png, .webp – tối đa 2 MB)</label>
+                        <input asp-for="AvatarFile" type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control form-control-sm" />
+                        <span asp-validation-for="AvatarFile" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label asp-for="FullName" class="form-label"></label>
+                        <input asp-for="FullName" class="form-control" />
+                        <span asp-validation-for="FullName" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Phone" class="form-label"></label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger small"></span>
+                    </div>
+                    @if (Model.IsStudent)
+                    {
+                        <div class="col-md-4">
+                            <label asp-for="StudentCode" class="form-label"></label>
+                            <input asp-for="StudentCode" class="form-control" />
+                            <span asp-validation-for="StudentCode" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="ClassName" class="form-label"></label>
+                            <input asp-for="ClassName" class="form-control" />
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="FacultyId" class="form-label"></label>
+                            <select asp-for="FacultyId" asp-items="Model.Faculties" class="form-select">
+                                <option value="">-- Chọn khoa --</option>
+                            </select>
+                        </div>
+                    }
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-check2"></i> Lưu thay đổi</button>
+                    <a class="btn btn-outline-primary" asp-action="ChangePassword"><i class="bi bi-key"></i> Đổi mật khẩu</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

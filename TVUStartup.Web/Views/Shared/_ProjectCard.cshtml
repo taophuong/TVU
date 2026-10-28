@@ -1,0 +1,42 @@
+@model TVUStartup.Web.Models.ViewModels.ProjectCardViewModel
+@using TVUStartup.Web.Helpers
+
+<a class="project-card" asp-controller="Projects" asp-action="Detail" asp-route-slug="@Model.Slug">
+    <div class="project-card-cover">
+        @if (!string.IsNullOrEmpty(Model.CoverImage))
+        {
+            <img src="@Model.CoverImage" alt="@Model.ProjectName" loading="lazy" />
+        }
+        else
+        {
+            <div class="cover-placeholder"><i class="bi @(Model.CategoryIcon ?? "bi-lightbulb")"></i></div>
+        }
+        <span class="stage-badge @Model.Stage.ToBadgeClass()">@Model.Stage.ToLabel()</span>
+        @if (Model.IsFeatured)
+        {
+            <span class="featured-badge" title="Dự án nổi bật"><i class="bi bi-star-fill"></i></span>
+        }
+    </div>
+    <div class="project-card-body">
+        <div class="project-card-head">
+            @if (!string.IsNullOrEmpty(Model.Logo))
+            {
+                <img class="project-logo" src="@Model.Logo" alt="" />
+            }
+            else
+            {
+                <span class="project-logo project-logo-text">@Model.ProjectName[..1]</span>
+            }
+            <div class="min-w-0">
+                <h3 class="project-card-title">@Model.ProjectName</h3>
+                <div class="project-card-category"><i class="bi @(Model.CategoryIcon ?? "bi-tag")"></i> @Model.CategoryName</div>
+            </div>
+        </div>
+        <p class="project-card-desc">@Model.ShortDescription</p>
+        <div class="project-card-meta">
+            <span class="text-truncate" title="@Model.FacultyName"><i class="bi bi-building"></i> @Model.FacultyName</span>
+            <span class="ms-auto flex-shrink-0"><i class="bi bi-eye"></i> @Model.ViewCount.ToCompact()</span>
+            <span class="flex-shrink-0"><i class="bi bi-heart"></i> @Model.VoteCount.ToCompact()</span>
+        </div>
+    </div>
+</a>

@@ -1,0 +1,48 @@
+@model NewsListViewModel
+@{
+    ViewData["Title"] = "Tin tức & Sự kiện";
+    ViewData["Subtitle"] = "Cập nhật hoạt động, sự kiện và cuộc thi khởi nghiệp dành cho sinh viên";
+    var types = new (NewsType? Value, string Label)[] { (null, "Tất cả"), (NewsType.TinTuc, "Tin tức"), (NewsType.SuKien, "Sự kiện"), (NewsType.CuocThi, "Cuộc thi") };
+}
+
+<partial name="_PageBanner" />
+
+<section class="section pt-4">
+    <div class="container">
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            @foreach (var t in types)
+            {
+                <a class="btn btn-sm @(Model.Type == t.Value ? "btn-primary" : "btn-outline-primary")"
+                   asp-action="Index" asp-route-type="@t.Value">@t.Label</a>
+            }
+        </div>
+
+        @if (Model.Items.Count == 0)
+        {
+            <div class="empty-state"><i class="bi bi-newspaper"></i><p>Chưa có bài viết nào.</p></div>
+        }
+        else
+        {
+            <div class="row g-4">
+                @foreach (var n in Model.Items)
+                {
+                    <div class="col-md-6 col-lg-4"><partial name="_NewsCard" model="n" /></div>
+                }
+            </div>
+        }
+
+        @if (Model.TotalPages > 1)
+        {
+            <nav class="mt-5" aria-label="Phân trang">
+                <ul class="pagination justify-content-center">
+                    @for (var i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.Page ? "active" : "")">
+                            <a class="page-link" asp-action="Index" asp-route-type="@Model.Type" asp-route-page="@i">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+    </div>
+</section>

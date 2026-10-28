@@ -1,0 +1,18 @@
+# Kết quả biên dịch
+bin/
+obj/
+
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+
+# Ảnh người dùng tải lên khi chạy thử (giữ lại ảnh dữ liệu mẫu trong uploads/sample)
+TVUStartup.Web/wwwroot/uploads/*
+!TVUStartup.Web/wwwroot/uploads/sample/
+
+# Khác
+*.log
+__pycache__/

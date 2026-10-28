@@ -1,0 +1,465 @@
+@model ProjectDetailViewModel
+@{
+    var p = Model.Project;
+    ViewData["Title"] = p.ProjectName;
+    ViewData["Description"] = p.ShortDescription;
+    var returnUrl = Context.Request.Path.ToString();
+}
+
+@if (Model.IsPreview)
+{
+    <div class="preview-bar">
+        <div class="container">
+            <i class="bi bi-eye-slash"></i>
+            <strong>Bản xem trước</strong> – dự án đang ở trạng thái
+            <span class="badge @p.Status.ToBadgeClass()">@p.Status.ToLabel()</span>, khách truy cập chưa nhìn thấy trang này.
+            @if (p.Status == ProjectStatus.TuChoi && !string.IsNullOrEmpty(p.RejectReason))
+            {
+                <div class="mt-1"><strong>Lý do từ chối:</strong> @p.RejectReason</div>
+            }
+        </div>
+    </div>
+}
+
+<!-- ===== Đầu trang dự án ===== -->
+<section class="project-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a asp-action="Index">Dự án</a></li>
+                <li class="breadcrumb-item"><a asp-action="Index" asp-route-category="@p.Category.Slug">@p.Category.CategoryName</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@p.ProjectName</li>
+            </ol>
+        </nav>
+
+        <div class="project-hero-main">
+            @if (!string.IsNullOrEmpty(p.Logo))
+            {
+                <img class="project-logo project-logo-xl" src="@p.Logo" alt="Logo @p.ProjectName" />
+            }
+            else
+            {
+                <span class="project-logo project-logo-xl project-logo-text">@p.ProjectName[..1]</span>
+            }
+            <div class="flex-grow-1 min-w-0">
+                <h1 class="project-name">@p.ProjectName</h1>
+                @if (!string.IsNullOrEmpty(p.Slogan))
+                {
+                    <p class="project-slogan">@p.Slogan</p>
+                }
+                <div class="d-flex flex-wrap gap-2">
+                    <span class="chip"><i class="bi @(p.Category.Icon ?? "bi-tag")"></i> @p.Category.CategoryName</span>
+                    <span class="chip"><i class="bi bi-building"></i> @p.Faculty.FacultyName</span>
+                    <span class="stage-badge static @p.Stage.ToBadgeClass()">@p.Stage.ToLabel()</span>
+                </div>
+            </div>
+            <div class="project-hero-actions">
+                @if (Model.IsOwner)
+                {
+                    <a class="btn btn-accent" asp-controller="MyProjects" asp-action="Edit" asp-route-id="@p.ProjectId"><i class="bi bi-pencil-square"></i> Chỉnh sửa dự án</a>
+                }
+                @if (!string.IsNullOrEmpty(p.WebsiteUrl))
+                {
+                    <a class="btn @(Model.IsOwner ? "btn-outline-light" : "btn-accent")" href="@p.WebsiteUrl" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Trang sản phẩm</a>
+                }
+                @if (!string.IsNullOrEmpty(p.CommunityUrl))
+                {
+                    <a class="btn btn-outline-light" href="@p.CommunityUrl" target="_blank" rel="noopener"><i class="bi bi-people"></i> Cộng đồng</a>
+                }
+                @if (!Model.IsPreview && !Model.IsOwner)
+                {
+                    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal"><i class="bi bi-envelope"></i> Liên hệ hợp tác</button>
+                }
+            </div>
+        </div>
+
+        <div class="project-stats">
+            <div><i class="bi bi-eye"></i> <strong>@p.ViewCount.ToCompact()</strong> lượt xem</div>
+            <div>
+                @if (Model.CanInteract && !Model.IsOwner)
+                {
+                    <form asp-action="Vote" asp-route-id="@p.ProjectId" method="post" class="d-inline" id="voteForm">
+                        <button type="submit" class="vote-btn @(Model.HasVoted ? "voted" : "")" title="@(Model.HasVoted ? "Bỏ yêu thích" : "Yêu thích dự án")">
+                            <i class="bi @(Model.HasVoted ? "bi-heart-fill" : "bi-heart")"></i>
+                            <strong id="voteCount">@Model.VoteCount</strong> lượt yêu thích
+                        </button>
+                    </form>
+                }
+                else if (!Model.IsPreview && !Model.CurrentAccountId.HasValue)
+                {
+                    <a class="vote-btn" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@returnUrl" title="Đăng nhập để yêu thích">
+                        <i class="bi bi-heart"></i> <strong>@Model.VoteCount</strong> lượt yêu thích
+                    </a>
+                }
+                else
+                {
+                    <i class="bi bi-heart"></i> <strong>@Model.VoteCount.ToCompact()</strong> <span>lượt yêu thích</span>
+                }
+            </div>
+            <div>
+                <i class="bi bi-star"></i>
+                @if (Model.AverageRating.HasValue)
+                {
+                    <strong>@Model.AverageRating.Value.ToString("0.0")</strong><span>/5 (@Model.RatingCount đánh giá)</span>
+                }
+                else
+                {
+                    <span>Chưa có đánh giá</span>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section pt-4">
+    <div class="container">
+        <partial name="_Alerts" />
+        <div class="row g-4">
+            <!-- ===== Cột nội dung ===== -->
+            <div class="col-lg-8">
+                <article class="content-card">
+                    <h2 class="content-title">Giới thiệu</h2>
+                    <p class="lead-desc">@p.ShortDescription</p>
+                    @if (!string.IsNullOrEmpty(p.Content))
+                    {
+                        @* Nội dung đã được lọc HTML (HtmlSanitizer) trước khi lưu vào CSDL *@
+                        <div class="rich-content">@Html.Raw(p.Content)</div>
+                    }
+                    @if (Model.VideoEmbedUrl != null)
+                    {
+                        <div class="ratio ratio-16x9 mt-4 rounded overflow-hidden">
+                            <iframe src="@Model.VideoEmbedUrl" title="Video giới thiệu @p.ProjectName" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    }
+                </article>
+
+                @if (p.Features.Count > 0)
+                {
+                    <article class="content-card">
+                        <h2 class="content-title">Tính năng nổi bật</h2>
+                        <div class="row g-3">
+                            @foreach (var f in p.Features)
+                            {
+                                <div class="col-md-6">
+                                    <div class="feature-item">
+                                        <span class="feature-icon"><i class="bi @(f.Icon ?? "bi-check2-circle")"></i></span>
+                                        <div>
+                                            <h3 class="feature-title">@f.Title</h3>
+                                            @if (!string.IsNullOrEmpty(f.Description))
+                                            {
+                                                <p class="feature-desc">@f.Description</p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </article>
+                }
+
+                @if (p.Images.Count > 0)
+                {
+                    <article class="content-card">
+                        <h2 class="content-title">Hình ảnh sản phẩm</h2>
+                        <div class="gallery">
+                            @foreach (var img in p.Images)
+                            {
+                                <button type="button" class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                                        data-src="@img.ImageUrl" data-caption="@img.Caption">
+                                    <img src="@img.ImageUrl" alt="@(img.Caption ?? p.ProjectName)" loading="lazy" />
+                                    @if (!string.IsNullOrEmpty(img.Caption))
+                                    {
+                                        <span class="gallery-caption">@img.Caption</span>
+                                    }
+                                </button>
+                            }
+                        </div>
+                    </article>
+                }
+
+                <article class="content-card" id="comments">
+                    <h2 class="content-title">Bình luận & đánh giá <span class="count">@Model.Comments.Count</span></h2>
+
+                    @* ----- Form bình luận ----- *@
+                    @if (Model.CanInteract)
+                    {
+                        <form asp-action="Comment" asp-route-id="@p.ProjectId" method="post" class="comment-form">
+                            @if (!Model.IsOwner && !Model.HasRated)
+                            {
+                                <div class="rating-input mb-2" role="radiogroup" aria-label="Đánh giá sao">
+                                    <span class="small text-muted me-2">Đánh giá của bạn:</span>
+                                    @for (var i = 5; i >= 1; i--)
+                                    {
+                                        <input type="radio" id="star@(i)" name="Rating" value="@i" />
+                                        <label for="star@(i)" title="@i sao"><i class="bi bi-star-fill"></i></label>
+                                    }
+                                </div>
+                            }
+                            <textarea name="Content" class="form-control" rows="3" maxlength="1000" required
+                                      placeholder="@(Model.IsOwner ? "Viết thông báo, cập nhật cho người quan tâm..." : "Chia sẻ cảm nhận hoặc góp ý cho dự án...")"></textarea>
+                            <div class="text-end mt-2">
+                                <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-send"></i> Gửi bình luận</button>
+                            </div>
+                        </form>
+                    }
+                    else if (!Model.IsPreview)
+                    {
+                        <div class="login-hint">
+                            <i class="bi bi-chat-dots"></i>
+                            <a asp-controller="Account" asp-action="Login" asp-route-returnUrl="@(returnUrl + "#comments")">Đăng nhập</a> để bình luận và đánh giá dự án.
+                        </div>
+                    }
+
+                    @if (Model.Comments.Count == 0)
+                    {
+                        <p class="text-muted mb-0">Chưa có bình luận nào cho dự án này.</p>
+                    }
+                    else
+                    {
+                        @foreach (var c in Model.Comments)
+                        {
+                            <div class="comment" id="comment-@c.CommentId">
+                                <partial name="_Avatar" model="(c.Account.FullName, c.Account.Avatar, false)" />
+                                <div class="flex-grow-1 min-w-0">
+                                    <div class="comment-head">
+                                        <strong>@c.Account.FullName</strong>
+                                        @if (c.AccountId == p.OwnerId)
+                                        {
+                                            <span class="owner-tag">Chủ dự án</span>
+                                        }
+                                        @if (c.Rating.HasValue)
+                                        {
+                                            <span class="stars" aria-label="@c.Rating sao">
+                                                @for (var i = 1; i <= 5; i++)
+                                                {
+                                                    <i class="bi @(i <= c.Rating ? "bi-star-fill" : "bi-star")"></i>
+                                                }
+                                            </span>
+                                        }
+                                        <span class="comment-time">@c.CreatedAt.ToString("dd/MM/yyyy HH:mm")</span>
+                                    </div>
+                                    <p class="comment-body">@c.Content</p>
+
+                                    <div class="comment-actions">
+                                        @if (Model.CanInteract && (Model.IsOwner || Model.IsAdmin))
+                                        {
+                                            <button class="btn btn-link btn-sm p-0" type="button" data-bs-toggle="collapse" data-bs-target="#reply-@c.CommentId">
+                                                <i class="bi bi-reply"></i> Trả lời
+                                            </button>
+                                        }
+                                        @if (c.AccountId == Model.CurrentAccountId || Model.IsAdmin)
+                                        {
+                                            <form asp-action="DeleteComment" asp-route-commentId="@c.CommentId" method="post" class="d-inline" onsubmit="return confirm('Xóa bình luận này?');">
+                                                <button type="submit" class="btn btn-link btn-sm p-0 text-danger"><i class="bi bi-trash"></i> Xóa</button>
+                                            </form>
+                                        }
+                                    </div>
+
+                                    @foreach (var r in c.Replies)
+                                    {
+                                        <div class="comment reply">
+                                            <partial name="_Avatar" model="(r.Account.FullName, r.Account.Avatar, true)" />
+                                            <div class="flex-grow-1 min-w-0">
+                                                <div class="comment-head">
+                                                    <strong>@r.Account.FullName</strong>
+                                                    @if (r.AccountId == p.OwnerId)
+                                                    {
+                                                        <span class="owner-tag">Chủ dự án</span>
+                                                    }
+                                                    <span class="comment-time">@r.CreatedAt.ToString("dd/MM/yyyy HH:mm")</span>
+                                                </div>
+                                                <p class="comment-body">@r.Content</p>
+                                                @if (r.AccountId == Model.CurrentAccountId || Model.IsAdmin)
+                                                {
+                                                    <form asp-action="DeleteComment" asp-route-commentId="@r.CommentId" method="post" class="comment-actions" onsubmit="return confirm('Xóa câu trả lời này?');">
+                                                        <button type="submit" class="btn btn-link btn-sm p-0 text-danger"><i class="bi bi-trash"></i> Xóa</button>
+                                                    </form>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @if (Model.CanInteract && (Model.IsOwner || Model.IsAdmin))
+                                    {
+                                        <form asp-action="Reply" asp-route-commentId="@c.CommentId" method="post" class="collapse mt-2" id="reply-@c.CommentId">
+                                            <textarea name="reply.Content" class="form-control form-control-sm" rows="2" maxlength="1000" required placeholder="Trả lời bình luận..."></textarea>
+                                            <div class="text-end mt-2">
+                                                <button type="submit" class="btn btn-primary btn-sm">Gửi trả lời</button>
+                                            </div>
+                                        </form>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </article>
+            </div>
+
+            <!-- ===== Cột thông tin ===== -->
+            <aside class="col-lg-4">
+                <div class="side-card">
+                    <h2 class="side-title">Thông tin dự án</h2>
+                    <dl class="info-list">
+                        <dt>Lĩnh vực</dt>
+                        <dd>@p.Category.CategoryName</dd>
+                        <dt>Khoa</dt>
+                        <dd>@p.Faculty.FacultyName</dd>
+                        <dt>Giai đoạn</dt>
+                        <dd>@p.Stage.ToLabel()</dd>
+                        @if (p.FoundedDate.HasValue)
+                        {
+                            <dt>Bắt đầu</dt>
+                            <dd>@p.FoundedDate.Value.ToString("dd/MM/yyyy")</dd>
+                        }
+                        <dt>Người đăng</dt>
+                        <dd>@p.Owner.FullName</dd>
+                    </dl>
+                    @if (!Model.IsPreview && !Model.IsOwner)
+                    {
+                        <button type="button" class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#contactModal">
+                            <i class="bi bi-envelope"></i> Liên hệ hợp tác
+                        </button>
+                    }
+                </div>
+
+                @if (Model.Versions.Count > 0)
+                {
+                    <div class="side-card">
+                        <h2 class="side-title">Phiên bản phát hành</h2>
+                        <ul class="version-list">
+                            @foreach (var v in Model.Versions)
+                            {
+                                <li>
+                                    <div class="version-icon"><i class="bi bi-box-seam"></i></div>
+                                    <div class="flex-grow-1 min-w-0">
+                                        <div class="version-name">
+                                            @v.VersionName
+                                            @if (!v.IsPublic)
+                                            {
+                                                <span class="badge text-bg-secondary ms-1" title="Chỉ chủ dự án và Ban quản trị nhìn thấy">Nội bộ</span>
+                                            }
+                                        </div>
+                                        <div class="version-meta">
+                                            @v.Platform
+                                            @if (v.ReleaseDate.HasValue)
+                                            {
+                                                <span>· @v.ReleaseDate.Value.ToString("dd/MM/yyyy")</span>
+                                            }
+                                        </div>
+                                    </div>
+                                    @if (!string.IsNullOrEmpty(v.DownloadUrl))
+                                    {
+                                        <a class="btn btn-sm btn-outline-primary" href="@v.DownloadUrl" target="_blank" rel="noopener" title="Tải về"><i class="bi bi-download"></i></a>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+                @if (p.TeamMembers.Count > 0)
+                {
+                    <div class="side-card">
+                        <h2 class="side-title">Đội ngũ thực hiện</h2>
+                        <ul class="team-list">
+                            @foreach (var m in p.TeamMembers)
+                            {
+                                <li>
+                                    <partial name="_Avatar" model="(m.FullName, m.Avatar, false)" />
+                                    <div class="min-w-0">
+                                        <div class="member-name">@m.FullName</div>
+                                        <div class="member-role">@m.Position</div>
+                                        @if (!string.IsNullOrEmpty(m.ClassName))
+                                        {
+                                            <div class="member-meta">Lớp @m.ClassName</div>
+                                        }
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </aside>
+        </div>
+
+        @if (Model.RelatedProjects.Count > 0)
+        {
+            <div class="section-head mt-5">
+                <h2 class="section-title">Dự án cùng lĩnh vực</h2>
+            </div>
+            <div class="row g-4">
+                @foreach (var r in Model.RelatedProjects)
+                {
+                    <div class="col-md-6 col-lg-4"><partial name="_ProjectCard" model="r" /></div>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+<!-- Xem ảnh phóng to -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-transparent border-0">
+            <button type="button" class="btn-close btn-close-white ms-auto mb-2" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            <img id="imageModalImg" class="img-fluid rounded mx-auto d-block" src="" alt="" />
+            <p id="imageModalCaption" class="text-center text-white mt-2 mb-0"></p>
+        </div>
+    </div>
+</div>
+
+<!-- Form liên hệ hợp tác -->
+@if (!Model.IsPreview && !Model.IsOwner)
+{
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <form class="modal-content" asp-action="Contact" asp-route-id="@p.ProjectId" method="post">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="contactModalLabel">Liên hệ hợp tác – @p.ProjectName</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted small">Yêu cầu sẽ được chuyển tới nhóm dự án và Ban quản trị website.</p>
+                    <partial name="_ContactFields" for="ContactForm" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Gửi yêu cầu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Xem ảnh phóng to
+        $('#imageModal').on('show.bs.modal', function (e) {
+            const btn = $(e.relatedTarget);
+            $('#imageModalImg').attr('src', btn.data('src')).attr('alt', btn.data('caption') || '');
+            $('#imageModalCaption').text(btn.data('caption') || '');
+        });
+
+        // Bình chọn bằng AJAX: không tải lại trang
+        $('#voteForm').on('submit', function (e) {
+            e.preventDefault();
+            const form = $(this);
+            $.ajax({
+                url: form.attr('action'),
+                method: 'POST',
+                data: form.serialize(),
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            }).done(function (res) {
+                const btn = form.find('.vote-btn');
+                btn.toggleClass('voted', res.voted)
+                   .attr('title', res.voted ? 'Bỏ yêu thích' : 'Yêu thích dự án');
+                btn.find('i').attr('class', 'bi ' + (res.voted ? 'bi-heart-fill' : 'bi-heart'));
+                $('#voteCount').text(res.count);
+            }).fail(function (xhr) {
+                alert(xhr.responseJSON?.message || 'Không thể bình chọn, vui lòng thử lại.');
+            });
+        });
+    </script>
+}
