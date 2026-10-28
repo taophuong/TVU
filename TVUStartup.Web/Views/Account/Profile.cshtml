@@ -16,7 +16,7 @@
                 <div class="d-flex align-items-center gap-3 mb-4">
                     @if (!string.IsNullOrEmpty(Model.Avatar))
                     {
-                        <img class="avatar avatar-xl" src="@Model.Avatar" alt="Ảnh đại diện" />
+                        <img asp-append-version="true" class="avatar avatar-xl" src="@Model.Avatar" alt="Ảnh đại diện" />
                     }
                     else
                     {

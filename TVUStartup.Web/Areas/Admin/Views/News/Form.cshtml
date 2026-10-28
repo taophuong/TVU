@@ -35,7 +35,7 @@
                 <div class="d-flex align-items-center gap-3">
                     @if (!string.IsNullOrEmpty(Model.Thumbnail))
                     {
-                        <img class="cover-thumb" src="@Model.Thumbnail" alt="" />
+                        <img asp-append-version="true" class="cover-thumb" src="@Model.Thumbnail" alt="" />
                     }
                     <input asp-for="ThumbnailFile" type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control" />
                 </div>

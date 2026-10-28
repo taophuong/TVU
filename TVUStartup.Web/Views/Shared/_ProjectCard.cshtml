@@ -5,7 +5,7 @@
     <div class="project-card-cover">
         @if (!string.IsNullOrEmpty(Model.CoverImage))
         {
-            <img src="@Model.CoverImage" alt="@Model.ProjectName" loading="lazy" />
+            <img asp-append-version="true" src="@Model.CoverImage" alt="@Model.ProjectName" loading="lazy" />
         }
         else
         {
@@ -21,7 +21,7 @@
         <div class="project-card-head">
             @if (!string.IsNullOrEmpty(Model.Logo))
             {
-                <img class="project-logo" src="@Model.Logo" alt="" />
+                <img asp-append-version="true" class="project-logo" src="@Model.Logo" alt="" />
             }
             else
             {

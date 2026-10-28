@@ -35,7 +35,7 @@
                     <div class="d-flex align-items-start gap-3">
                         @if (!string.IsNullOrEmpty(p.Logo))
                         {
-                            <img class="project-logo" src="@p.Logo" alt="" />
+                            <img asp-append-version="true" class="project-logo" src="@p.Logo" alt="" />
                         }
                         else
                         {

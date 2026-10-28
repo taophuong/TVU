@@ -3,7 +3,7 @@
     <div class="news-thumb">
         @if (!string.IsNullOrEmpty(Model.Thumbnail))
         {
-            <img src="@Model.Thumbnail" alt="@Model.Title" loading="lazy" />
+            <img asp-append-version="true" src="@Model.Thumbnail" alt="@Model.Title" loading="lazy" />
         }
         <span class="news-type">@Model.NewsType.ToLabel()</span>
     </div>

@@ -60,14 +60,14 @@
                     <div class="col-lg-6 spotlight-media">
                         @if (!string.IsNullOrEmpty(top.CoverImage))
                         {
-                            <img src="@top.CoverImage" alt="@top.ProjectName" />
+                            <img asp-append-version="true" src="@top.CoverImage" alt="@top.ProjectName" />
                         }
                     </div>
                     <div class="col-lg-6 spotlight-body">
                         <div class="d-flex align-items-center gap-3 mb-3">
                             @if (!string.IsNullOrEmpty(top.Logo))
                             {
-                                <img class="project-logo project-logo-lg" src="@top.Logo" alt="" />
+                                <img asp-append-version="true" class="project-logo project-logo-lg" src="@top.Logo" alt="" />
                             }
                             <div>
                                 <h3 class="spotlight-title">@top.ProjectName</h3>
@@ -173,11 +173,11 @@
                         <div class="carousel-item @(i == 0 ? "active" : "")">
                             @if (!string.IsNullOrEmpty(b.LinkUrl))
                             {
-                                <a href="@b.LinkUrl"><img src="@b.ImageUrl" class="d-block w-100" alt="@b.Title" /></a>
+                                <a href="@b.LinkUrl"><img asp-append-version="true" src="@b.ImageUrl" class="d-block w-100" alt="@b.Title" /></a>
                             }
                             else
                             {
-                                <img src="@b.ImageUrl" class="d-block w-100" alt="@b.Title" />
+                                <img asp-append-version="true" src="@b.ImageUrl" class="d-block w-100" alt="@b.Title" />
                             }
                         </div>
                     }

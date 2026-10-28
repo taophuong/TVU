@@ -61,7 +61,7 @@
         <div class="d-flex align-items-center gap-3">
             @if (!string.IsNullOrEmpty(Model.Logo))
             {
-                <img class="project-logo" src="@Model.Logo" alt="Logo hiện tại" />
+                <img asp-append-version="true" class="project-logo" src="@Model.Logo" alt="Logo hiện tại" />
             }
             <input asp-for="LogoFile" type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control" />
         </div>
@@ -73,7 +73,7 @@
         <div class="d-flex align-items-center gap-3">
             @if (!string.IsNullOrEmpty(Model.CoverImage))
             {
-                <img class="cover-thumb" src="@Model.CoverImage" alt="Ảnh bìa hiện tại" />
+                <img asp-append-version="true" class="cover-thumb" src="@Model.CoverImage" alt="Ảnh bìa hiện tại" />
             }
             <input asp-for="CoverFile" type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control" />
         </div>

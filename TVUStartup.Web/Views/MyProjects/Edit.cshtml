@@ -115,7 +115,7 @@
                     @foreach (var img in Model.Images)
                     {
                         <div class="gallery-item gallery-edit">
-                            <img src="@img.ImageUrl" alt="@img.Caption" />
+                            <img asp-append-version="true" src="@img.ImageUrl" alt="@img.Caption" />
                             @if (!string.IsNullOrEmpty(img.Caption))
                             {
                                 <span class="gallery-caption">@img.Caption</span>

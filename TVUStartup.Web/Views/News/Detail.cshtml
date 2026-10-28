@@ -30,7 +30,7 @@
                 <article class="content-card">
                     @if (!string.IsNullOrEmpty(Model.Thumbnail))
                     {
-                        <img class="news-cover" src="@Model.Thumbnail" alt="@Model.Title" />
+                        <img asp-append-version="true" class="news-cover" src="@Model.Thumbnail" alt="@Model.Title" />
                     }
                     @if (!string.IsNullOrEmpty(Model.Summary))
                     {

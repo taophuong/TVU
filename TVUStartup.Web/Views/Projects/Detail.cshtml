@@ -36,7 +36,7 @@
         <div class="project-hero-main">
             @if (!string.IsNullOrEmpty(p.Logo))
             {
-                <img class="project-logo project-logo-xl" src="@p.Logo" alt="Logo @p.ProjectName" />
+                <img asp-append-version="true" class="project-logo project-logo-xl" src="@p.Logo" alt="Logo @p.ProjectName" />
             }
             else
             {
@@ -167,7 +167,7 @@
                             {
                                 <button type="button" class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
                                         data-src="@img.ImageUrl" data-caption="@img.Caption">
-                                    <img src="@img.ImageUrl" alt="@(img.Caption ?? p.ProjectName)" loading="lazy" />
+                                    <img asp-append-version="true" src="@img.ImageUrl" alt="@(img.Caption ?? p.ProjectName)" loading="lazy" />
                                     @if (!string.IsNullOrEmpty(img.Caption))
                                     {
                                         <span class="gallery-caption">@img.Caption</span>

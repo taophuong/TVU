@@ -19,7 +19,7 @@
                             <div class="d-flex align-items-center gap-2">
                                 @if (!string.IsNullOrEmpty(n.Thumbnail))
                                 {
-                                    <img class="cover-thumb" src="@n.Thumbnail" alt="" />
+                                    <img asp-append-version="true" class="cover-thumb" src="@n.Thumbnail" alt="" />
                                 }
                                 <div class="min-w-0">
                                     <strong>@n.Title</strong>

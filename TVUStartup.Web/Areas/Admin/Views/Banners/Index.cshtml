@@ -16,7 +16,7 @@
                 {
                     <tr>
                         <td>@b.DisplayOrder</td>
-                        <td><img class="banner-thumb" src="@b.ImageUrl" alt="" /></td>
+                        <td><img asp-append-version="true" class="banner-thumb" src="@b.ImageUrl" alt="" /></td>
                         <td><strong>@b.Title</strong><div class="small text-muted">@b.LinkUrl</div></td>
                         <td><span class="badge @(b.IsActive ? "text-bg-success" : "text-bg-secondary")">@(b.IsActive ? "Đang hiển thị" : "Đang ẩn")</span></td>
                         <td class="text-end text-nowrap">

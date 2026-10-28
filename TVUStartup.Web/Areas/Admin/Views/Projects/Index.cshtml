@@ -46,7 +46,7 @@
                             <div class="d-flex align-items-center gap-2">
                                 @if (!string.IsNullOrEmpty(p.Logo))
                                 {
-                                    <img class="project-logo project-logo-sm" src="@p.Logo" alt="" />
+                                    <img asp-append-version="true" class="project-logo project-logo-sm" src="@p.Logo" alt="" />
                                 }
                                 <div class="min-w-0">
                                     <a asp-area="" asp-controller="Projects" asp-action="Detail" asp-route-slug="@p.Slug" target="_blank" class="fw-semibold">@p.ProjectName</a>

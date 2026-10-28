@@ -2,7 +2,7 @@
 @* Ảnh đại diện; nếu chưa có ảnh thì hiển thị chữ cái đầu của tên *@
 @if (!string.IsNullOrEmpty(Model.Avatar))
 {
-    <img class="avatar @(Model.Small ? "avatar-sm" : "")" src="@Model.Avatar" alt="@Model.Name" />
+    <img asp-append-version="true" class="avatar @(Model.Small ? "avatar-sm" : "")" src="@Model.Avatar" alt="@Model.Name" />
 }
 else
 {
