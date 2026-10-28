@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="646" viewBox="0 0 640 646"><rect width="100%" height="100%" fill="#fff"/><defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+<marker id="arrowStart" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#334155"/></marker>
+<marker id="hollow" viewBox="0 0 12 12" refX="11.5" refY="6" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#fff" stroke="#334155" stroke-width="1.2"/></marker>
+</defs>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="150" y="33.2">Request</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="490" y="33.2">Response</tspan></text>
+<rect x="180.0" y="60.0" width="280" height="52" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="320" y="81.8">UseExceptionHandler</tspan><tspan x="320" y="100.0">(xử lý lỗi)</tspan></text>
+<rect x="180.0" y="132.0" width="280" height="52" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="320" y="153.8">UseStatusCodePages</tspan><tspan x="320" y="172.0">(trang 403, 404)</tspan></text>
+<rect x="180.0" y="204.0" width="280" height="52" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="320" y="234.9">UseHttpsRedirection</tspan></text>
+<rect x="180.0" y="276.0" width="280" height="52" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="320" y="297.8">UseStaticFiles</tspan><tspan x="320" y="316.0">(CSS, JS, ảnh)</tspan></text>
+<rect x="180.0" y="348.0" width="280" height="52" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="320" y="369.8">UseRouting</tspan><tspan x="320" y="388.0">(định tuyến)</tspan></text>
+<rect x="180.0" y="420.0" width="280" height="52" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="320" y="441.8">UseAuthentication</tspan><tspan x="320" y="460.0">(xác thực)</tspan></text>
+<rect x="180.0" y="492.0" width="280" height="52" rx="10" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="320" y="513.8">UseAuthorization</tspan><tspan x="320" y="532.0">(phân quyền)</tspan></text>
+<rect x="180.0" y="564.0" width="280" height="52" rx="10" fill="#fef3c7" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="320" y="594.9">Endpoint: Controller / Action</tspan></text>
+<polyline points="150,40 150,590.0 180,590.0" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="460,590.0 490,590.0 490,40" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="300,112 300,132" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="340,132 340,112" fill="none" stroke="#334155" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+<polyline points="300,184 300,204" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="340,204 340,184" fill="none" stroke="#334155" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+<polyline points="300,256 300,276" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="340,276 340,256" fill="none" stroke="#334155" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+<polyline points="300,328 300,348" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="340,348 340,328" fill="none" stroke="#334155" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+<polyline points="300,400 300,420" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="340,420 340,400" fill="none" stroke="#334155" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+<polyline points="300,472 300,492" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="340,492 340,472" fill="none" stroke="#334155" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+<polyline points="300,544 300,564" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="340,564 340,544" fill="none" stroke="#334155" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+</svg>

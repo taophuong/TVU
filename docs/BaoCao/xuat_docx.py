@@ -1,7 +1,7 @@
 # Chuyển các chương viết bằng Markdown (Chuong*.md) sang Word (.docx)
 # B1: Markdown → HTML định dạng báo cáo (A4, Times New Roman 13pt, giãn dòng 1,5)
 # B2: Microsoft Word mở HTML, nhúng ảnh vào tệp và lưu thành .docx (qua PowerShell COM)
-# Cách dùng: python xuat_docx.py Chuong3.md Chuong5.md
+# Cách dùng: python xuat_docx.py Chuong1.md Chuong2.md [--ghi-de]
 import html
 import os
 import re
@@ -31,6 +31,9 @@ p.caption-table { text-align: center; text-indent: 0; font-weight: bold; margin:
 p.caption-fig { text-align: center; text-indent: 0; font-style: italic; margin: 4pt 0 12pt 0; }
 p.img { text-align: center; text-indent: 0; margin: 8pt 0 0 0; line-height: 100%; page-break-after: avoid; }
 h2, h3 { page-break-after: avoid; }
+p.ref { text-indent: -1.1cm; margin-left: 1.1cm; text-align: left; }
+p.code { font-family: Consolas; font-size: 10.5pt; line-height: 115%; text-align: left; text-indent: 0;
+         background: #f2f2f2; border: 1px solid #999; padding: 4pt 6pt; margin: 4pt 0 10pt 0; page-break-inside: avoid; }
 code { font-family: Consolas; font-size: 11pt; }
 """
 
@@ -71,6 +74,16 @@ def convert(md_path):
         line = lines[i]
         if not line.strip():
             i += 1
+            continue
+        if line.startswith("```"):
+            # Khối mã nguồn: giữ nguyên khoảng trắng, font Consolas, nền xám nhạt
+            code = []
+            i += 1
+            while i < len(lines) and not lines[i].startswith("```"):
+                code.append(html.escape(lines[i]).replace(" ", "&nbsp;") or "&nbsp;")
+                i += 1
+            i += 1
+            out.append('<p class="code">' + "<br>".join(code) + "</p>")
             continue
         m = re.match(r"^(#{1,3}) (.+)$", line)
         if m:
@@ -119,7 +132,9 @@ def convert(md_path):
             pending_caption = line
             i += 1
             continue
-        out.append(f"<p>{inline(line)}</p>")
+        # Mục tài liệu tham khảo "[n] ..." → thụt lề treo
+        css = ' class="ref"' if re.match(r"^\[\d+\] ", line) else ""
+        out.append(f"<p{css}>{inline(line)}</p>")
         i += 1
 
     body = "\n".join(out)
@@ -145,10 +160,16 @@ try {{
 
 
 if __name__ == "__main__":
-    names = sys.argv[1:] or ["Chuong3.md", "Chuong5.md"]
+    # Mặc định KHÔNG ghi đè tệp .docx đã có (có thể đã được chỉnh sửa trực tiếp trong Word);
+    # thêm tham số --ghi-de để buộc xuất lại.
+    overwrite = "--ghi-de" in sys.argv
+    names = [a for a in sys.argv[1:] if not a.startswith("--")]
     for name in names:
         md = os.path.join(HERE, name)
         base = os.path.splitext(md)[0]
+        if os.path.exists(base + ".docx") and not overwrite:
+            print("Bỏ qua (đã có tệp Word, dùng --ghi-de để xuất lại):", base + ".docx")
+            continue
         html_path = base + ".html"
         open(html_path, "w", encoding="utf-8").write(convert(md))
         to_docx(html_path, base + ".docx")

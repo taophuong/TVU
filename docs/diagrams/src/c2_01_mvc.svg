@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="830" height="400" viewBox="0 0 830 400"><rect width="100%" height="100%" fill="#fff"/><defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+<marker id="arrowStart" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#334155"/></marker>
+<marker id="hollow" viewBox="0 0 12 12" refX="11.5" refY="6" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#fff" stroke="#334155" stroke-width="1.2"/></marker>
+</defs>
+<rect x="25.0" y="165.0" width="190" height="70" rx="10" fill="#e0e7ff" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="120" y="195.5">Người dùng</tspan><tspan x="120" y="215.0">(Trình duyệt)</tspan></text>
+<rect x="300.0" y="60.0" width="200" height="70" rx="10" fill="#fef3c7" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="400" y="90.5">Controller</tspan><tspan x="400" y="110.0">(điều phối)</tspan></text>
+<rect x="615.0" y="60.0" width="190" height="70" rx="10" fill="#dcfce7" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="710" y="90.5">Model</tspan><tspan x="710" y="110.0">(dữ liệu, nghiệp vụ)</tspan></text>
+<rect x="300.0" y="270.0" width="200" height="70" rx="10" fill="#fce7f3" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="400" y="300.5">View</tspan><tspan x="400" y="320.0">(giao diện Razor)</tspan></text>
+<path d="M625.0,270.0 L625.0,340.0 A85.0,12 0 0 0 795.0,340.0 L795.0,270.0" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+<ellipse cx="710" cy="270.0" rx="85.0" ry="12" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="normal" fill="#111" text-anchor="middle" style=""><tspan x="710" y="317.9">Cơ sở dữ liệu</tspan></text>
+<polyline points="120,165 120,95 300,95" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="96.6" y="67" width="146.8" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="middle" style="font-style:italic;"><tspan x="170" y="82.5">① Gửi yêu cầu (URL)</tspan></text>
+<polyline points="500,85 615,85" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<polyline points="615,108 500,108" fill="none" stroke="#334155" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="middle" style="font-style:italic;"><tspan x="557" y="49.5">② Đọc / ghi dữ liệu</tspan></text>
+<polyline points="710,130 710,270" fill="none" stroke="#334155" stroke-width="1.6" marker-start="url(#arrowStart)" marker-end="url(#arrow)"/>
+<polyline points="400,130 400,270" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="357.8" y="189" width="204.4" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="middle" style="font-style:italic;"><tspan x="460" y="196.1">③ Chọn View,</tspan><tspan x="460" y="213.0">truyền dữ liệu</tspan></text>
+<polyline points="300,305 120,305 120,235" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<rect x="158.2" y="311" width="103.60000000000001" height="20" fill="#fff"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#334155" text-anchor="middle" style="font-style:italic;"><tspan x="210" y="326.6">④ Trả về HTML</tspan></text>
+</svg>

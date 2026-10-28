@@ -16,3 +16,6 @@ TVUStartup.Web/wwwroot/uploads/*
 # Khác
 *.log
 __pycache__/
+
+# Tệp khóa tạm của Microsoft Word khi đang mở tài liệu
+~$*

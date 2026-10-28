@@ -369,11 +369,75 @@ def erd(out):
     s.save(out)
 
 
+# =====================================================================
+# 6. Hình cho Chương 2 (lý thuyết)
+# =====================================================================
+def c2_mvc(out):
+    """Hình 2.x – Luồng xử lý theo mô hình MVC"""
+    s = Svg(830, 400)
+    s.rect(120, 200, 190, 70, "Người dùng\n(Trình duyệt)", fill="#e0e7ff", size=15)
+    s.rect(400, 95, 200, 70, "Controller\n(điều phối)", fill="#fef3c7", size=15, weight="bold")
+    s.rect(710, 95, 190, 70, "Model\n(dữ liệu, nghiệp vụ)", fill="#dcfce7", size=15, weight="bold")
+    s.rect(400, 305, 200, 70, "View\n(giao diện Razor)", fill="#fce7f3", size=15, weight="bold")
+    s.cylinder(710, 305, 170, 70, "Cơ sở dữ liệu")
+    L = s.line
+    L([(120, 165), (120, 95), (300, 95)], label="① Gửi yêu cầu (URL)", label_at=(170, 78))
+    L([(500, 85), (615, 85)])
+    L([(615, 108), (500, 108)], dash=True)
+    s.text(557, 45, "② Đọc / ghi dữ liệu", 13, italic=True, color="#334155")
+    L([(710, 130), (710, 270)], arrow="both")
+    L([(400, 130), (400, 270)], label="③ Chọn View,\ntruyền dữ liệu", label_at=(460, 200))
+    L([(300, 305), (120, 305), (120, 235)], label="④ Trả về HTML", label_at=(210, 322))
+    s.save(out)
+
+
+def c2_pipeline(out):
+    """Hình 2.x – Chuỗi middleware xử lý request trong ASP.NET Core (theo Program.cs của đồ án)"""
+    steps = ["UseExceptionHandler\n(xử lý lỗi)", "UseStatusCodePages\n(trang 403, 404)", "UseHttpsRedirection",
+             "UseStaticFiles\n(CSS, JS, ảnh)", "UseRouting\n(định tuyến)", "UseAuthentication\n(xác thực)",
+             "UseAuthorization\n(phân quyền)", "Endpoint: Controller / Action"]
+    top, h, gap = 60, 52, 20
+    s = Svg(640, top + len(steps) * (h + gap) + 10)
+    s.text(150, 28, "Request", 15, weight="bold")
+    s.text(490, 28, "Response", 15, weight="bold")
+    for i, label in enumerate(steps):
+        cy = top + i * (h + gap) + h / 2
+        s.rect(320, cy, 280, h, label, fill="#fef3c7" if i == len(steps) - 1 else "#f8fafc", size=14,
+               weight="bold" if i == len(steps) - 1 else "normal")
+    bottom = top + len(steps) * (h + gap) - gap
+    s.line([(150, 40), (150, bottom - h / 2), (180, bottom - h / 2)])
+    s.line([(460, bottom - h / 2), (490, bottom - h / 2), (490, 40)])
+    for i in range(len(steps) - 1):
+        cy = top + i * (h + gap) + h
+        s.line([(300, cy), (300, cy + gap)])
+        s.line([(340, cy + gap), (340, cy)], dash=True)
+    s.save(out)
+
+
+def c2_efcore(out):
+    """Hình 2.x – Vị trí của Entity Framework Core giữa ứng dụng và CSDL"""
+    s = Svg(960, 300)
+    s.rect(95, 120, 170, 90, "Ứng dụng\n(Controller,\ntruy vấn LINQ)", fill="#e0e7ff")
+    s.rect(375, 120, 220, 90, "DbContext\nDbSet<T>, Change Tracker,\nFluent API", fill="#fef3c7", weight="bold")
+    s.rect(650, 120, 190, 90, "Database Provider\n(EF Core SqlServer)", fill="#f8fafc")
+    s.cylinder(880, 120, 130, 90, "SQL Server")
+    s.rect(375, 255, 220, 50, "Migrations\n(sinh / cập nhật lược đồ)", fill="#dcfce7")
+    L = s.line
+    L([(180, 120), (265, 120)], arrow="both", label="LINQ ⇄ đối tượng", label_at=(222, 60))
+    L([(485, 120), (555, 120)], arrow="both")
+    L([(745, 120), (815, 120)], arrow="both", label="lệnh SQL", label_at=(780, 60))
+    L([(375, 230), (375, 165)])
+    s.save(out)
+
+
 if __name__ == "__main__":
     out_dir = sys.argv[1] if len(sys.argv) > 1 else "."
     os.makedirs(out_dir, exist_ok=True)
     use_case(os.path.join(out_dir, "01_use_case_tong_quat.svg"))
     erd(os.path.join(out_dir, "02_erd.svg"))
+    c2_mvc(os.path.join(out_dir, "c2_01_mvc.svg"))
+    c2_pipeline(os.path.join(out_dir, "c2_02_middleware.svg"))
+    c2_efcore(os.path.join(out_dir, "c2_03_efcore.svg"))
     activity_project(os.path.join(out_dir, "07_activity_dang_du_an.svg"))
     activity_contact(os.path.join(out_dir, "08_activity_lien_he.svg"))
     architecture(os.path.join(out_dir, "09_kien_truc_mvc.svg"))
