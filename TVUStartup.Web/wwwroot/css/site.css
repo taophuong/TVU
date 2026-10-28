@@ -82,6 +82,15 @@ a { color: var(--brand); }
 @media (max-width: 991.98px) {
     .nav-search { margin-top: .75rem; min-width: 0; }
 }
+/* Màn hình laptop (992–1399px): không cho chữ menu xuống dòng, thu gọn ô tìm kiếm */
+.site-header .nav-link, .nav-user .btn { white-space: nowrap; }
+@media (min-width: 992px) and (max-width: 1399.98px) {
+    .site-header .nav-link { padding: .5rem .6rem !important; }
+    .nav-search { min-width: 180px; }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .nav-search { display: none; } /* vẫn tìm kiếm được ở trang chủ và trang danh sách dự án */
+}
 
 /* ---------- Hero ---------- */
 .hero {

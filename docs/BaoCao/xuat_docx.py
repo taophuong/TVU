@@ -32,6 +32,9 @@ p.caption-fig { text-align: center; text-indent: 0; font-style: italic; margin: 
 p.img { text-align: center; text-indent: 0; margin: 8pt 0 0 0; line-height: 100%; page-break-after: avoid; }
 h2, h3 { page-break-after: avoid; }
 p.ref { text-indent: -1.1cm; margin-left: 1.1cm; text-align: left; }
+p.front-title { font-size: 14pt; font-weight: bold; text-align: center; text-indent: 0; margin: 0 0 18pt 0; }
+p.sign { margin: 0 0 0 7.5cm; text-indent: 0; text-align: center; line-height: 130%; }
+p.dots { text-indent: 0; margin: 0; line-height: 180%; overflow: hidden; white-space: nowrap; }
 p.code { font-family: Consolas; font-size: 10.5pt; line-height: 115%; text-align: left; text-indent: 0;
          background: #f2f2f2; border: 1px solid #999; padding: 4pt 6pt; margin: 4pt 0 10pt 0; page-break-inside: avoid; }
 code { font-family: Consolas; font-size: 11pt; }
@@ -75,6 +78,25 @@ def convert(md_path):
         if not line.strip():
             i += 1
             continue
+        # --- Ký hiệu riêng cho phần mở đầu / phụ lục ---
+        if line.strip() == "<<<PAGEBREAK>>>":
+            out.append("<br clear=all style='page-break-before:always'>")
+            i += 1
+            continue
+        if line.startswith("#! "):  # tiêu đề phần mở đầu (không đưa vào mục lục)
+            out.append(f'<p class="front-title">{inline(line[3:])}</p>')
+            i += 1
+            continue
+        if line.startswith("^^ "):  # khối chữ ký canh nửa phải trang
+            text = line[3:].strip()
+            out.append(f'<p class="sign">{"&nbsp;" if text == "&nbsp;" else inline(text)}</p>')
+            i += 1
+            continue
+        m = re.match(r"^%%DOTS (\d+)$", line.strip())
+        if m:  # dòng chấm để giáo viên viết nhận xét
+            out.extend('<p class="dots">' + "." * 140 + "</p>" for _ in range(int(m.group(1))))
+            i += 1
+            continue
         if line.startswith("```"):
             # Khối mã nguồn: giữ nguyên khoảng trắng, font Consolas, nền xám nhạt
             code = []
@@ -91,13 +113,18 @@ def convert(md_path):
             out.append(f"<h{level}>{inline(m.group(2))}</h{level}>")
             i += 1
             continue
-        m = re.match(r"^!\[(.+?)\]\((.+?)\)$", line.strip())
+        m = re.match(r"^!\[(.+?)\]\((.+?)\)(\{rong\})?$", line.strip())
         if m:
             caption, rel = m.group(1), m.group(2)
+            max_w = 900 if m.group(3) else MAX_IMG_PX  # {rong}: ảnh trên trang khổ ngang (≈ 24 cm)
             path = os.path.abspath(os.path.join(os.path.dirname(md_path), rel))
             w, h = Image.open(path).size
-            w2 = min(MAX_IMG_PX, w // 2)
+            # Ảnh sơ đồ xuất ở độ phân giải gấp đôi; ảnh chụp màn hình giữ nguyên tỉ lệ thu nhỏ theo khổ giấy
+            w2 = min(max_w, w // 2 if "diagrams" in rel else w)
             h2 = round(h * w2 / w)
+            max_h = 470 if m.group(3) else 760  # tránh ảnh dọc chiếm trọn trang (≈ 20 cm)
+            if h2 > max_h:
+                w2, h2 = round(w2 * max_h / h2), max_h
             url = "file:///" + path.replace("\\", "/")
             out.append(f'<p class="img"><img src="{url}" width="{w2}" height="{h2}"></p>')
             out.append(f'<p class="caption-fig">{inline(caption)}</p>')
@@ -128,7 +155,7 @@ def convert(md_path):
             out.append("<ol>" + "".join(f"<li>{inline(t)}</li>" for t in items) + "</ol>")
             continue
         # Dòng "Bảng x.y. ..." đứng ngay trước bảng → chú thích bảng
-        if re.match(r"^Bảng \d+\.\d+\.", line) and i + 2 < len(lines) and lines[i + 2].startswith("|"):
+        if re.match(r"^Bảng (\d+|PL)\.\d+\.", line) and i + 2 < len(lines) and lines[i + 2].startswith("|"):
             pending_caption = line
             i += 1
             continue
