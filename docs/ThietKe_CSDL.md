@@ -33,11 +33,11 @@
 ```mermaid
 erDiagram
     Role ||--o{ Account : "phân quyền"
-    Faculty ||--o{ Account : "thuộc khoa"
+    Faculty |o--o{ Account : "thuộc khoa"
     Faculty ||--o{ Project : "thuộc khoa"
     Category ||--o{ Project : "thuộc lĩnh vực"
     Account ||--o{ Project : "sở hữu (OwnerId)"
-    Account ||--o{ Project : "duyệt (ApprovedBy)"
+    Account |o--o{ Project : "duyệt (ApprovedBy)"
     Project ||--o{ ProjectImage : "có"
     Project ||--o{ ProjectFeature : "có"
     Project ||--o{ ProjectVersion : "có"

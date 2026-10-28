@@ -16,7 +16,7 @@ TEMPLATE = """<!doctype html><html><head><meta charset="utf-8">
 mermaid.initialize({{ startOnLoad: true, theme: 'neutral', securityLevel: 'loose',
   themeVariables: {{ fontFamily: 'Segoe UI, Arial, sans-serif', fontSize: '15px' }},
   flowchart: {{ useMaxWidth: false, htmlLabels: true, curve: 'basis', nodeSpacing: 40, rankSpacing: 50 }},
-  sequence: {{ useMaxWidth: false, mirrorActors: false, wrap: false }},
+  sequence: {{ useMaxWidth: false, mirrorActors: false, wrap: false, width: 140, actorMargin: 40, messageMargin: 30, messageFontSize: 16, actorFontSize: 16, noteFontSize: 15 }},
   er: {{ useMaxWidth: false, layoutDirection: 'TB', minEntityWidth: 120 }},
   state: {{ useMaxWidth: false }} }});
 </script></body></html>"""

@@ -2,33 +2,32 @@ sequenceDiagram
     autonumber
     actor AD as Quản trị viên
     participant V as Trình duyệt<br/>(Admin/Projects)
-    participant C as Admin.ProjectsController
-    participant DB as AppDbContext<br/>(EF Core → SQL Server)
+    participant C as Admin.Projects<br/>Controller
+    participant DB as AppDbContext<br/>(EF Core)
     actor SV as Sinh viên
 
-    AD->>V: Mở "Duyệt dự án", lọc "Chờ duyệt"
-    V->>C: GET /quan-tri/Projects?status=ChoDuyet
-    C->>DB: Truy vấn dự án (kèm Owner, Category, Faculty)
+    AD->>V: Mở "Duyệt dự án",<br/>lọc Chờ duyệt
+    V->>C: GET /quan-tri/Projects<br/>?status=ChoDuyet
+    C->>DB: Truy vấn dự án kèm<br/>sinh viên, lĩnh vực, khoa
     DB-->>C: Danh sách dự án
-    C-->>V: View danh sách
-    AD->>V: Bấm "Xem trước" để kiểm tra nội dung
-    V->>C: GET /du-an/{slug} (Admin được xem dự án chưa công khai)
+    C-->>V: Hiển thị danh sách
+    AD->>V: Xem trước trang dự án
 
     alt Nội dung đạt yêu cầu
         AD->>V: Bấm "Duyệt"
-        V->>C: POST /quan-tri/Projects/Approve/{id}
-        C->>DB: Status = Đã duyệt, ApprovedAt = now, ApprovedBy = Admin
-        C-->>V: Thông báo "Đã duyệt, dự án hiển thị công khai"
+        V->>C: POST Approve/{id}
+        C->>DB: Status = Đã duyệt,<br/>ApprovedAt, ApprovedBy
+        C-->>V: Thông báo đã duyệt,<br/>dự án được công khai
     else Cần chỉnh sửa
         AD->>V: Bấm "Từ chối", nhập lý do
-        V->>C: POST /quan-tri/Projects/Reject/{id} (reason)
+        V->>C: POST Reject/{id} (reason)
         alt Lý do trống
-            C-->>V: Thông báo "Vui lòng nhập lý do từ chối"
+            C-->>V: Thông báo "Vui lòng<br/>nhập lý do từ chối"
         else Có lý do
-            C->>DB: Status = Từ chối, RejectReason = lý do
-            C-->>V: Thông báo "Đã từ chối dự án"
+            C->>DB: Status = Bị từ chối,<br/>RejectReason
+            C-->>V: Thông báo đã từ chối
         end
     end
 
-    SV->>DB: (Lần truy cập sau) Mở "Dự án của tôi"
-    DB-->>SV: Trạng thái mới và lý do từ chối (nếu có)
+    SV->>C: Mở "Dự án của tôi"<br/>(lần truy cập sau)
+    C-->>SV: Trạng thái mới và<br/>lý do từ chối (nếu có)

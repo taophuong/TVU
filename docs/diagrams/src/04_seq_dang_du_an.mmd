@@ -1,35 +1,35 @@
 sequenceDiagram
     autonumber
     actor SV as Sinh viên
-    participant V as Trình duyệt<br/>(View MyProjects)
-    participant C as MyProjectsController
-    participant S as Services<br/>(HtmlSanitizer, FileStorage)
-    participant DB as AppDbContext<br/>(EF Core → SQL Server)
+    participant V as Trình duyệt<br/>(MyProjects)
+    participant C as MyProjects<br/>Controller
+    participant S as Services<br/>(Sanitizer, File)
+    participant DB as AppDbContext<br/>(EF Core)
 
-    SV->>V: Mở "Đăng dự án mới", nhập thông tin, chọn logo / ảnh bìa
-    V->>C: POST /du-an-cua-toi/tao-moi (ProjectFormModel, multipart)
-    C->>C: [Authorize(Roles = SinhVien)], kiểm tra ModelState
-    C->>DB: Kiểm tra lĩnh vực / khoa hợp lệ, tạo slug không trùng
-    C->>S: Lọc HTML phần giới thiệu, lưu ảnh tải lên
-    S-->>C: Nội dung an toàn, đường dẫn ảnh
-    C->>DB: Add(Project{Status = Nháp}) + SaveChanges
+    SV->>V: Nhập thông tin dự án,<br/>chọn logo, ảnh bìa
+    V->>C: POST /du-an-cua-toi/tao-moi
+    C->>C: Kiểm tra quyền SinhVien,<br/>ModelState
+    C->>DB: Kiểm tra lĩnh vực, khoa,<br/>tạo slug không trùng
+    C->>S: Lọc HTML, lưu ảnh
+    S-->>C: Nội dung an toàn,<br/>đường dẫn ảnh
+    C->>DB: Lưu Project (Nháp)<br/>+ SaveChanges
     DB-->>C: ProjectId
-    C-->>V: Redirect trang Sửa dự án (tab Tính năng)
+    C-->>V: Chuyển tới trang Sửa dự án
 
     loop Bổ sung nội dung
-        SV->>V: Thêm tính năng / hình ảnh / phiên bản / thành viên
-        V->>C: POST /du-an-cua-toi/{id}/tinh-nang, /hinh-anh, ...
-        C->>DB: Kiểm tra dự án thuộc sinh viên, lưu dữ liệu con
-        C-->>V: Redirect lại tab tương ứng
+        SV->>V: Thêm tính năng, hình ảnh,<br/>phiên bản, thành viên
+        V->>C: POST /du-an-cua-toi/{id}/...
+        C->>DB: Kiểm tra quyền sở hữu,<br/>lưu dữ liệu con
+        C-->>V: Quay lại tab tương ứng
     end
 
     SV->>V: Bấm "Gửi duyệt"
     V->>C: POST /du-an-cua-toi/{id}/gui-duyet
-    C->>DB: Lấy dự án (kèm ảnh, tính năng)
-    alt Thiếu ảnh bìa hoặc chưa có tính năng
-        C-->>V: Thông báo "Chưa thể gửi duyệt, còn thiếu ..."
+    C->>DB: Lấy dự án kèm ảnh, tính năng
+    alt Thiếu ảnh bìa hoặc tính năng
+        C-->>V: Thông báo "Chưa thể<br/>gửi duyệt, còn thiếu ..."
     else Đủ điều kiện
-        C->>DB: Status = Chờ duyệt, xóa RejectReason, SaveChanges
-        C-->>V: Thông báo "Đã gửi dự án tới Ban quản trị"
+        C->>DB: Status = Chờ duyệt<br/>+ SaveChanges
+        C-->>V: Thông báo "Đã gửi dự án<br/>tới Ban quản trị"
     end
     V-->>SV: Hiển thị kết quả

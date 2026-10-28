@@ -298,10 +298,82 @@ def architecture(out):
     s.save(out)
 
 
+# =====================================================================
+# 5. ERD rút gọn (khóa chính, khóa ngoại và các cột chính) – vừa khổ A4
+# =====================================================================
+def erd(out):
+    s = Svg(880, 745)
+    W, HEAD, ROW = 180, 26, 19
+    boxes = {}
+
+    def entity(name, x, y, rows):
+        h = HEAD + ROW * len(rows)
+        s.add(f'<rect x="{x}" y="{y}" width="{W}" height="{h}" fill="#fff" stroke="#334155" stroke-width="1.5"/>')
+        s.add(f'<rect x="{x}" y="{y}" width="{W}" height="{HEAD}" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>')
+        s.text(x + W / 2, y + HEAD / 2, name, 14, weight="bold")
+        for i, (key, col) in enumerate(rows):
+            cy = y + HEAD + ROW * i + ROW / 2
+            if key:
+                s.text(x + 8, cy, key, 11, anchor="start", weight="bold", color="#b45309" if "PK" in key else "#1d4ed8")
+            s.text(x + 52, cy, col, 13, anchor="start", weight="bold" if "PK" in key else "normal")
+        boxes[name] = (x, y, W, h)
+
+    def rel(pts, label=None, label_at=None):
+        s.line(pts, arrow=None)
+        # Ghi bội số: "1" ở đầu, "n" ở cuối đường nối
+        for (p, q), mark in (((pts[0], pts[1]), "1"), ((pts[-1], pts[-2]), "n")):
+            dx, dy = q[0] - p[0], q[1] - p[1]
+            ln = max((dx * dx + dy * dy) ** 0.5, 1)
+            ux, uy = dx / ln, dy / ln
+            s.text(p[0] + ux * 11 + -uy * 9, p[1] + uy * 11 + ux * 9, mark, 13, weight="bold", color="#b91c1c")
+        if label:
+            s.text(*label_at, label, 12, italic=True, color="#475569")
+
+    entity("Role", 20, 20, [("PK", "RoleId"), ("", "RoleName")])
+    entity("Faculty", 240, 20, [("PK", "FacultyId"), ("", "FacultyName")])
+    entity("Category", 460, 20, [("PK", "CategoryId"), ("", "CategoryName"), ("", "Slug")])
+    entity("Banner", 680, 20, [("PK", "BannerId"), ("", "Title"), ("", "ImageUrl")])
+    entity("Account", 20, 170, [("PK", "AccountId"), ("", "Email"), ("", "PasswordHash"), ("", "FullName"), ("", "StudentCode"),
+                                ("FK", "FacultyId"), ("FK", "RoleId"), ("", "Status")])
+    entity("Project", 460, 170, [("PK", "ProjectId"), ("", "ProjectName"), ("", "Slug"), ("FK", "CategoryId"), ("FK", "FacultyId"),
+                                 ("FK", "OwnerId"), ("FK", "ApprovedBy"), ("", "Stage"), ("", "Status")])
+    entity("Vote", 240, 160, [("PK, FK", "ProjectId"), ("PK, FK", "AccountId")])
+    entity("Comment", 240, 290, [("PK", "CommentId"), ("FK", "ProjectId"), ("FK", "AccountId"), ("FK", "ParentId"), ("", "Rating")])
+    entity("TeamMember", 240, 465, [("PK", "MemberId"), ("FK", "ProjectId"), ("FK", "AccountId")])
+    entity("ProjectImage", 680, 150, [("PK", "ImageId"), ("FK", "ProjectId")])
+    entity("ProjectFeature", 680, 240, [("PK", "FeatureId"), ("FK", "ProjectId")])
+    entity("ProjectVersion", 680, 325, [("PK", "VersionId"), ("FK", "ProjectId"), ("", "IsPublic")])
+    entity("ContactRequest", 680, 460, [("PK", "ContactId"), ("FK", "ProjectId"), ("FK", "HandledBy"), ("", "RequestType"), ("", "Status")])
+    entity("News", 20, 585, [("PK", "NewsId"), ("", "Title"), ("FK", "AuthorId")])
+
+    rel([(80, 84), (80, 170)])                                   # Role – Account
+    rel([(280, 84), (280, 125), (150, 125), (150, 170)])         # Faculty – Account
+    rel([(380, 84), (380, 140), (490, 140), (490, 170)])         # Faculty – Project
+    rel([(560, 103), (560, 170)])                                # Category – Project
+    rel([(200, 248), (460, 248)], "sở hữu (OwnerId)", (330, 241))
+    rel([(200, 272), (460, 272)], "duyệt (ApprovedBy)", (330, 265))
+    rel([(460, 197), (420, 197)])                                # Project – Vote
+    rel([(200, 197), (240, 197)])                                # Account – Vote
+    rel([(460, 330), (420, 330)])                                # Project – Comment
+    rel([(200, 315), (240, 315)])                                # Account – Comment
+    s.line([(300, 411), (300, 430), (380, 430), (380, 411)], arrow=None)  # Comment – Comment
+    s.text(340, 444, "trả lời (ParentId)", 12, italic=True, color="#475569")
+    rel([(500, 365), (500, 505), (420, 505)])                    # Project – TeamMember
+    rel([(180, 344), (180, 505), (240, 505)])                    # Account – TeamMember
+    rel([(640, 185), (680, 185)])                                # Project – ProjectImage
+    rel([(640, 270), (680, 270)])                                # Project – ProjectFeature
+    rel([(640, 352), (680, 352)])                                # Project – ProjectVersion
+    rel([(600, 365), (600, 520), (680, 520)])                    # Project – ContactRequest
+    rel([(20, 330), (8, 330), (8, 725), (770, 725), (770, 581)], "xử lý (HandledBy)", (420, 718))
+    rel([(60, 344), (60, 585)], "viết", (82, 470))               # Account – News
+    s.save(out)
+
+
 if __name__ == "__main__":
     out_dir = sys.argv[1] if len(sys.argv) > 1 else "."
     os.makedirs(out_dir, exist_ok=True)
     use_case(os.path.join(out_dir, "01_use_case_tong_quat.svg"))
+    erd(os.path.join(out_dir, "02_erd.svg"))
     activity_project(os.path.join(out_dir, "07_activity_dang_du_an.svg"))
     activity_contact(os.path.join(out_dir, "08_activity_lien_he.svg"))
     architecture(os.path.join(out_dir, "09_kien_truc_mvc.svg"))

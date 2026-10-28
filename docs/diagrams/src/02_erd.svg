@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="745" viewBox="0 0 880 745"><rect width="100%" height="100%" fill="#fff"/><defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+<marker id="arrowStart" viewBox="0 0 10 10" refX="0.5" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#334155"/></marker>
+<marker id="hollow" viewBox="0 0 12 12" refX="11.5" refY="6" markerWidth="14" markerHeight="14" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#fff" stroke="#334155" stroke-width="1.2"/></marker>
+</defs>
+<rect x="20" y="20" width="180" height="64" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="20" y="20" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="110.0" y="37.9">Role</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="28" y="59.4">PK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="72" y="60.0">RoleId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="72" y="79.0">RoleName</tspan></text>
+<rect x="240" y="20" width="180" height="64" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="240" y="20" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="330.0" y="37.9">Faculty</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="248" y="59.4">PK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="292" y="60.0">FacultyId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="292" y="79.0">FacultyName</tspan></text>
+<rect x="460" y="20" width="180" height="83" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="460" y="20" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="550.0" y="37.9">Category</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="468" y="59.4">PK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="512" y="60.0">CategoryId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="512" y="79.0">CategoryName</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="512" y="98.0">Slug</tspan></text>
+<rect x="680" y="20" width="180" height="83" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="680" y="20" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="770.0" y="37.9">Banner</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="688" y="59.4">PK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="732" y="60.0">BannerId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="732" y="79.0">Title</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="732" y="98.0">ImageUrl</tspan></text>
+<rect x="20" y="170" width="180" height="178" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="20" y="170" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="110.0" y="187.9">Account</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="28" y="209.3">PK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="72" y="210.1">AccountId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="72" y="229.1">Email</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="72" y="248.1">PasswordHash</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="72" y="267.1">FullName</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="72" y="286.1">StudentCode</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="28" y="304.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="72" y="305.1">FacultyId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="28" y="323.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="72" y="324.1">RoleId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="72" y="343.1">Status</tspan></text>
+<rect x="460" y="170" width="180" height="197" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="460" y="170" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="550.0" y="187.9">Project</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="468" y="209.3">PK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="512" y="210.1">ProjectId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="512" y="229.1">ProjectName</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="512" y="248.1">Slug</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="468" y="266.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="512" y="267.1">CategoryId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="468" y="285.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="512" y="286.1">FacultyId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="468" y="304.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="512" y="305.1">OwnerId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="468" y="323.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="512" y="324.1">ApprovedBy</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="512" y="343.1">Stage</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="512" y="362.1">Status</tspan></text>
+<rect x="240" y="160" width="180" height="64" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="240" y="160" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="330.0" y="177.9">Vote</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="248" y="199.3">PK, FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="292" y="200.1">ProjectId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="248" y="218.3">PK, FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="292" y="219.1">AccountId</tspan></text>
+<rect x="240" y="290" width="180" height="121" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="240" y="290" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="330.0" y="307.9">Comment</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="248" y="329.4">PK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="292" y="330.1">CommentId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="248" y="348.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="292" y="349.1">ProjectId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="248" y="367.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="292" y="368.1">AccountId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="248" y="386.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="292" y="387.1">ParentId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="292" y="406.1">Rating</tspan></text>
+<rect x="240" y="465" width="180" height="83" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="240" y="465" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="330.0" y="482.9">TeamMember</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="248" y="504.4">PK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="292" y="505.1">MemberId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="248" y="523.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="292" y="524.0">ProjectId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="248" y="542.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="292" y="543.0">AccountId</tspan></text>
+<rect x="680" y="150" width="180" height="64" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="680" y="150" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="770.0" y="167.9">ProjectImage</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="688" y="189.3">PK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="732" y="190.1">ImageId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="688" y="208.3">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="732" y="209.1">ProjectId</tspan></text>
+<rect x="680" y="240" width="180" height="64" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="680" y="240" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="770.0" y="257.9">ProjectFeature</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="688" y="279.4">PK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="732" y="280.1">FeatureId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="688" y="298.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="732" y="299.1">ProjectId</tspan></text>
+<rect x="680" y="325" width="180" height="83" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="680" y="325" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="770.0" y="342.9">ProjectVersion</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="688" y="364.4">PK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="732" y="365.1">VersionId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="688" y="383.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="732" y="384.1">ProjectId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="732" y="403.1">IsPublic</tspan></text>
+<rect x="680" y="460" width="180" height="121" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="680" y="460" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="770.0" y="477.9">ContactRequest</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="688" y="499.4">PK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="732" y="500.1">ContactId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="688" y="518.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="732" y="519.0">ProjectId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="688" y="537.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="732" y="538.0">HandledBy</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="732" y="557.0">RequestType</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="732" y="576.0">Status</tspan></text>
+<rect x="20" y="585" width="180" height="83" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+<rect x="20" y="585" width="180" height="26" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="bold" fill="#111" text-anchor="middle" style=""><tspan x="110.0" y="602.9">News</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#b45309" text-anchor="start" style=""><tspan x="28" y="624.4">PK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#111" text-anchor="start" style=""><tspan x="72" y="625.0">NewsId</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="72" y="644.0">Title</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8" text-anchor="start" style=""><tspan x="28" y="662.4">FK</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="normal" fill="#111" text-anchor="start" style=""><tspan x="72" y="663.0">AuthorId</tspan></text>
+<polyline points="80,84 80,170" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="71.0" y="99.5">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="89.0" y="163.6">n</tspan></text>
+<polyline points="280,84 280,125 150,125 150,170" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="271.0" y="99.5">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="159.0" y="163.6">n</tspan></text>
+<polyline points="380,84 380,140 490,140 490,170" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="371.0" y="99.5">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="499.0" y="163.6">n</tspan></text>
+<polyline points="560,103 560,170" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="551.0" y="118.5">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="569.0" y="163.6">n</tspan></text>
+<polyline points="200,248 460,248" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="211.0" y="261.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="449.0" y="243.6">n</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="normal" fill="#475569" text-anchor="middle" style="font-style:italic;"><tspan x="330" y="245.2">sở hữu (OwnerId)</tspan></text>
+<polyline points="200,272 460,272" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="211.0" y="285.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="449.0" y="267.6">n</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="normal" fill="#475569" text-anchor="middle" style="font-style:italic;"><tspan x="330" y="269.2">duyệt (ApprovedBy)</tspan></text>
+<polyline points="460,197 420,197" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="449.0" y="192.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="431.0" y="210.6">n</tspan></text>
+<polyline points="200,197 240,197" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="211.0" y="210.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="229.0" y="192.6">n</tspan></text>
+<polyline points="460,330 420,330" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="449.0" y="325.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="431.0" y="343.6">n</tspan></text>
+<polyline points="200,315 240,315" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="211.0" y="328.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="229.0" y="310.6">n</tspan></text>
+<polyline points="300,411 300,430 380,430 380,411" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="normal" fill="#475569" text-anchor="middle" style="font-style:italic;"><tspan x="340" y="448.2">trả lời (ParentId)</tspan></text>
+<polyline points="500,365 500,505 420,505" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="491.0" y="380.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="431.0" y="518.5">n</tspan></text>
+<polyline points="180,344 180,505 240,505" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="171.0" y="359.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="229.0" y="500.6">n</tspan></text>
+<polyline points="640,185 680,185" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="651.0" y="198.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="669.0" y="180.6">n</tspan></text>
+<polyline points="640,270 680,270" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="651.0" y="283.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="669.0" y="265.6">n</tspan></text>
+<polyline points="640,352 680,352" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="651.0" y="365.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="669.0" y="347.6">n</tspan></text>
+<polyline points="600,365 600,520 680,520" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="591.0" y="380.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="669.0" y="515.5">n</tspan></text>
+<polyline points="20,330 8,330 8,725 770,725 770,581" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="9.0" y="325.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="761.0" y="596.5">n</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="normal" fill="#475569" text-anchor="middle" style="font-style:italic;"><tspan x="420" y="722.2">xử lý (HandledBy)</tspan></text>
+<polyline points="60,344 60,585" fill="none" stroke="#334155" stroke-width="1.6"/>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="51.0" y="359.6">1</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="bold" fill="#b91c1c" text-anchor="middle" style=""><tspan x="69.0" y="578.5">n</tspan></text>
+<text font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="normal" fill="#475569" text-anchor="middle" style="font-style:italic;"><tspan x="82" y="474.2">viết</tspan></text>
+</svg>
