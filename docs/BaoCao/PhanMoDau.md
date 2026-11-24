@@ -31,7 +31,7 @@ Trước tiên, tôi xin gửi lời cảm ơn chân thành đến TS. Nguyễn 
 
 Tôi xin cảm ơn quý thầy cô Trường Đại học Trà Vinh đã truyền đạt cho tôi những kiến thức nền tảng về lập trình, cơ sở dữ liệu và phân tích thiết kế hệ thống trong suốt quá trình học tập – đây là cơ sở quan trọng để tôi thực hiện đồ án này.
 
-Tôi cũng xin cảm ơn cộng đồng người dùng đã sử dụng và góp ý cho sản phẩm Zalord; những phản hồi đó là nguồn động lực để tôi lựa chọn và thực hiện đề tài về giới thiệu sản phẩm khởi nghiệp của sinh viên. Cuối cùng, xin cảm ơn gia đình và bạn bè đã luôn động viên, hỗ trợ tôi trong quá trình học tập.
+Cuối cùng, xin cảm ơn gia đình và bạn bè đã luôn động viên, hỗ trợ tôi trong quá trình học tập.
 
 Mặc dù đã cố gắng hoàn thiện, đồ án khó tránh khỏi những thiếu sót. Tôi rất mong nhận được ý kiến đóng góp của quý thầy cô để đồ án được hoàn thiện hơn.
 

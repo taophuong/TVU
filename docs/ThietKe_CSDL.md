@@ -193,7 +193,7 @@ erDiagram
 | Icon | nvarchar(100) | ✓ | |
 | DisplayOrder | int | | Mặc định 0 |
 
-- Danh sách tính năng hiển thị dạng thẻ ở trang chi tiết (VD Zalord: “Tùy biến giao diện”, “Ẩn danh khi quay màn hình”…).
+- Danh sách tính năng hiển thị dạng thẻ ở trang chi tiết (VD StudyMate TVU: “Lập kế hoạch học tập”, “Nhắc lịch thi & hạn nộp bài”…).
 
 ### Bảng 9: `ProjectVersion`
 
@@ -208,9 +208,9 @@ erDiagram
 | DownloadUrl | nvarchar(255) | ✓ | |
 | IsPublic | bit | | Mặc định 1 |
 
-- **VersionName / Platform**: tên phiên bản và nền tảng (VD: `Zalord Small v3.6` – Zalo PC; `Zalord Elite` – Chrome Extension).
+- **VersionName / Platform**: tên phiên bản và nền tảng (VD: `StudyMate Web 1.0` – Web; `StudyMate Android 0.9 (beta)` – Android).
 - **ChangeLog**: nội dung cập nhật của phiên bản.
-- **IsPublic**: `1` – bản phát hành công khai, hiển thị trên website; `0` – bản nội bộ / nghiên cứu, chỉ quản trị viên và chủ dự án thấy (VD: Zalord Full / Premium).
+- **IsPublic**: `1` – bản phát hành công khai, hiển thị trên website; `0` – bản nội bộ / nghiên cứu, chỉ quản trị viên và chủ dự án thấy (VD: StudyMate Lab Build / Pro thử nghiệm).
 
 ### Bảng 10: `TeamMember`
 
@@ -328,38 +328,35 @@ erDiagram
 7. Mỗi tài khoản chấm sao (`Rating`) một lần cho mỗi dự án; chủ dự án không tự chấm sao; chỉ chủ dự án và Admin được trả lời bình luận (`ParentId`).
 8. Không xóa được lĩnh vực / khoa đang có dự án hoặc tài khoản tham chiếu (khóa ngoại `NO ACTION`).
 
-## 5. Dữ liệu mẫu cho dự án Zalord
+## 5. Dữ liệu mẫu cho dự án StudyMate TVU (hư cấu)
 
 | Trường | Giá trị |
 |---|---|
-| ProjectName | Zalord |
-| Slogan | Cá nhân hóa Zalo theo cách của bạn |
-| ShortDescription | Tiện ích mở rộng cho Zalo PC và Zalo Web, giúp tùy biến giao diện, tăng quyền riêng tư và hỗ trợ nhắn tin nhanh hơn, với menu riêng để bật/tắt từng chức năng. |
-| Category | Công nghệ phần mềm |
+| ProjectName | StudyMate TVU |
+| Slogan | Lập kế hoạch học tập, ôn thi có lộ trình |
+| ShortDescription | Ứng dụng giúp sinh viên lập kế hoạch học tập, nhắc lịch thi, ghi chú bài giảng và theo dõi tiến độ ôn tập theo từng học phần. |
+| Category | Giáo dục |
 | Faculty | Khoa Kỹ thuật và Công nghệ |
-| Stage | 3 – Đã ra mắt |
+| Stage | 2 – Nguyên mẫu |
 | FoundedDate | 2026-06-09 |
-| WebsiteUrl | https://github.com/taophuong/Zalordv36 |
 
 **ProjectFeature:**
 
 | Title | Description |
 |---|---|
-| Tùy biến giao diện | Đổi theme sáng/tối, hình nền riêng, hiệu ứng theo mùa (Xuân, Thu, Đông) |
-| Font chữ tùy chọn | Áp dụng bất kỳ font nào từ Google Fonts cho toàn bộ Zalo |
-| Tùy biến khung chat | Chỉnh màu sắc, font, nền cho vùng trò chuyện; đổi màu tên người dùng |
-| Ẩn danh & riêng tư | Ẩn tên, avatar, nội dung tin nhắn, làm mờ hội thoại khi quay màn hình; ẩn trạng thái đang soạn, đã nhận, đã xem |
-| Reaction tùy chỉnh | Mở rộng bộ biểu cảm ngoài các reaction mặc định |
-| Quản lý bạn bè & nhóm | Chọn nhiều, gửi tin hàng loạt, phân loại nhanh |
-| Menu bật/tắt riêng | Gom mọi chức năng vào một menu, bật/tắt theo nhu cầu |
+| Lập kế hoạch học tập | Nhập thời khóa biểu, hệ thống gợi ý lịch ôn tập theo từng học phần |
+| Nhắc lịch thi & hạn nộp bài | Thông báo trước ngày thi và hạn nộp bài tập |
+| Ghi chú nhanh | Ghi chú trong giờ học, đính kèm hình ảnh và tài liệu |
+| Theo dõi tiến độ | Biểu đồ tiến độ ôn tập và điểm mục tiêu từng học phần |
+| Học nhóm | Chia sẻ ghi chú và lịch ôn tập với bạn cùng lớp |
 
 **ProjectVersion:**
 
 | VersionName | Platform | IsPublic |
 |---|---|---|
-| Zalord Small v3.6 | Zalo PC (Windows) | 1 |
-| Zalord Elite | Chrome Extension – chat.zalo.me | 1 |
-| Zalord Full Dev Menu | Zalo PC – bản nghiên cứu | 0 |
-| Zalord Premium | Chrome Extension – bản nghiên cứu | 0 |
+| StudyMate Web 1.0 | Web | 1 |
+| StudyMate Android 0.9 (beta) | Android | 1 |
+| StudyMate Lab Build | Web – bản thử nghiệm nội bộ | 0 |
+| StudyMate Pro (thử nghiệm) | Android – bản thử nghiệm nội bộ | 0 |
 
-**TeamMember:** Lê Văn Bình Phương – Trưởng nhóm / Lập trình viên – MSSV 170125077 – Lớp DK25TTG2.
+**TeamMember:** Lê Văn Bình Phương (tài khoản sinh viên dùng để demo) – Trưởng nhóm / Lập trình viên.

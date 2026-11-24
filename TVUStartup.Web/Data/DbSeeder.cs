@@ -6,7 +6,7 @@ namespace TVUStartup.Web.Data;
 
 /// <summary>
 /// Khởi tạo CSDL và nạp dữ liệu mẫu khi CSDL còn trống.
-/// Ngoài dự án Zalord, các sinh viên, dự án, bình luận, tin tức... đều là DỮ LIỆU MẪU (hư cấu) để minh họa.
+/// Toàn bộ sinh viên, dự án, bình luận, tin tức... đều là DỮ LIỆU MẪU (hư cấu) để minh họa.
 /// </summary>
 public static class DbSeeder
 {
@@ -140,25 +140,24 @@ public static class DbSeeder
             Images = SampleImages(folder)
         };
 
-        // --- Zalord: sản phẩm thật của sinh viên Lê Văn Bình Phương ---
-        var zalord = new Project
+        // --- StudyMate TVU: dự án MẪU (hư cấu), chủ dự án là tài khoản sinh viên dùng để demo ---
+        var studymate = new Project
         {
-            ProjectName = "Zalord",
-            Slug = "zalord",
-            Slogan = "Cá nhân hóa Zalo theo cách của bạn",
-            ShortDescription = "Tiện ích mở rộng cho Zalo PC và Zalo Web, giúp tùy biến giao diện, tăng quyền riêng tư và hỗ trợ nhắn tin nhanh hơn, với menu riêng để bật/tắt từng chức năng.",
+            ProjectName = "StudyMate TVU",
+            Slug = "studymate-tvu",
+            Slogan = "Lập kế hoạch học tập, ôn thi có lộ trình",
+            ShortDescription = "Ứng dụng giúp sinh viên lập kế hoạch học tập, nhắc lịch thi, ghi chú bài giảng và theo dõi tiến độ ôn tập theo từng học phần.",
             Content = """
-                <p><strong>Zalord</strong> là tiện ích mở rộng dành cho Zalo, giúp người dùng có thêm nhiều tùy chọn cá nhân hóa, riêng tư và hỗ trợ thao tác so với Zalo mặc định.</p>
-                <p>Zalord cho phép đổi font chữ, đổi theme, thêm hình nền riêng, tùy biến khung chat; ẩn tên, avatar và nội dung tin nhắn khi quay màn hình hoặc làm việc nơi đông người; dùng reaction tùy chỉnh và quản lý bạn bè, nhóm hàng loạt. Tất cả chức năng được gom vào một menu riêng để bật/tắt theo nhu cầu.</p>
-                <p>Sản phẩm có hai bản phát hành công khai: <strong>Zalord Small</strong> cho Zalo PC và <strong>Zalord Elite</strong> – tiện ích Chrome cho Zalo Web (chat.zalo.me). Sản phẩm đã được chia sẻ tới cộng đồng người dùng và nhận nhiều phản hồi tích cực.</p>
+                <p><strong>StudyMate TVU</strong> là ứng dụng hỗ trợ sinh viên quản lý việc học: nhập thời khóa biểu, lịch thi, từ đó tự động gợi ý lịch ôn tập hợp lý cho từng học phần.</p>
+                <p>Sinh viên có thể ghi chú nhanh trong giờ học, đính kèm tài liệu, đặt mục tiêu điểm và theo dõi tiến độ bằng biểu đồ. Ứng dụng nhắc việc trước hạn nộp bài và trước ngày thi.</p>
+                <p>Dự án có hai bản phát hành công khai: <strong>StudyMate Web</strong> và <strong>StudyMate Android (beta)</strong>. <em>(Dự án dữ liệu mẫu)</em></p>
                 """,
-            Logo = "/uploads/sample/projects/zalord/logo.png",
-            CoverImage = "/uploads/sample/projects/zalord/zalord-small-menu.png",
-            WebsiteUrl = "https://github.com/taophuong/Zalordv36",
-            CategoryId = c[0].CategoryId,
+            Logo = "/uploads/sample/projects/studymate/logo.svg",
+            CoverImage = "/uploads/sample/projects/studymate/cover.svg",
+            CategoryId = c[3].CategoryId,
             FacultyId = f[0].FacultyId,
             OwnerId = phuong.AccountId,
-            Stage = ProjectStage.DaRaMat,
+            Stage = ProjectStage.NguyenMau,
             Status = ProjectStatus.DaDuyet,
             IsFeatured = true,
             ViewCount = 1286,
@@ -166,26 +165,22 @@ public static class DbSeeder
             CreatedAt = new DateTime(2026, 10, 20),
             ApprovedAt = new DateTime(2026, 10, 22),
             ApprovedBy = admin.AccountId,
-            Images =
-            {
-                new ProjectImage { ImageUrl = "/uploads/sample/projects/zalord/zalord-small-menu.png", Caption = "Menu Zalord bản Small", DisplayOrder = 1 }
-            },
+            Images = SampleImages("studymate"),
             Features =
             {
-                Feature("Tùy biến giao diện", "Đổi theme sáng/tối, hình nền riêng, hiệu ứng theo mùa (Xuân, Thu, Đông).", "bi-palette", 1),
-                Feature("Font chữ tùy chọn", "Áp dụng bất kỳ font nào từ Google Fonts cho toàn bộ Zalo.", "bi-fonts", 2),
-                Feature("Tùy biến khung chat", "Chỉnh màu sắc, font, nền cho vùng trò chuyện; đổi màu chữ khi soạn tin và màu tên người dùng.", "bi-chat-square-heart", 3),
-                Feature("Ẩn danh & riêng tư", "Ẩn tên, avatar, nội dung tin nhắn, làm mờ hội thoại khi quay màn hình; ẩn trạng thái đang soạn, đã nhận, đã xem.", "bi-incognito", 4),
-                Feature("Reaction tùy chỉnh", "Mở rộng bộ biểu cảm ngoài các reaction mặc định của Zalo.", "bi-emoji-smile", 5),
-                Feature("Quản lý bạn bè & nhóm", "Chọn nhiều, gửi tin nhắn hàng loạt, phân loại nhanh bạn bè.", "bi-people", 6),
-                Feature("Menu bật/tắt riêng", "Gom mọi chức năng vào một menu, bật/tắt từng tính năng theo nhu cầu.", "bi-toggles", 7)
+                Feature("Lập kế hoạch học tập", "Nhập thời khóa biểu, hệ thống gợi ý lịch ôn tập theo từng học phần.", "bi-calendar-check", 1),
+                Feature("Nhắc lịch thi & hạn nộp bài", "Thông báo trước ngày thi và hạn nộp bài tập.", "bi-alarm", 2),
+                Feature("Ghi chú nhanh", "Ghi chú trong giờ học, đính kèm hình ảnh và tài liệu.", "bi-journal-text", 3),
+                Feature("Theo dõi tiến độ", "Biểu đồ tiến độ ôn tập và điểm mục tiêu từng học phần.", "bi-graph-up", 4),
+                Feature("Học nhóm", "Chia sẻ ghi chú và lịch ôn tập với bạn cùng lớp.", "bi-people", 5)
             },
             Versions =
             {
-                new ProjectVersion { VersionName = "Zalord Small v3.6", Platform = "Zalo PC (Windows)", IsPublic = true },
-                new ProjectVersion { VersionName = "Zalord Elite", Platform = "Chrome Extension - chat.zalo.me", ReleaseDate = new DateOnly(2026, 8, 12), IsPublic = true },
-                new ProjectVersion { VersionName = "Zalord Full Dev Menu", Platform = "Zalo PC - bản nghiên cứu", IsPublic = false },
-                new ProjectVersion { VersionName = "Zalord Premium", Platform = "Chrome Extension - bản nghiên cứu", IsPublic = false }
+                new ProjectVersion { VersionName = "StudyMate Web 1.0", Platform = "Web", ReleaseDate = new DateOnly(2026, 9, 15), IsPublic = true },
+                new ProjectVersion { VersionName = "StudyMate Android 0.9 (beta)", Platform = "Android", ReleaseDate = new DateOnly(2026, 10, 10), IsPublic = true },
+                // Hai phiên bản nội bộ: chỉ chủ dự án và Quản trị viên nhìn thấy
+                new ProjectVersion { VersionName = "StudyMate Lab Build", Platform = "Web - bản thử nghiệm nội bộ", IsPublic = false },
+                new ProjectVersion { VersionName = "StudyMate Pro (thử nghiệm)", Platform = "Android - bản thử nghiệm nội bộ", IsPublic = false }
             },
             TeamMembers = { Member(phuong, "Trưởng nhóm / Lập trình viên", 1) }
         };
@@ -363,7 +358,7 @@ public static class DbSeeder
             "<p>Đang hoàn thiện nội dung.</p>",
             c[0], f[0], khoa, ProjectStage.YTuong, ProjectStatus.Nhap, new DateTime(2026, 10, 26), 0);
 
-        var approved = new[] { zalord, agrisense, traMangCau, eduKhmer, mediCare, greenStraw, homestay, saTieu, bioShrimp, giaSu };
+        var approved = new[] { studymate, agrisense, traMangCau, eduKhmer, mediCare, greenStraw, homestay, saTieu, bioShrimp, giaSu };
         db.Projects.AddRange(approved);
         db.Projects.AddRange(xaPhong, banDo, smartParking);
         await db.SaveChangesAsync();
@@ -387,10 +382,10 @@ public static class DbSeeder
             CreatedAt = p.ApprovedAt!.Value.AddDays(daysAfter)
         };
 
-        var cm1 = NewComment(zalord, khoa, "Giao diện tùy biến rất đẹp, mình dùng font riêng cho Zalo PC thấy dễ đọc hơn hẳn.", 5, 1);
-        cm1.Replies.Add(new Comment { ProjectId = zalord.ProjectId, AccountId = phuong.AccountId, Content = "Cảm ơn bạn đã dùng thử! Bản sau mình sẽ thêm nhiều theme hơn.", CreatedAt = cm1.CreatedAt.AddHours(3) });
-        var cm2 = NewComment(zalord, ngoc, "Chức năng ẩn nội dung khi quay màn hình rất hữu ích khi mình dạy online.", 5, 2);
-        var cm3 = NewComment(zalord, bao, "Mong có thêm hướng dẫn cài đặt bằng video cho người mới.", 4, 3);
+        var cm1 = NewComment(studymate, khoa, "Ứng dụng gợi ý lịch ôn tập rất hợp lý, mình dùng để chuẩn bị thi cuối kỳ thấy bớt rối hơn hẳn.", 5, 1);
+        cm1.Replies.Add(new Comment { ProjectId = studymate.ProjectId, AccountId = phuong.AccountId, Content = "Cảm ơn bạn đã dùng thử! Bản sau nhóm sẽ thêm chế độ học nhóm.", CreatedAt = cm1.CreatedAt.AddHours(3) });
+        var cm2 = NewComment(studymate, ngoc, "Chức năng nhắc lịch thi và hạn nộp bài rất hữu ích, mình không còn quên deadline.", 5, 2);
+        var cm3 = NewComment(studymate, bao, "Mong có thêm video hướng dẫn sử dụng cho người mới.", 4, 3);
         var cm4 = NewComment(agrisense, nam, "Ý tưởng rất thiết thực cho vùng ven biển. Nhóm có dự định đo thêm độ pH không?", 5, 1);
         cm4.Replies.Add(new Comment { ProjectId = agrisense.ProjectId, AccountId = khoa.AccountId, Content = "Có bạn nhé, phiên bản trạm đo tiếp theo sẽ có cảm biến pH.", CreatedAt = cm4.CreatedAt.AddHours(5) });
         var cm5 = NewComment(agrisense, truc, "Chi phí mỗi trạm như vậy là hợp lý với hợp tác xã.", 4, 4);
@@ -420,9 +415,9 @@ public static class DbSeeder
             },
             new ContactRequest
             {
-                ProjectId = zalord.ProjectId, FullName = "Lê Quang Vinh", Email = "vinh.le@example.com",
+                ProjectId = studymate.ProjectId, FullName = "Lê Quang Vinh", Email = "vinh.le@example.com",
                 RequestType = RequestType.SuDungSanPham,
-                Message = "Mình muốn dùng Zalord cho máy tính ở văn phòng, có hướng dẫn cài đặt chi tiết không?",
+                Message = "Câu lạc bộ học thuật của mình muốn dùng thử StudyMate cho cả lớp, nhóm có hỗ trợ triển khai không?",
                 Status = ContactStatus.Moi, CreatedAt = new DateTime(2026, 10, 26, 20, 15, 0)
             },
             new ContactRequest

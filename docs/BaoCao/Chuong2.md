@@ -76,7 +76,7 @@ public async Task<IActionResult> Detail(string slug) { ... }
 public string Email { get; set; }
 ```
 
-**Razor, Layout, Partial View và Tag Helper.** Layout định nghĩa khung chung của trang (đầu trang, menu, chân trang); Partial View là đoạn giao diện dùng lại ở nhiều nơi (ví dụ thẻ hiển thị một dự án). Tag Helper cho phép viết thuộc tính phía máy chủ ngay trên thẻ HTML [10]; ví dụ thẻ `<a asp-controller="Projects" asp-action="Detail" asp-route-slug="zalord">` được sinh thành `<a href="/du-an/zalord">`, còn thẻ `<form>` tự động chèn token chống giả mạo yêu cầu.
+**Razor, Layout, Partial View và Tag Helper.** Layout định nghĩa khung chung của trang (đầu trang, menu, chân trang); Partial View là đoạn giao diện dùng lại ở nhiều nơi (ví dụ thẻ hiển thị một dự án). Tag Helper cho phép viết thuộc tính phía máy chủ ngay trên thẻ HTML [10]; ví dụ thẻ `<a asp-controller="Projects" asp-action="Detail" asp-route-slug="studymate-tvu">` được sinh thành `<a href="/du-an/studymate-tvu">`, còn thẻ `<form>` tự động chèn token chống giả mạo yêu cầu.
 
 **Area.** Area chia ứng dụng lớn thành các khu vực chức năng độc lập, mỗi khu vực có controller, view và layout riêng [11]. Đồ án dùng Area `Admin` cho toàn bộ khu vực quản trị.
 

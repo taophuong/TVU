@@ -69,15 +69,15 @@ shots = [
     # --- Khách ---
     ("k01_trang_chu", snapshot(guest, "/", "k01"), W, 1500),
     ("k02_danh_sach_du_an", BASE + "/du-an", W, 1150),
-    ("k03_tim_kiem_khong_dau", BASE + "/du-an?q=tuy%20bien", W, 760),
-    ("k04_chi_tiet_du_an", BASE + "/du-an/zalord", W, 1450),
+    ("k03_tim_kiem_khong_dau", BASE + "/du-an?q=lap%20ke%20hoach", W, 760),
+    ("k04_chi_tiet_du_an", BASE + "/du-an/studymate-tvu", W, 1450),
     ("k05_lien_he_hop_tac", snapshot(guest, "/du-an/agrisense", "k05", JS_MODAL.format(sel="#contactModal", prep="")), W, 900),
     ("k06_tin_tuc", BASE + "/tin-tuc", W, 1000),
     ("k07_dang_nhap", BASE + "/dang-nhap", W, 860),
     ("k08_dang_ky", BASE + "/dang-ky", W, 960),
     ("k09_trang_404", BASE + "/abc", W, 620),
     ("k10_dien_thoai_trang_chu", BASE + "/", 500, 1000),
-    ("k11_dien_thoai_chi_tiet", BASE + "/du-an/zalord", 500, 1000),
+    ("k11_dien_thoai_chi_tiet", BASE + "/du-an/studymate-tvu", 500, 1000),
     # --- Sinh viên ---
     ("s01_du_an_cua_toi", snapshot(sv, "/du-an-cua-toi", "s01"), W, 700),
     ("s02_dang_du_an_moi", snapshot(sv, "/du-an-cua-toi/tao-moi", "s02"), W, 1250),

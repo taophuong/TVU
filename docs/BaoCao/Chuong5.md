@@ -50,7 +50,7 @@ Bảng 5.3. Test case nhóm chức năng dành cho khách
 | Mã | Chức năng / Đầu vào | Kết quả mong đợi | Kết quả thực tế | Đạt? |
 |---|---|---|---|---|
 | TC15 | Mở trang chủ, danh sách dự án, chi tiết dự án, tin tức, liên hệ, đăng nhập, đăng ký | Hiển thị đúng, không lỗi | Cả 9 trang hiển thị đúng nội dung | Đạt |
-| TC16 | Tìm kiếm từ khóa không dấu “tuy bien” | Tìm được dự án có chữ “Tùy biến” | Kết quả có dự án Zalord | Đạt |
+| TC16 | Tìm kiếm từ khóa không dấu “lap ke hoach” | Tìm được dự án có chữ “Lập kế hoạch” | Kết quả có dự án StudyMate TVU | Đạt |
 | TC17 | Lọc theo lĩnh vực, khoa, giai đoạn; sắp xếp; chuyển trang | Kết quả đúng điều kiện, giữ bộ lọc khi chuyển trang | Kết quả đúng, bộ lọc được giữ nguyên | Đạt |
 | TC18 | Khách mở trang dự án đang Chờ duyệt | Không cho xem | Hiển thị trang 404 | Đạt |
 | TC19 | Khách mở bài tin chưa xuất bản | Không cho xem | Hiển thị trang 404 | Đạt |
@@ -124,7 +124,7 @@ Về quy mô, mã nguồn gồm 16 controller (6 controller phía người dùng
 
 Kịch bản demo được xây dựng theo đúng luồng nghiệp vụ chính của hệ thống, thực hiện trong khoảng 10 phút:
 
-1. **Khách tìm hiểu dự án:** mở trang chủ, xem số liệu tổng quan và dự án nổi bật; tìm kiếm từ khóa không dấu “tuy bien” và mở trang chi tiết dự án Zalord; gửi một yêu cầu liên hệ hợp tác.
+1. **Khách tìm hiểu dự án:** mở trang chủ, xem số liệu tổng quan và dự án nổi bật; tìm kiếm từ khóa không dấu “lap ke hoach” và mở trang chi tiết dự án StudyMate TVU; gửi một yêu cầu liên hệ hợp tác.
 2. **Sinh viên đăng dự án:** đăng ký tài khoản mới; tạo dự án, nhập giới thiệu bằng trình soạn thảo, tải logo, ảnh bìa; thêm tính năng, hình ảnh, phiên bản; xem trước và gửi duyệt.
 3. **Quản trị viên duyệt dự án:** đăng nhập trang quản trị, xem Dashboard; lọc dự án Chờ duyệt, xem trước rồi duyệt; đánh dấu dự án nổi bật; xem yêu cầu liên hệ mới.
 4. **Tương tác trên dự án đã công khai:** khách thấy dự án mới trên trang chủ và trang danh sách; sinh viên khác bình luận, chấm sao, bình chọn; chủ dự án trả lời bình luận và cập nhật trạng thái liên hệ.
@@ -146,7 +146,7 @@ Bảng 5.8. Đánh giá kết quả so với mục tiêu ban đầu
 | Bảo đảm an toàn thông tin | Đáp ứng các yêu cầu bảo mật đã đặt ra; kiểm thử với các tình huống tấn công thường gặp đều đạt | Đạt |
 | Triển khai lên môi trường Internet | Chưa triển khai lên hosting, hiện chạy trên máy cục bộ | Chưa đạt |
 
-Nhìn chung, hệ thống đáp ứng được các yêu cầu chức năng và phi chức năng đã phân tích ở Chương 3. Điểm mạnh của đồ án là quy trình nghiệp vụ rõ ràng, có kiểm duyệt nội dung; giao diện hiện đại, tương thích điện thoại; chú trọng bảo mật ở nhiều lớp; và có bộ kiểm thử tự động giúp kiểm tra lại nhanh sau mỗi lần thay đổi. Dự án Zalord – sản phẩm thật của sinh viên thực hiện đồ án – được dùng làm dữ liệu minh họa, cho thấy website có thể đưa vào sử dụng để giới thiệu các sản phẩm thực tế.
+Nhìn chung, hệ thống đáp ứng được các yêu cầu chức năng và phi chức năng đã phân tích ở Chương 3. Điểm mạnh của đồ án là quy trình nghiệp vụ rõ ràng, có kiểm duyệt nội dung; giao diện hiện đại, tương thích điện thoại; chú trọng bảo mật ở nhiều lớp; và có bộ kiểm thử tự động giúp kiểm tra lại nhanh sau mỗi lần thay đổi. Toàn bộ dự án trong hệ thống là dữ liệu mẫu hư cấu dùng để minh họa; khi đưa vào sử dụng, sinh viên chỉ cần đăng ký tài khoản và đăng dự án của mình để được kiểm duyệt.
 
 ## 5.4. Hạn chế và hướng phát triển
 

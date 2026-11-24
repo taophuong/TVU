@@ -4,7 +4,7 @@
 
 Website là nơi sinh viên Trường Đại học Trà Vinh đăng và giới thiệu dự án khởi nghiệp. Ban quản trị duyệt dự án trước khi công khai. Khách truy cập (doanh nghiệp, nhà đầu tư, cộng đồng) có thể tìm kiếm dự án, bình luận, bình chọn và gửi yêu cầu hợp tác.
 
-> Ngoài dự án **Zalord** (sản phẩm thật của sinh viên thực hiện đồ án), các sinh viên, dự án, bình luận, tin tức… đều là **dữ liệu mẫu (hư cấu)** để minh họa.
+> Toàn bộ sinh viên, dự án, bình luận, tin tức… đều là **dữ liệu mẫu (hư cấu)** để minh họa.
 
 ## 1. Công nghệ & phiên bản
 
@@ -82,7 +82,7 @@ dotnet run
 | Vai trò | Email | Mật khẩu |
 |---|---|---|
 | Quản trị viên | `admin@tvu.edu.vn` | `Admin@123` |
-| Sinh viên (chủ dự án Zalord) | `170125077@st.tvu.edu.vn` | `SinhVien@123` |
+| Sinh viên (chủ dự án mẫu StudyMate TVU) | `170125077@st.tvu.edu.vn` | `SinhVien@123` |
 | Sinh viên mẫu khác | `110122001@st.tvu.edu.vn`, `111122015@st.tvu.edu.vn`, … | `SinhVien@123` |
 
 ## 5. Chức năng chính

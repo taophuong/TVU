@@ -18,7 +18,7 @@ Bảng PL.1. Tài khoản dùng để chạy thử hệ thống
 | Vai trò | Email | Mật khẩu |
 |---|---|---|
 | Quản trị viên | admin@tvu.edu.vn | Admin@123 |
-| Sinh viên (chủ dự án Zalord) | 170125077@st.tvu.edu.vn | SinhVien@123 |
+| Sinh viên (chủ dự án mẫu StudyMate TVU) | 170125077@st.tvu.edu.vn | SinhVien@123 |
 | Sinh viên mẫu khác | 110122001@st.tvu.edu.vn, 111122015@st.tvu.edu.vn, … | SinhVien@123 |
 
 ## Phụ lục 3. Sản phẩm nộp kèm

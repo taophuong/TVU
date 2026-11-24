@@ -10,7 +10,7 @@ Song song với sản phẩm, đồ án đã hoàn thành đầy đủ hồ sơ 
 
 - **Đối với sinh viên và nhà trường:** cung cấp một kênh tập trung, có kiểm duyệt để sinh viên các khoa giới thiệu sản phẩm khởi nghiệp một cách chuyên nghiệp; giúp nhà trường quản lý, thống kê và quảng bá phong trào khởi nghiệp của sinh viên.
 - **Đối với doanh nghiệp, nhà đầu tư, cộng đồng:** dễ dàng tìm kiếm dự án theo lĩnh vực, khoa, giai đoạn và liên hệ hợp tác trực tiếp với nhóm sinh viên.
-- **Đối với bản thân người thực hiện:** vận dụng tổng hợp kiến thức về ASP.NET Core MVC, Entity Framework Core, LINQ, Dependency Injection, xác thực – phân quyền và bảo mật ứng dụng web vào một sản phẩm hoàn chỉnh; rèn luyện kỹ năng phân tích thiết kế, kiểm thử và viết báo cáo kỹ thuật; đồng thời có thêm kênh giới thiệu sản phẩm Zalord của chính mình.
+- **Đối với bản thân người thực hiện:** vận dụng tổng hợp kiến thức về ASP.NET Core MVC, Entity Framework Core, LINQ, Dependency Injection, xác thực – phân quyền và bảo mật ứng dụng web vào một sản phẩm hoàn chỉnh; rèn luyện kỹ năng phân tích thiết kế, kiểm thử và viết báo cáo kỹ thuật.
 
 ## Hướng phát triển
 

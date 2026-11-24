@@ -6,7 +6,7 @@ Trong những năm gần đây, khởi nghiệp đổi mới sáng tạo đượ
 
 Tại Trường Đại học Trà Vinh, sinh viên thuộc nhiều khoa có những ý tưởng và sản phẩm khởi nghiệp gắn với thế mạnh địa phương như nông nghiệp, thủy sản, chế biến nông sản, du lịch cộng đồng, văn hóa Khmer Nam Bộ, cũng như các sản phẩm công nghệ phần mềm. Tuy nhiên, các sản phẩm này thường chỉ được giới thiệu rời rạc qua mạng xã hội cá nhân, nhóm chat hoặc trong khuôn khổ các ngày hội, cuộc thi. Sau khi sự kiện kết thúc, thông tin về sản phẩm dễ bị thất lạc; doanh nghiệp, nhà đầu tư hay người dùng quan tâm cũng khó tìm được một nơi tập trung để tra cứu, so sánh và liên hệ trực tiếp với nhóm sinh viên.
 
-Bản thân tác giả cũng là một sinh viên khởi nghiệp: sản phẩm **Zalord** – tiện ích mở rộng giúp cá nhân hóa giao diện và tăng quyền riêng tư cho Zalo PC và Zalo Web – được tác giả tự phát triển, chia sẻ tới cộng đồng người dùng và nhận nhiều phản hồi tích cực. Trong quá trình giới thiệu sản phẩm, tác giả nhận thấy rõ nhu cầu về một kênh chính thống, có kiểm duyệt của nhà trường để sinh viên trình bày sản phẩm một cách chuyên nghiệp, đầy đủ thông tin (tính năng, hình ảnh, phiên bản, đội ngũ) và để cộng đồng có thể phản hồi, kết nối.
+Từ thực tế đó, có thể thấy nhu cầu về một kênh chính thống, có kiểm duyệt của nhà trường để sinh viên trình bày sản phẩm một cách chuyên nghiệp, đầy đủ thông tin (tính năng, hình ảnh, phiên bản, đội ngũ) và để cộng đồng có thể phản hồi, kết nối.
 
 Bên cạnh đó, học phần Chuyên đề ASP.NET yêu cầu sinh viên vận dụng kiến thức về nền tảng ASP.NET vào một bài toán thực tế. Một website giới thiệu sản phẩm khởi nghiệp có đủ các nghiệp vụ tiêu biểu của một hệ thống web hiện đại: quản lý người dùng và phân quyền, quy trình đăng – kiểm duyệt nội dung, tìm kiếm, tương tác cộng đồng, quản trị và thống kê. Đây là điều kiện tốt để áp dụng toàn diện ASP.NET Core MVC, Entity Framework Core và SQL Server.
 
@@ -46,7 +46,7 @@ Về kiến thức và kỹ năng, thông qua đồ án tác giả rèn luyện 
 - **Sinh viên:** đăng nhập, cập nhật hồ sơ, đăng và quản lý dự án (hình ảnh, tính năng, phiên bản, thành viên), gửi duyệt, bình luận, đánh giá, bình chọn, theo dõi liên hệ hợp tác.
 - **Quản trị viên:** xem thống kê, duyệt dự án, quản lý lĩnh vực, khoa, tài khoản, tin tức, banner, kiểm duyệt bình luận, xử lý liên hệ.
 
-**Phạm vi dữ liệu:** theo định hướng của giảng viên hướng dẫn, hệ thống sử dụng dữ liệu mẫu để minh họa, gồm 7 khoa, 8 lĩnh vực, 8 tài khoản sinh viên và 13 dự án ở đủ các trạng thái. Trong đó, dự án Zalord là sản phẩm thật của tác giả; các sinh viên, dự án còn lại cùng bình luận, tin tức là dữ liệu hư cấu, được ghi chú rõ trên giao diện.
+**Phạm vi dữ liệu:** theo định hướng của giảng viên hướng dẫn, hệ thống sử dụng dữ liệu mẫu để minh họa, gồm 7 khoa, 8 lĩnh vực, 8 tài khoản sinh viên và 13 dự án ở đủ các trạng thái. Toàn bộ sinh viên, dự án, bình luận và tin tức đều là dữ liệu hư cấu, được ghi chú rõ trên giao diện.
 
 **Phạm vi triển khai:** website được cài đặt và vận hành trên máy tính cá nhân (Windows, SQL Server Express); mã nguồn được quản lý trên GitHub, kèm hướng dẫn cài đặt, script tạo cơ sở dữ liệu và dữ liệu mẫu tự nạp khi chạy lần đầu.
 
@@ -82,4 +82,4 @@ Bảng 1.2. Công cụ hỗ trợ phát triển
 
 ## Tiểu kết chương 1
 
-Chương 1 đã trình bày lý do chọn đề tài xuất phát từ nhu cầu thực tế của phong trào khởi nghiệp sinh viên và trải nghiệm của chính tác giả với sản phẩm Zalord; xác định mục tiêu, phạm vi nghiên cứu, triển khai và tóm tắt các công nghệ được sử dụng. Chương 2 sẽ trình bày cơ sở lý thuyết của các công nghệ này.
+Chương 1 đã trình bày lý do chọn đề tài xuất phát từ nhu cầu thực tế của phong trào khởi nghiệp sinh viên; xác định mục tiêu, phạm vi nghiên cứu, triển khai và tóm tắt các công nghệ được sử dụng. Chương 2 sẽ trình bày cơ sở lý thuyết của các công nghệ này.

@@ -52,13 +52,13 @@ Thứ nhất, Nhà nước đang khuyến khích sinh viên khởi nghiệp qua 
 
 Thứ hai, các sản phẩm này chủ yếu được giới thiệu qua mạng xã hội hoặc ngày hội, thông tin rời rạc, nên doanh nghiệp và nhà đầu tư khó tìm kiếm, khó liên hệ.
 
-Thứ ba, bản thân em đang phát triển sản phẩm Zalord, tiện ích cá nhân hóa giao diện Zalo. Khi giới thiệu sản phẩm, em thấy rất cần một kênh chính thống, có kiểm duyệt của nhà trường.
+Thứ ba, vì vậy rất cần một kênh chính thống, có kiểm duyệt của nhà trường để sinh viên giới thiệu sản phẩm một cách đầy đủ và chuyên nghiệp.
 
 ## Slide 4. Mục tiêu và phạm vi (khoảng 45 giây)
 
 Mục tiêu là xây dựng một website chung, nơi nhiều sinh viên tự đăng và quản lý dự án; dự án phải được ban quản trị kiểm duyệt rồi mới công khai. Website kết nối sinh viên với doanh nghiệp qua bình luận, đánh giá, bình chọn và liên hệ hợp tác, đồng thời có khu quản trị, thống kê.
 
-Hệ thống có ba tác nhân, hai mươi bốn chức năng và mười bốn bảng dữ liệu. Theo định hướng của giảng viên hướng dẫn, em dùng dữ liệu mẫu với mười ba dự án; riêng Zalord là sản phẩm thật.
+Hệ thống có ba tác nhân, hai mươi bốn chức năng và mười bốn bảng dữ liệu. Theo định hướng của giảng viên hướng dẫn, em chỉ dùng dữ liệu mẫu hư cấu, gồm mười ba dự án.
 
 ## Slide 5. Công nghệ sử dụng (khoảng 30 giây)
 
@@ -100,7 +100,7 @@ Các điều kiện chuyển trạng thái được gom vào lớp ProjectRules,
 
 Bên trái là trang chủ với số liệu tổng quan, dự án nổi bật, lĩnh vực và tin tức. Trang danh sách cho phép lọc theo lĩnh vực, khoa, giai đoạn và tìm kiếm không dấu.
 
-Bên phải là trang chi tiết dự án Zalord, gồm giới thiệu, tính năng, hình ảnh, phiên bản, đội ngũ và nút liên hệ hợp tác. Giao diện hiển thị tốt trên cả điện thoại.
+Bên phải là trang chi tiết dự án mẫu StudyMate TVU, gồm giới thiệu, tính năng, hình ảnh, phiên bản, đội ngũ và nút liên hệ hợp tác. Giao diện hiển thị tốt trên cả điện thoại.
 
 ## Slide 11. Giao diện sinh viên (khoảng 30 giây)
 

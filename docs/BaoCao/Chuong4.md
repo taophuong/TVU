@@ -304,7 +304,7 @@ Trang chủ (Hình 4.1) gồm phần giới thiệu kèm ô tìm kiếm và bố
 
 ![Hình 4.1. Giao diện trang chủ](../screenshots/k01_trang_chu.png)
 
-Trang danh sách dự án (Hình 4.2) có bộ lọc theo từ khóa, lĩnh vực, khoa, giai đoạn và ô sắp xếp; mỗi dự án hiển thị dạng thẻ với ảnh bìa, giai đoạn, lượt xem, lượt yêu thích. Hình 4.3 cho thấy tìm kiếm từ khóa không dấu “tuy bien” vẫn tìm được dự án Zalord.
+Trang danh sách dự án (Hình 4.2) có bộ lọc theo từ khóa, lĩnh vực, khoa, giai đoạn và ô sắp xếp; mỗi dự án hiển thị dạng thẻ với ảnh bìa, giai đoạn, lượt xem, lượt yêu thích. Hình 4.3 cho thấy tìm kiếm từ khóa không dấu “lap ke hoach” vẫn tìm được dự án StudyMate TVU.
 
 ![Hình 4.2. Giao diện danh sách dự án](../screenshots/k02_danh_sach_du_an.png)
 
@@ -312,7 +312,7 @@ Trang danh sách dự án (Hình 4.2) có bộ lọc theo từ khóa, lĩnh vự
 
 Trang chi tiết dự án (Hình 4.4) hiển thị logo, slogan, các nhãn phân loại, nút truy cập trang sản phẩm; nội dung giới thiệu, tính năng nổi bật, hình ảnh, phiên bản phát hành và đội ngũ thực hiện. Khách bấm “Liên hệ hợp tác” để mở form gửi yêu cầu (Hình 4.5).
 
-![Hình 4.4. Giao diện chi tiết dự án Zalord](../screenshots/k04_chi_tiet_du_an.png)
+![Hình 4.4. Giao diện chi tiết dự án StudyMate TVU (dữ liệu mẫu)](../screenshots/k04_chi_tiet_du_an.png)
 
 ![Hình 4.5. Form gửi liên hệ hợp tác](../screenshots/k05_lien_he_hop_tac.png)
 

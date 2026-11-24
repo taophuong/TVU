@@ -36,13 +36,13 @@
 
 | Mã | Chức năng / Đầu vào | Kết quả mong đợi | Kết quả thực tế | Đạt? |
 |---|---|---|---|---|
-| TC15 | Mở trang chủ, danh sách dự án, chi tiết Zalord, tin tức, liên hệ, đăng nhập, đăng ký | Hiển thị đúng, không lỗi | 9/9 trang trả về mã 200, hiển thị đúng nội dung | Đạt |
-| TC16 | Tìm kiếm từ khóa không dấu “tuy bien” | Tìm thấy dự án có chữ “Tùy biến” | Kết quả có dự án Zalord | Đạt |
+| TC15 | Mở trang chủ, danh sách dự án, chi tiết StudyMate TVU, tin tức, liên hệ, đăng nhập, đăng ký | Hiển thị đúng, không lỗi | 9/9 trang trả về mã 200, hiển thị đúng nội dung | Đạt |
+| TC16 | Tìm kiếm từ khóa không dấu “lap ke hoach” | Tìm thấy dự án có chữ “Lập kế hoạch” | Kết quả có dự án StudyMate TVU | Đạt |
 | TC17 | Lọc theo lĩnh vực / khoa / giai đoạn, sắp xếp, chuyển trang | Kết quả đúng điều kiện, giữ bộ lọc khi chuyển trang | Đúng (kiểm tra thủ công) | Đạt |
 | TC18 | Khách mở trang dự án đang Chờ duyệt (`/du-an/xa-phong-thao-duoc-moc-an`) | Không cho xem | Trang 404 | Đạt |
 | TC19 | Khách mở bài tin chưa xuất bản | Không cho xem | Trang 404 | Đạt |
 | TC20 | Mở đường dẫn không tồn tại `/abc` | Trang lỗi thân thiện | Trang 404 tiếng Việt, có nút về trang chủ | Đạt |
-| TC21 | Khách xem Zalord | Chỉ thấy phiên bản công khai | Thấy Small v3.6, Elite; không thấy Full Dev Menu, Premium | Đạt |
+| TC21 | Khách xem StudyMate TVU | Chỉ thấy phiên bản công khai | Thấy StudyMate Web 1.0, Android 0.9 (beta); không thấy Lab Build, Pro (thử nghiệm) | Đạt |
 | TC22 | Khách gửi liên hệ hợp tác (đầy đủ thông tin) | Lưu yêu cầu, thông báo thành công | Thông báo “Đã gửi yêu cầu liên hệ…”, yêu cầu xuất hiện ở trang quản trị | Đạt |
 | TC23 | Gửi form POST không có token chống CSRF | Từ chối request | Mã 400 “Yêu cầu không hợp lệ” | Đạt |
 | TC24 | Mở website trên màn hình điện thoại (rộng 390–500px) | Bố cục co giãn, không tràn ngang | Menu thu gọn, nội dung xếp 1 cột, không cuộn ngang | Đạt |
@@ -55,7 +55,7 @@
 | TC26 | Bình chọn cho dự án của chính mình | Không cho phép | Thông báo “Bạn không thể bình chọn cho dự án của chính mình.” | Đạt |
 | TC27 | Gửi bình luận kèm 4 sao | Bình luận hiển thị, điểm trung bình cập nhật | Bình luận hiển thị với 4 sao | Đạt |
 | TC28 | Bình luận có nội dung `<script>alert(1)</script>` | Hiển thị dạng chữ, không thực thi | Hiển thị `&lt;script&gt;…` dạng văn bản | Đạt |
-| TC29 | Chủ dự án mở trang Zalord | Thấy cả phiên bản nội bộ | Thấy Full Dev Menu, Premium kèm nhãn “Nội bộ”; có nút “Chỉnh sửa dự án” | Đạt |
+| TC29 | Chủ dự án mở trang StudyMate TVU | Thấy cả phiên bản nội bộ | Thấy Lab Build, Pro (thử nghiệm) kèm nhãn “Nội bộ”; có nút “Chỉnh sửa dự án” | Đạt |
 | TC30 | Tạo dự án mới tên “Dự án Kiểm Thử Tự Động” | Lưu trạng thái Nháp, tạo slug | Trạng thái Nháp, slug `du-an-kiem-thu-tu-dong` | Đạt |
 | TC31 | Giới thiệu chi tiết chứa `<script>`, `<img onerror=…>` | Loại bỏ mã độc, giữ định dạng an toàn | `<strong>` được giữ; `<script>`, `onerror` bị loại bỏ | Đạt |
 | TC32 | Chủ dự án xem trang dự án đang Nháp | Cho xem trước | Hiển thị thanh “Bản xem trước – trạng thái Nháp” | Đạt |
@@ -78,6 +78,6 @@
 | TC44 | Đặt lại mật khẩu tài khoản | Sinh mật khẩu tạm, hiển thị một lần | Hiển thị mật khẩu dạng `Tvu@xxxxxx`, đăng nhập được bằng mật khẩu này | Đạt |
 
 ## Ghi chú cho mục 5.2 – 5.4 (sinh viên tự viết lời văn)
-- Kịch bản demo gợi ý (≈ 10 phút): Khách tìm kiếm “tuy bien” → xem Zalord → gửi liên hệ hợp tác → Sinh viên đăng ký, đăng dự án mới, thêm tính năng, ảnh bìa, gửi duyệt → Admin xem Dashboard, duyệt dự án → Khách thấy dự án mới, bình luận, bình chọn → Sinh viên xem liên hệ, trả lời bình luận.
+- Kịch bản demo gợi ý (≈ 10 phút): Khách tìm kiếm “lap ke hoach” → xem StudyMate TVU → gửi liên hệ hợp tác → Sinh viên đăng ký, đăng dự án mới, thêm tính năng, ảnh bìa, gửi duyệt → Admin xem Dashboard, duyệt dự án → Khách thấy dự án mới, bình luận, bình chọn → Sinh viên xem liên hệ, trả lời bình luận.
 - Hạn chế có thể nêu: chưa gửi email (quên mật khẩu, xác thực đăng ký, thông báo kết quả duyệt); chưa có đăng nhập bằng tài khoản Google/Microsoft của Trường; chưa triển khai lên hosting; tìm kiếm chưa xếp hạng theo độ liên quan; dữ liệu là dữ liệu mẫu.
 - Hướng phát triển: gửi email thông báo (SMTP), API + JWT cho ứng dụng di động, triển khai IIS/Docker, thống kê theo thời gian thực, tích hợp đăng nhập SSO của Trường.

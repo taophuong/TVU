@@ -52,13 +52,13 @@ def png_bytes():
 
 # ===== Khách =====
 guest = client()
-for path in ['/', '/du-an', '/du-an/zalord', '/du-an?q=tuy%20bien', '/tin-tuc', '/tin-tuc/ngay-hoi-khoi-nghiep-sinh-vien-2026', '/lien-he', '/dang-nhap', '/dang-ky']:
+for path in ['/', '/du-an', '/du-an/studymate-tvu', '/du-an?q=lap%20ke%20hoach', '/tin-tuc', '/tin-tuc/ngay-hoi-khoi-nghiep-sinh-vien-2026', '/lien-he', '/dang-nhap', '/dang-ky']:
     s, _, _ = req(guest, path)
     check(f'Khách GET {path}', s == 200, s)
-s, _, html = req(guest, '/du-an/zalord')
-check('Zalord ẩn bản Full/Premium với khách', 'Full Dev Menu' not in html and 'Premium' not in html and 'Zalord Elite' in html)
-s, _, html = req(guest, '/du-an?q=tuy%20bien')
-check('Tìm kiếm không dấu ra Zalord', 'Zalord' in html)
+s, _, html = req(guest, '/du-an/studymate-tvu')
+check('StudyMate ẩn bản nội bộ với khách', 'StudyMate Lab Build' not in html and 'Pro (thử nghiệm)' not in html and 'StudyMate Web 1.0' in html)
+s, _, html = req(guest, '/du-an?q=lap%20ke%20hoach')
+check('Tìm kiếm không dấu ra StudyMate TVU', 'StudyMate TVU' in html)
 s, _, _ = req(guest, '/du-an/xa-phong-thao-duoc-moc-an')
 check('Khách không xem được dự án Chờ duyệt (404)', s == 404, s)
 s, _, _ = req(guest, '/tin-tuc/ket-noi-doanh-nghiep-voi-du-an-sinh-vien')
@@ -85,8 +85,8 @@ check('TC: Đăng nhập sai mật khẩu báo lỗi', s == 200 and 'Email hoặ
 sv = client()
 s, loc, _ = login(sv, '170125077@st.tvu.edu.vn', 'SinhVien@123')
 check('Sinh viên đăng nhập thành công', s == 302, loc)
-s, _, html = req(sv, '/du-an/zalord')
-check('Chủ dự án thấy bản nội bộ (Full/Premium)', 'Full Dev Menu' in html and 'Nội bộ' in html)
+s, _, html = req(sv, '/du-an/studymate-tvu')
+check('Chủ dự án thấy bản nội bộ', 'StudyMate Lab Build' in html and 'Nội bộ' in html)
 s, _, _ = req(sv, '/quan-tri')
 check('Sinh viên vào /quan-tri bị từ chối (403)', s in (302, 403), s)
 
@@ -99,7 +99,7 @@ second = json.loads(body2) if s2 == 200 else {}
 check('Bình chọn bật / tắt (AJAX)', s == 200 and first.get('voted') != second.get('voted'), (first, second))
 
 # Không tự bình chọn dự án của mình
-_, _, html = req(sv, '/du-an/zalord')
+_, _, html = req(sv, '/du-an/studymate-tvu')
 zid = re.search(r'/du-an/(\d+)/binh-luan', html).group(1)
 s, _, _ = req(sv, f'/du-an/{zid}/binh-chon', {'__RequestVerificationToken': token(html)}, headers={'X-Requested-With': 'XMLHttpRequest'})
 check('Không bình chọn được dự án của chính mình', s == 400, s)

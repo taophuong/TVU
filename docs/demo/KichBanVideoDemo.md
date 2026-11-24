@@ -151,7 +151,7 @@ Dữ liệu nhập cho dự án demo:
 | Trang chủ: chờ banner chuyển ảnh, cuộn xuống phần số liệu, Dự án nổi bật, Lĩnh vực, Tin tức | Đây là trang chủ khi chưa đăng nhập. Trang có banner, số liệu tổng quan, các dự án nổi bật do quản trị viên chọn, các lĩnh vực và tin tức mới. |
 | Bấm menu **Dự án khởi nghiệp**, chọn lọc Lĩnh vực = Nông nghiệp công nghệ cao | Trang danh sách cho phép lọc theo lĩnh vực, khoa, giai đoạn và sắp xếp. |
 | Xóa bộ lọc, gõ tìm **tra mang cau** (không dấu) → Enter | Em gõ không dấu "tra mang cau" vẫn tìm được dự án Trà Mãng Cầu Xiêm Xanh, nhờ collation tiếng Việt không phân biệt dấu của SQL Server. |
-| Mở dự án **Zalord**: cuộn qua Giới thiệu, Tính năng, bấm một ảnh trong Hình ảnh, Phiên bản, Đội ngũ, Bình luận | Trang chi tiết gồm giới thiệu, tính năng, thư viện ảnh, lịch sử phiên bản, đội ngũ và bình luận, đánh giá. Zalord là sản phẩm thật của em. |
+| Mở dự án **StudyMate TVU**: cuộn qua Giới thiệu, Tính năng, bấm một ảnh trong Hình ảnh, Phiên bản, Đội ngũ, Bình luận | Trang chi tiết gồm giới thiệu, tính năng, thư viện ảnh, lịch sử phiên bản, đội ngũ và bình luận, đánh giá. Đây là dự án mẫu, dữ liệu hư cấu. |
 | Bấm **Liên hệ hợp tác** → nhập Họ và tên: Nguyễn Văn An, Email: an.nguyen@example.com, Nhu cầu: Hợp tác, Nội dung: một câu → **Gửi yêu cầu** | Khách không cần đăng nhập vẫn gửi được yêu cầu hợp tác tới chủ dự án. Yêu cầu này sẽ hiện trong trang của chủ dự án và của quản trị viên. |
 | (Nếu còn thời gian) Nhấn F12 → Ctrl+Shift+M, chọn iPhone, cuộn trang chủ, mở menu ☰ → tắt F12 | Giao diện responsive, hiển thị tốt trên điện thoại. |
 
