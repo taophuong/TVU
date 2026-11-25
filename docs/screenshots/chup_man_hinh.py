@@ -80,7 +80,7 @@ shots = [
     ("k11_dien_thoai_chi_tiet", BASE + "/du-an/studymate-tvu", 500, 1000),
     # --- Sinh viên ---
     ("s01_du_an_cua_toi", snapshot(sv, "/du-an-cua-toi", "s01"), W, 700),
-    ("s02_dang_du_an_moi", snapshot(sv, "/du-an-cua-toi/tao-moi", "s02"), W, 1250),
+    ("s02_dang_du_an_moi", snapshot(sv, "/du-an-cua-toi/tao-moi", "s02"), W, 1420),
     ("s03_sua_du_an_tinh_nang", snapshot(khoa, f"/du-an-cua-toi/{draft_id}/sua?tab=features", "s03"), W, 760),
     ("s04_sua_du_an_hinh_anh", snapshot(sv, "/du-an-cua-toi/1/sua?tab=images", "s04"), W, 820),
     ("s05_binh_luan_danh_gia", snapshot(sv, "/du-an/agrisense", "s05"), W, 2400),

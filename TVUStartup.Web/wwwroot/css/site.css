@@ -396,7 +396,10 @@ a { color: var(--brand); }
 .my-project-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 .project-logo-sm { width: 32px; height: 32px; border-radius: 8px; }
 .cover-thumb { width: 96px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); flex-shrink: 0; }
-.content-editor { background: #fff; min-height: 220px; font-size: 1rem; }
+/* Dùng height cố định (không dùng min-height): Quill đặt .ql-editor cao 100% nên nếu chỉ có min-height thì
+   ô soạn thảo bị tràn ra ngoài khung và đè lên nút "Lưu nháp và tiếp tục" bên dưới. Nội dung dài sẽ cuộn trong ô. */
+.content-editor { background: #fff; height: 280px; font-size: 1rem; }
+.ql-container.content-editor { height: 280px; min-height: 0; } /* thắng quy tắc height:100% của quill.snow.css (tải sau) */
 .ql-toolbar.ql-snow, .ql-container.ql-snow { border-color: var(--line); }
 .ql-toolbar.ql-snow { border-radius: 10px 10px 0 0; }
 .ql-container.ql-snow { border-radius: 0 0 10px 10px; font-family: inherit; }
